@@ -1,0 +1,177 @@
+
+{% load static %}
+{% url 'profiles:profile' as profile %}
+{% url 'home:subscribe_form' as subscribe_form %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block meta %}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- SEO -->
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="teal">
+    <meta name="description"
+        content="Circ is a site that offers circus services to B2B and B2C customers, offering great quality shows">
+    <meta name="keywords" content="circ, circo, circus, show, espectaculo, malabares, clown, trapecio, trapecista, contorsionista, acrobacia, contorsionismo">
+    <meta name="author" content="Edna Torres Munill">
+    {% endblock %}
+
+    {% block extra_meta %}
+    {% endblock %}
+
+    <link rel="manifest" href="{}">
+
+    {% block corecss %}
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100..900&family=Charmonman:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- Favicon -->
+    <link rel="icon" href="{}">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/19349c9d8e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    <title>English Grows {% block extra_title %}{% endblock %}</title>
+  </head>
+  
+  <body>
+    
+    <header class="container-fluid fixed-top w-100 p-0">
+
+        <div id="topnav" class="row d-none d-lg-flex m-0">
+          <div class="col-12 col-sm-3 my-auto py-1 py-lg-0 text-center text-lg-left">
+            <a href="{% url 'home' %}" class="nav-link" aria-label="go to the home page">
+              <img src="{{ MEDIA_URL }}logo_englishgrows.png" alt="logo" class="logo">
+            </a>
+          </div>
+          <div class="col-12 col-md-9 my-auto py-1 py-lg-0">
+            <ul class="list-inline list-unstyled text-right my-0">
+              <li class="list-inline-item dropdown">
+                <a class="nav-link pt-0 pb-0" href="#" id="user-options" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <div class="text-center">
+                    <div><i class="fas fa-user fa-lg icon-nav"></i></div> 
+                    {% if request.user.is_authenticated %}
+                    <p class="my-0 text-white">{{ user.username }}</p>
+                    {% else %}
+                    <p class="my-0 text-white">Account</p>
+                    {% endif %}
+                  </div>
+                </a>
+                <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                  {% if request.user.is_authenticated %}
+                  <a href="{}" class="dropdown-item" aria-label="go to my profile page">My Profile</a>
+                  <a href="{}" class="dropdown-item" aria-label="go to the log out page">Logout</a>
+                  {% else %}
+                  <a href="{}" class="dropdown-item" aria-label="go to the account registration page">Register</a>
+                  <a href="{}" class="dropdown-item" aria-label="go to the login page">Login</a>
+                  {% endif %}
+                </div>
+              </li>
+              <li class="list-inline-item pr-5">
+                <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
+                  href="{% url 'bag' %}" aria-label="go to your bag page to update quantity, and see subtotals">
+                  <div class="text-center">
+                    <div><i class="fas fa-shopping-bag fa-lg icon-nav"></i></div>
+                    <p class="my-0 text-white turquoise-hover">
+                      {% if grand_total %}
+                      ${{ grand_total|floatformat:2 }}
+                      {% else %}
+                      $0.00
+                      {% endif %}
+                    </p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      
+        {% block nav %}
+        <div class="row bg-custom-dark pr-3">
+          <nav class="navbar navbar-dark navbar-expand-lg w-100 pb-0">
+            {% include 'includes/mobile_top_header.html' %}
+          </nav>
+        </div>
+        {% endblock %}
+    </header>
+
+    <div class="overlay1"></div>
+    {% if messages %}
+    <div class="messages alert alert-dismissible fade show">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %} 
+
+    
+    {% block page_header %}
+    {% endblock %}
+    
+
+    <div class="main-bg">
+      <main class="d-flex flex-grow-1 mt-5">
+      {% block content %}
+      {% endblock %}
+      </main>
+    </div>
+
+    <footer class="footer d-flex flex-column justify-content-center h-25">
+      <p class="mt-3 mb-1 text-center text-white">
+        <a href="{}" aria-label="go to the about page">About Us</a> | 
+        <a href="{}" aria-label="go to service page for individuals">For You</a> | 
+        <a href="{}" aria-label="go to the about page">For Companies</a>
+      </p>
+      <a href="{}" aria-label="go to the newsletter subscription form"><p id="subscribe-link" class="mt-3 mb-1 text-center text-white">Subscribe to our Newsletter</p></a>
+      <p class="m-0 mt-1 text-center">
+          <a href="https://www.facebook.com" target= "_blank" aria-label="go to facebook our facebook profile page"><i class="fab fa-facebook-square icons-social"></i></a>
+          <a href="https://www.twitter.com" target= "_blank" aria-label="go to twitter site"><i class="fab fa-twitter-square ms-3 icons-social"></i></a>
+          <a href="https://www.instagram.com" target= "_blank" aria-label="go to instagram site"><i class="fab fa-instagram-square ms-3 icons-social"></i></a>
+          <a href="https://www.youtube.com" target= "_blank" aria-label="go to youtube site"><i class="fab fa-youtube-square ms-3 icons-social"></i></a>
+      </p>
+      <p class="m-0 text-center text-white">
+        {% block copyright %}© EdnaTM 2024 {% endblock copyright %}
+      </p>
+  
+    </footer>
+
+    {% block postloadjs %}
+    {% endblock %}
+
+  </body>
+</html>
