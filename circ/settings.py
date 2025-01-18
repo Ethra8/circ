@@ -31,13 +31,16 @@ ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 # Application definition
 
 INSTALLED_APPS = [
-     'django.contrib.admin',
+    'django.contrib',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'crispy_forms',
+    'django_summernote',
     'home',
 ]
 
@@ -76,6 +79,9 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Replace with your template pack
+
 
 WSGI_APPLICATION = 'circ.wsgi.application'
 
@@ -124,12 +130,30 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/3.2/howto/static-files/
+# STATIC_URL = '/static/'
+
+# # Directories for static files (for development)
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+
+# # Directory to collect static files for production
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Media URL and Root
+MEDIA_URL = '/media/'  # URL prefix for media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Local directory for media files
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Adjust for your project structure
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"

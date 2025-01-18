@@ -1,0 +1,193 @@
+body {
+    background: url('/media/chica_telas_circo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #555;
+    font-family: "Montserrat", sans-serif;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;  
+}
+
+.main-bg {
+    margin: 120px 0 auto;
+    flex-grow: 1 !important; /* forces content area to grow and fill remaining space between nav and footer */
+    min-height: calc(100vh - 278px) !important;  /* nav + main nav + footer height */
+    background-color: rgba(0, 51, 102,0.4);
+}
+
+
+/* NAVBAR */
+
+#topnav {
+    background-color: rgba(0, 51, 102,0.7);
+    max-height: 126px;
+    width: 100%;
+}
+
+.icon-nav {
+    color: #fff;
+}
+
+.list-inline-item {
+    padding-right: 14px;
+}
+
+.list-inline-item p:hover,
+.list-inline-item .icon-nav:hover {
+    color: #c1f7e3 !important;
+    text-align: left;
+}
+
+.navbar-toggler {
+    padding: .6rem .6rem;
+    font-size: 1.2rem;
+    border-color: rgba(255, 255, 255, .5);
+}
+
+.fa-user:hover {
+    color: turquoise;
+}
+
+
+/* INDEX */
+
+/* Index Header*/
+.charmonman-title {
+    font-family: "Charmonman", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5rem;
+}
+
+.eg-font {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: bold;
+}
+
+.index-cta-button {
+    background-color: #003366;
+    color: white;
+    min-width: 260px;
+}
+
+.index-cta-button:hover,
+.index-cta-button:active,
+.index-cta-button:focus {
+    background: #c1f7e3;
+    color: #003366;
+}
+
+
+/* GALLERY */
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    grid-auto-rows: 1fr; /* Adjust rows to fit content */
+    gap: 10px; /* Space between items */
+}
+
+.gallery-container img:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+}
+
+/* Image container styles */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1; /* Force square cells */
+}
+
+/* Image styles */
+.gallery-item img {
+    object-fit: cover; /* Fill the cell while cropping */
+    width: 100%; /* Scale to fit width */
+    height: 100%; /* Scale to fit height */
+    display: block;
+}
+
+
+/* FOOTERr */
+
+.footer {
+    bottom: 0;
+    background-color: rgba(0, 51, 102,0.5);
+    width: 100%;
+    padding: 17px;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-top: 60px;
+}
+
+footer a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 7px;
+}
+
+footer a:hover {
+    color: aquamarine !important;
+    font-weight: 600;
+    text-decoration: none;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#subscribe-link a {
+    color: #fff !important;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+} 
+
+#subscribe-link {
+    background-color: #003366;
+    padding: 0.5rem;
+    display: block;
+    width: 100%;
+    font-weight: 600;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#subscribe-link:hover{
+    background-color: aquamarine;
+    color: #003366 !important;
+    font-weight: 600;
+}
+
+#subscribe-link a:hover {
+    color: #003366 !important;
+    font-weight: 600;
+} 
+
+.icons-social {
+    color: #c1f7e3;
+    font-size: 1.5rem;
+    padding: 15px;
+    transition: all 0.15s linear;
+}
+
+.icons-social:hover {
+    color: white; 
+    transform: scale(1.2);
+    transform: rotate(4deg);
+}
+
+
+/* Responsive styles for medium and smaller devices */
+@media (max-width: 768px) { /* Medium devices (tablets) */
+    .gallery-container {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+}
+
+@media (max-width: 480px) { /* Small devices (phones) */
+    .gallery-container {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+}

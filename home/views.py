@@ -1,4 +1,5 @@
-from django.shortcuts import render
+import os
+from django.conf import settings
 
 # Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
@@ -12,6 +13,25 @@ from .forms import CompanyContactForm, SubscriptionForm
 def index(request):
     """ A view to return the index page """
     return render(request, 'home/index.html')
+
+
+def gallery(request):
+    """
+    Lists all images in the media/gallery folder and passes them to the template.
+    """
+    # Define the folder path
+    gallery_folder = os.path.join(settings.MEDIA_ROOT, 'gallery')
+
+    # Get the list of image file paths
+    image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp')
+    images = [
+        f'media/gallery/{file_name}'
+        for file_name in os.listdir(gallery_folder)
+        if file_name.lower().endswith(image_extensions)
+    ]
+
+    # Pass the image paths to the template
+    return render(request, 'home/gallery.html', {'images': images})
 
 
 # def companies(request):
@@ -48,3 +68,5 @@ def index(request):
 #     else:
 #         form = SubscriptionForm()
 #     return render(request, 'home/subscribe_form.html', {'form': form})
+
+
