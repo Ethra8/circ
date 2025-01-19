@@ -10,9 +10,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="overlay1"></div>
-<div class="overlay"></div>
-<div id="pack-details" class="container-fluid">
+<div id="show-details" class="container-fluid">
+    <div class="overlay"></div>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 pffset-lg-2">
             <div class="image-container my-5">
@@ -27,22 +26,18 @@
         </div>
         <div class="col-12 col-md-10 col-lg-7 ml-lg-5">
             <div class="product-details-container mb-5 mt-md-5">
-                <h1 class="mb-2 eg-title">{{ show.name }}</h1>
-                <p class="lead mb-0 text-left font-weight-bold">${{ show.price_per_seat_adult }}</p>
-                <p class="small mb-0">Día y Hora: {{ show.time }}</p>
-                
-                <!-- {% if show.type %}
-                <p class="small mt-1 mb-0">
-                    <a class="text-muted" href="{% url 'individual_services' %}?type={{ service.type.name }}" aria-label="see list of this type of service">
-                    {% if service.type.name == "individuals_private" or service.type.name == "individuals_groups" %}
-                        <i class="fas fa-desktop mr-1"></i>
-                    {% else %}
-                        <i class="fas fa-graduation-cap mr-1"></i>
-                    {% endif %}
-                    {{ service.type.friendly_name }}
-                    </a>
-                </p> -->
+                <h1 class="mb-2 eg-title text-uppercase">{{ show.name }}</h1>
+                {% if show.description %}
+                <h5 class="mb-2 eg-title">{{ show.description }}</h5>
                 {% endif %}
+                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">adulto: €{{ show.price_per_seat_adult }}</p>
+                <p class="lead mb-0 text-left font-weight-bold text-uppercase">reducido *: €{{ show.price_per_seat_reduction }}</p>
+
+                <p class="mb-0 mt-3">
+                    <strong>Dia:</strong> {{ show.time|date:"F j, Y" }}<br>
+                    <strong>Hora:</strong> {{ show.time|date:"g:i a" }}
+                </p>
+                <p class="mb-0"><strong>Donde:</strong> {{ show.location }}</p>
 
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
@@ -53,31 +48,31 @@
                 </small>
                 {% endif %}
                 
-                <p class="mt-3">{{ show.description }}</p>
                 <form class="form" action="{}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
+                        <!-- Adult Tickets Quantity Selector -->
                         <div class="col-12">
-                            <p class="mt-3"><strong>Quantity:</strong></p>
-                            <div class="form-group w-50">
+                            <p class="mt-3"><strong>Ticket Adulto:</strong></p>
+                            <div class="form-group ticket-qty">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <button class="decrement-qty btn btn-black rounded-0"
-                                        data-item_id="{{ show.id }}" id="decrement-qty_{{ show.id }}" aria-label="decrement quantity of tickets to this show">
+                                        <button type="button" class="decrement-qty btn btn-black rounded-0"
+                                        data-item_id="{{ show.id }}_adult" id="decrement-qty-adult_{{ show.id }}" aria-label="decrement quantity of adult tickets">
                                             <span class="icon">
                                                 <i class="fas fa-minus"></i>
                                             </span>
                                         </button>
                                     </div>
-
+                
                                     <input class="form-control qty_input qty-input" type="number"
-                                    name="quantity" value="1" min="1" max="99"
-                                    data-item_id="{{ show.id }}"
-                                    id="id_qty_{{ show.id }}" aria-label="number of items">
-
+                                    name="quantity_adult" value="1" min="1" max="99"
+                                    data-item_id="{{ show.id }}_adult"
+                                    id="id_qty_adult_{{ show.id }}" aria-label="number of adult tickets">
+                
                                     <div class="input-group-append">
-                                        <button class="increment-qty btn btn-black rounded-0"
-                                        data-item_id="{{ show.id }}" id="increment-qty_{{ show.id }}" aria-label="increment quantity of tickets to this show">
+                                        <button type="button" class="increment-qty btn btn-black rounded-0"
+                                        data-item_id="{{ show.id }}_adult" id="increment-qty-adult_{{ show.id }}" aria-label="increment quantity of adult tickets">
                                             <span class="icon">
                                                 <i class="fas fa-plus"></i>
                                             </span>
@@ -86,9 +81,40 @@
                                 </div>
                             </div>
                         </div>
-
+                
+                        <!-- Reduced Tickets Quantity Selector -->
+                        <div class="col-12">
+                            <p class="mt-3"><strong>Ticket Reducido *:</strong></p>
+                            <div class="form-group ticket-qty">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="decrement-qty btn btn-black rounded-0"
+                                        data-item_id="{{ show.id }}_reduced" id="decrement-qty-reduced_{{ show.id }}" aria-label="decrement quantity of reduced tickets">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                
+                                    <input class="form-control qty_input qty-input" type="number"
+                                    name="quantity_reduced" value="1" min="0" max="99"
+                                    data-item_id="{{ show.id }}_reduced"
+                                    id="id_qty_reduced_{{ show.id }}" aria-label="number of reduced tickets">
+                
+                                    <div class="input-group-append">
+                                        <button type="button" class="increment-qty btn btn-black rounded-0"
+                                        data-item_id="{{ show.id }}_reduced" id="increment-qty-reduced_{{ show.id }}" aria-label="increment quantity of reduced tickets">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Add to Bag and Keep Shopping Buttons -->
                         <div class="col{% if s %}-12 mt-2{% endif %} d-flex flex-wrap justify-content-between">
-                            <!-- "Add to Bag" Button -->
                             <button type="submit" class="col-12 col-sm-5 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
                                 Add to Bag
                                 <span class="icon">
@@ -96,7 +122,6 @@
                                 </span>
                             </button>
                             
-                            <!-- "Keep Shopping" Button -->
                             <a href="{% url 'show_list' %}" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="return to list of shows">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
@@ -104,9 +129,11 @@
                                 <span class="text-uppercase">Seguir Buscando</span>
                             </a>
                         </div>
+                
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
@@ -116,6 +143,6 @@
 
 {% block postloadjs %}
 <!-- <script src="https://english-grows1.s3.eu-west-3.amazonaws.com/static/js/quantity_selector.js"></script> -->
-<script src="../static/js/quantity_selector.js"></script>
+<script src="{% static 'js/quantity_selector.js' %}"></script>
 
 {% endblock %}

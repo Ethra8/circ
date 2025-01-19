@@ -14,6 +14,10 @@ body {
     flex-direction: column;  
 }
 
+footer {
+    margin-top: 60px;
+}
+
 a {
     text-decoration: none !important;
 }
@@ -22,10 +26,21 @@ a:hover {
     text-decoration: none !important;
 }
 
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: rgba(240, 255, 255, 0.9);
+	z-index: -1;
+}
+
 .main-bg {
-    margin: 120px 0 auto;
+    margin: 0 0 auto;
     flex-grow: 1 !important; /* forces content area to grow and fill remaining space between nav and footer */
-    min-height: calc(100vh - 278px) !important;  /* nav + main nav + footer height */
+    min-height: calc(100vh - 252.8px) !important;  /* nav + main nav + footer height */
+    max-height: fit-content !important;
     background-color: rgba(0, 51, 102,0.4);
 }
 
@@ -110,6 +125,7 @@ a:hover {
 
 #index {
     padding-top: 2rem;
+    margin-top: 120px;
 }
 
 /* Index Header*/
@@ -211,6 +227,18 @@ a:hover {
     border: 1px solid #c1f7e3;
 }
 
+/* SHOW DETAILS */
+
+#show-details {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    padding-top: 120px;
+}
+
+.ticket-qty {
+    max-width: 150px;
+}
+
 
 /* FOOTER */
 
@@ -222,7 +250,7 @@ a:hover {
     position: relative;
     left: 0;
     right: 0;
-    margin-top: 60px;
+    margin-top: auto;
 }
 
 footer a {
@@ -286,6 +314,7 @@ footer a:hover {
 
 /* ALLAUTH */
 .allauth-form-inner-content {
+    margin-top: 120px;
     background-color: rgb(255, 255, 255);
     padding: 3rem;
     margin-bottom: 3rem;
@@ -461,7 +490,7 @@ footer a:hover {
         width: 100% !important;
     }
 
-    .main-bg h1 {
+    #index h1 {
         padding: 3rem;
         font-size: 4rem;
     }

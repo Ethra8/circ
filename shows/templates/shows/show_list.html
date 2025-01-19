@@ -24,7 +24,7 @@
                         <div class="col-12 col-md-6 col-lg-4 mb-4">
                             <div class="card h-100">
                                 {% if show.image %}
-                                    <a href="{{ show.image.url }}" target="_blank">
+                                    <a href="{% url 'show_details' show.id %}">
                                         <img src="{{ show.image.url }}" class="card-img-top" alt="{{ show.name }}">
                                     </a>
                                 {% endif %}
