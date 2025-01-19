@@ -1,5 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+
 from .models import Show
+from .forms import ShowForm
+
 
 def show_list(request):
     # Fetch all shows from the database
@@ -11,3 +15,21 @@ def show_details(request, show_id):
     # Fetch the show by ID or return a 404 if it doesn't exist
     show = get_object_or_404(Show, id=show_id)
     return render(request, 'shows/show_details.html', {'show': show})
+
+
+def edit_show(request, show_id):
+    """Edit an existing show."""
+    show = get_object_or_404(Show, id=show_id)
+
+    if request.method == 'POST':
+        form = ShowForm(request.POST, request.FILES, instance=show)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"The show '{show.name}' has been updated successfully!")
+            return redirect('shows:show_details', show_id=show.id)
+        else:
+            messages.error(request, "Failed to update the show. Please correct the errors below.")
+    else:
+        form = ShowForm(instance=show)
+
+    return render(request, 'shows/edit_show.html', {'form': form, 'show': show})

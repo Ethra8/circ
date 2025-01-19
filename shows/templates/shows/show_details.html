@@ -26,23 +26,24 @@
         </div>
         <div class="col-12 col-md-10 col-lg-7 ml-lg-5">
             <div class="product-details-container mb-5 mt-md-5">
-                <h1 class="mb-2 eg-title text-uppercase">{{ show.name }}</h1>
+                <h1 class="mb-2 eg-font text-uppercase">{{ show.name }}</h1>
                 {% if show.description %}
                 <h5 class="mb-2 eg-title">{{ show.description }}</h5>
                 {% endif %}
-                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">adulto: €{{ show.price_per_seat_adult }}</p>
-                <p class="lead mb-0 text-left font-weight-bold text-uppercase">reducido *: €{{ show.price_per_seat_reduction }}</p>
+                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">adulto: {{ show.price_per_seat_adult }} €</p>
+                <p class="lead mb-0 text-left font-weight-bold text-uppercase">reducido *: {{ show.price_per_seat_reduction }} €</p>
 
                 <p class="mb-0 mt-3">
                     <strong>Dia:</strong> {{ show.time|date:"F j, Y" }}<br>
                     <strong>Hora:</strong> {{ show.time|date:"g:i a" }}
                 </p>
-                <p class="mb-0"><strong>Donde:</strong> {{ show.location }}</p>
+                <p class="mb-2"><strong>Donde:</strong> {{ show.location }}</p>
+                <p class="mb-0"><strong>Duración:</strong> {{ show.duration }}</p>
 
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <p>
-                        <a href="{% url 'shows:show_details' show.id %}" class="pr-2" aria-label="edit the show"><i class="fas fa-pencil-square fa-2x"></i></a><span class="vertical-line"> | </span> 
+                        <a href="{% url 'shows:edit_show' show.id %}" class="pr-2" aria-label="edit the show"><i class="fas fa-pencil-square fa-2x"></i></a><span class="vertical-line"> | </span> 
                         <a href="{}" class="text-danger pl-2" aria-label="delete show"><i class="fas fa-times-circle fa-2x"></i></a>    
                     </p>
                 </small>

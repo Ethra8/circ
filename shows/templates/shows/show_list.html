@@ -26,23 +26,24 @@
                                 {% if show.image %}
                                     <a href="{% url 'shows:show_details' show.id %}">
                                         <img src="{{ show.image.url }}" class="card-img-top" alt="{{ show.name }}">
-                                    </a>
+                                    
                                 {% endif %}
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase">{{ show.name }}</h5>
-                                    <p class="card-text"><strong>Location:</strong> {{ show.location }}</p>
-                                    <p class="card-text">
-                                        <strong>Date:</strong> {{ show.time|date:"F j, Y" }}<br>
-                                        <strong>Time:</strong> {{ show.time|date:"g:i a" }}
-                                    </p>
-                                    <p class="card-text"><strong>Duration:</strong> {{ show.duration }}</p>
-                                    <p class="card-text"><strong>Remaining Seats:</strong> {{ show.remaining_seats }}</p>
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase">{{ show.name }}</h5>
+                                        <p class="card-text"><strong>Location:</strong> {{ show.location }}</p>
+                                        <p class="card-text">
+                                            <strong>Date:</strong> {{ show.time|date:"F j, Y" }}<br>
+                                            <strong>Time:</strong> {{ show.time|date:"g:i a" }}
+                                        </p>
+                                        <p class="card-text"><strong>Duration:</strong> {{ show.duration }}</p>
+                                        <p class="card-text"><strong>Remaining Seats:</strong> {{ show.remaining_seats }}</p>
+                                    </a>
                                 </div>
-                                <a href="{% url 'shows:show_details' show.id %}" class="btn-show-card text-uppercase text-center">seleccionar</a>
+                                <a href="{% url 'shows:show_details' show.id %}" class="btn-show-card text-uppercase text-center">ver detalles</a>
                             </div>
                         </div>
                     {% empty %}
-                        <p class="text-white">No shows available at the moment. Check back later!</p>
+                        <p class="text-white">No tenemos espectáculos a la vista. Vuelve en un par de días, o <a href="{}">suscríbete a nuestra newsletter</a> para estar al día de cualquier novedad, y recibir alguna que otra oferta!</p>
                     {% endfor %}
                 </div>
             </div>

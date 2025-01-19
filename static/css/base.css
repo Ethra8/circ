@@ -235,6 +235,18 @@ nav.container-fluid {
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.btn-show-card a,
+.btn-show-card a:hover,
+.card-text {
+    color: #222;
+}
+
+.card-title {
+    color: #003366;
+    font-family: "Big Shoulders Display", sans-serif;
+    font-size: 2.5rem;
+}
+
 .btn-show-card:hover {
     background-color: #003366;
     color: #aab7c4;
@@ -248,6 +260,11 @@ nav.container-fluid {
     padding-left: 3rem !important;
     padding-right: 3rem !important;
     margin-top: 120px;
+}
+
+#show-details h1 {
+    font-size: 2.5rem;
+    color: #003366;
 }
 
 .ticket-qty {
@@ -286,11 +303,16 @@ nav.container-fluid {
 
 #bag th {
     color: #c1f7e3;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    font-weight: 500;
 }
 
 #bag p.td-show-name {
     font-size: 2rem;
+}
+
+#bag td p {
+    font-size: 1.3rem;
 }
 
 #bag .img-bag {
@@ -308,10 +330,10 @@ nav.container-fluid {
 #bag-grand-total {
     font-family: "Big Shoulders Display", sans-serif;
     color: #003366;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: end;
     background-color: aquamarine;
-    padding-right: 15px;
+    padding-right: 21px;
     border-radius: 15px;
 }
 

@@ -2,6 +2,7 @@
 {% load static %}
 {% load bag_tools %}
 
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -31,8 +32,8 @@
                                 <tr class="text-uppercase eg-font">
                                     <th class="pl-3" scope="col">Show</th>
                                     <th class="" scope="col"> </th>
-                                    <th scope="col">Precio</th>
                                     <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
                                     <th scope="col">Subtotal</th>
                                     <th scope="col"> </th>
                                 </tr>
@@ -57,19 +58,19 @@
                                     <td class="cell" data-label="Name">
                                         <p class="my-0 eg-font text-uppercase td-show-name"><strong>{{ item.show.name }}</strong></p>
                                     </td>
-                                    <!-- Price Column -->
-                                    <td class="cell py-3" data-label="Price">
-                                        <p class="my-0 mb-2">€{{ item.show.price_per_seat_adult }}</p>
-                                        <p class="my-0">€{{ item.show.price_per_seat_reduction }}</p>
-                                    </td>
                                     <!-- Quantity Column -->
-                                    <td class="cell py-3" data-label="Qty">
-                                        <p class="mb-2">Adulto: {{ item.quantity_adult }}</p>
-                                        <p>Reducido: {{ item.quantity_reduced }}</p>
+                                    <td class="cell py-3 eg-font" data-label="Qty">
+                                        <p class="my-0 mb-2"><strong>Adulto:<br>{{ item.quantity_adult }}</strong> x {{ item.show.price_per_seat_adult|floatformat:2 }} €</p>
+                                        <p class="my-0"><strong>Reducida:<br>{{ item.quantity_reduced }}</strong> x {{ item.show.price_per_seat_reduction|floatformat:2 }} €</p>
                                     </td>
-                                    <!-- Subtotal Column -->
-                                    <td class="cell py-3" data-label="Subtotal">
-                                        <p class="my-0"><strong>€{{ item.subtotal|floatformat:2 }}</strong></p>
+
+                                    <!-- Price Column -->
+                                    <td class="cell py-3 eg-font" data-label="Price">
+                                        <p class="my-0 mb-2">{{ item.show.price_per_seat_adult|floatformat:2|mul:item.quantity_adult }} €</p>
+                                        <p class="my-0">{{ item.show.price_per_seat_reduction|floatformat:2|mul:item.quantity_reduced }} €</p>
+                                    </td>                                    <!-- Subtotal Column -->
+                                    <td class="cell py-3 eg-font" data-label="Subtotal">
+                                        <p class="my-0"><strong>{{ item.subtotal|floatformat:2 }} €</strong></p>
                                     </td>
                                     <!-- Remove Item -->
                                     <td class="cell py-3">
@@ -85,7 +86,7 @@
                                 {% endfor %}
                                 <tr>
                                     <td colspan="7" class="text-right py-auto pr-5">
-                                        <p id="bag-grand-total" class="mt-4 text-right"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></p>
+                                        <h5 id="bag-grand-total" class="mt-4 text-right"><strong>Gran Total: {{ grand_total|floatformat:2 }} €</strong></h5>
                                     </td>
                                 </tr>
                             </tbody>
