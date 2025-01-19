@@ -283,6 +283,25 @@ footer a:hover {
     border-radius: 5px;
 }
 
+.btn-succcess {
+    width: 100%;
+    /* max-width: 320px;  */
+    font-size: 1.1rem;
+    background: aquamarine;
+    color: #003366 !important;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: outset 2px aquamarine;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-succcess:hover {
+    background: #c1f7e3;
+    color: #003366;
+    font-weight: 600;
+}
+
 /* #id_remember,
 #id_reduced_groups,
 #id_individual_packs {
