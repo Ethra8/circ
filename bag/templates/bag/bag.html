@@ -81,18 +81,15 @@
                                             </button>
                                         </form>
                                     </td>
-                                </tr>
-                                
+                                </tr>                                
                                 {% endfor %}
-                                <tr>
-                                    <td colspan="7" class="text-right py-auto pr-5">
-                                        <h5 id="bag-grand-total" class="mt-4 text-right"><strong>Gran Total: {{ grand_total|floatformat:2 }} €</strong></h5>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
 
+                    <div class="text-right py-auto mt-5">
+                        <h5 id="bag-grand-total" class="mt-4 text-right"><strong>Gran Total: {{ grand_total|floatformat:2 }} €</strong></h5>
+                    </div>
                     <div class="d-flex flex-wrap">
                         <a href="{% url 'shows:show_list' %}" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="go back to list of shows">
                             <span class="icon">

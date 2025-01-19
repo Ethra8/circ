@@ -289,15 +289,19 @@ nav.container-fluid {
     margin: 0 auto !important;
 }
 
+#bag table {
+    width: fit-content !important
+}
+
 #bag hr {
     border: 1px solid #fff;
 }
 
 #bag table .cell,
 #bag table th {
-    max-width: 230px !important;
+    max-width: 300px !important;
     padding: 28px 14px;
-    min-width: 140px !important;
+    min-width: 160px !important;
     border-bottom: 1px solid #fff;
 }
 
@@ -309,6 +313,7 @@ nav.container-fluid {
 
 #bag p.td-show-name {
     font-size: 2rem;
+    min-width: 240px !important;
 }
 
 #bag td p {
@@ -316,11 +321,11 @@ nav.container-fluid {
 }
 
 #bag .img-bag {
-    min-height: 120px;
-    min-width: 80px;
-    max-height: 280px;
-    max-width: 250px;
-    border-radius: 15px;
+    min-height: 280px;
+    min-width: 280px;
+    max-height: 300px;
+    max-width: 280px;
+    border-radius: 5px;
 }
 
 #bag button {
@@ -334,10 +339,11 @@ nav.container-fluid {
     text-align: end;
     background-color: aquamarine;
     padding-right: 21px;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
-.btn-secure-checkout {
+.btn-secure-checkout,
+#bag-grand-total {
     margin-right: 2rem !important;
 }
 
@@ -626,7 +632,14 @@ footer a:hover {
     #bag p.td-show-name {
         font-size: 1.5rem;
     }
+
+    .btn-secure-checkout,
+    #bag-grand-total {
+        margin-right: 0 !important;
+    }
+
 }
+
 
 @media (max-width: 480px) { /* Small devices (phones) */
     .gallery-container {
