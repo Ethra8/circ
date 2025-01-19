@@ -298,6 +298,7 @@ nav.container-fluid {
     min-width: 80px;
     max-height: 280px;
     max-width: 250px;
+    border-radius: 15px;
 }
 
 #bag button {
@@ -311,6 +312,7 @@ nav.container-fluid {
     text-align: end;
     background-color: aquamarine;
     padding-right: 15px;
+    border-radius: 15px;
 }
 
 .btn-secure-checkout {

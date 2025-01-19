@@ -89,14 +89,14 @@
                     <div><i class="fas fa-ticket fa-lg icon-nav mb-0"></i></div> 
                     {% if user.is_authenticated %}
                       <!-- Authenticated users go to the "comprar entradas" page -->
-                      <p class="my-0 text-white">Comprar entradas</p>
+                      <p class="my-0 text-white">Comprar</p>
                     </a>
                     {% else %}
                       <!-- Non-authenticated users are redirected to login with a message -->
                       <a href="{% url 'account_login' %}?next={% url 'shows:show_list' %}" 
                         class="nav-link text-white mt-0 pt-0"
                         onclick="alert('Debes iniciar sesión para comprar entradas.');">
-                        <p class="mb-0 mt-0 pt-0 text-white">Comprar entradas</p>
+                        <p class="mb-0 mt-0 pt-0 text-white">Comprar</p>
                       </a>
                     {% endif %}
                   </div>
