@@ -272,6 +272,15 @@ nav.container-fluid {
     margin: 0 auto !important;
 }
 
+#bag th{
+    color: #c1f7e3;
+}
+
+#bag th,
+#bag p.td-show-name {
+    font-size: 1.3rem;
+}
+
 #bag-grand-total {
     font-family: "Big Shoulders Display", sans-serif;
     color: #fff;
@@ -578,5 +587,9 @@ footer a:hover {
 
     .list-inline-item {
         padding-right: 5px;
+    }
+
+    .btn-secure-checkout {
+        margin-right: 0 !important;
     }
 }
