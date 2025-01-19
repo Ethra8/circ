@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'home',
     'shows',
+    'bag',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Replace with your desired template pack

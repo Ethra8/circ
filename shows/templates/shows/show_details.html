@@ -42,97 +42,96 @@
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <p>
-                        <a href="{% url 'show_details' show.id %}" class="pr-2" aria-label="edit the show"><i class="fas fa-pencil-square fa-2x"></i></a><span class="vertical-line"> | </span> 
+                        <a href="{% url 'shows:show_details' show.id %}" class="pr-2" aria-label="edit the show"><i class="fas fa-pencil-square fa-2x"></i></a><span class="vertical-line"> | </span> 
                         <a href="{}" class="text-danger pl-2" aria-label="delete show"><i class="fas fa-times-circle fa-2x"></i></a>    
                     </p>
                 </small>
                 {% endif %}
                 
-                <form class="form" action="{}" method="POST">
+                <form class="form" action="{% url 'bag:add_to_bag' show.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
-                        <!-- Adult Tickets Quantity Selector -->
+                        <!-- Adult Quantity Selector -->
                         <div class="col-12">
-                            <p class="mt-3"><strong>Ticket Adulto:</strong></p>
+                            <p class="mt-3"><strong>Adult Tickets:</strong></p>
                             <div class="form-group ticket-qty">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <button type="button" class="decrement-qty btn btn-black rounded-0"
-                                        data-item_id="{{ show.id }}_adult" id="decrement-qty-adult_{{ show.id }}" aria-label="decrement quantity of adult tickets">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
+                                        <button class="decrement-qty btn btn-black rounded-0"
+                                            data-item_id="{{ show.id }}" 
+                                            id="decrement-qty-adult_{{ show.id }}" 
+                                            aria-label="decrement quantity of adult tickets">
+                                            <span class="icon"><i class="fas fa-minus"></i></span>
                                         </button>
                                     </div>
                 
-                                    <input class="form-control qty_input qty-input" type="number"
-                                    name="quantity_adult" value="1" min="1" max="99"
-                                    data-item_id="{{ show.id }}_adult"
-                                    id="id_qty_adult_{{ show.id }}" aria-label="number of adult tickets">
+                                    <input class="form-control qty_input qty-input" 
+                                        type="number" name="quantity_adult" 
+                                        value="0" min="0" max="99"
+                                        data-item_id="{{ show.id }}" 
+                                        id="id_qty_adult_{{ show.id }}" 
+                                        aria-label="number of adult tickets">
                 
                                     <div class="input-group-append">
-                                        <button type="button" class="increment-qty btn btn-black rounded-0"
-                                        data-item_id="{{ show.id }}_adult" id="increment-qty-adult_{{ show.id }}" aria-label="increment quantity of adult tickets">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
+                                        <button class="increment-qty btn btn-black rounded-0"
+                                            data-item_id="{{ show.id }}" 
+                                            id="increment-qty-adult_{{ show.id }}" 
+                                            aria-label="increment quantity of adult tickets">
+                                            <span class="icon"><i class="fas fa-plus"></i></span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                 
-                        <!-- Reduced Tickets Quantity Selector -->
+                        <!-- Reduced Quantity Selector -->
                         <div class="col-12">
-                            <p class="mt-3"><strong>Ticket Reducido *:</strong></p>
+                            <p class="mt-3"><strong>Reduced Tickets:</strong></p>
                             <div class="form-group ticket-qty">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <button type="button" class="decrement-qty btn btn-black rounded-0"
-                                        data-item_id="{{ show.id }}_reduced" id="decrement-qty-reduced_{{ show.id }}" aria-label="decrement quantity of reduced tickets">
-                                            <span class="icon">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
+                                        <button class="decrement-qty btn btn-black rounded-0"
+                                            data-item_id="{{ show.id }}" 
+                                            id="decrement-qty-reduced_{{ show.id }}" 
+                                            aria-label="decrement quantity of reduced tickets">
+                                            <span class="icon"><i class="fas fa-minus"></i></span>
                                         </button>
                                     </div>
                 
-                                    <input class="form-control qty_input qty-input" type="number"
-                                    name="quantity_reduced" value="1" min="0" max="99"
-                                    data-item_id="{{ show.id }}_reduced"
-                                    id="id_qty_reduced_{{ show.id }}" aria-label="number of reduced tickets">
+                                    <input class="form-control qty_input qty-input" 
+                                        type="number" name="quantity_reduced" 
+                                        value="0" min="0" max="99"
+                                        data-item_id="{{ show.id }}" 
+                                        id="id_qty_reduced_{{ show.id }}" 
+                                        aria-label="number of reduced tickets">
                 
                                     <div class="input-group-append">
-                                        <button type="button" class="increment-qty btn btn-black rounded-0"
-                                        data-item_id="{{ show.id }}_reduced" id="increment-qty-reduced_{{ show.id }}" aria-label="increment quantity of reduced tickets">
-                                            <span class="icon">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
+                                        <button class="increment-qty btn btn-black rounded-0"
+                                            data-item_id="{{ show.id }}" 
+                                            id="increment-qty-reduced_{{ show.id }}" 
+                                            aria-label="increment quantity of reduced tickets">
+                                            <span class="icon"><i class="fas fa-plus"></i></span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                 
-                        <!-- Add to Bag and Keep Shopping Buttons -->
-                        <div class="col{% if s %}-12 mt-2{% endif %} d-flex flex-wrap justify-content-between">
+                        <!-- Submit Button -->
+                        <div class="col d-flex flex-wrap justify-content-between">
                             <button type="submit" class="col-12 col-sm-5 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
                                 Add to Bag
-                                <span class="icon">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
+                                <span class="icon"><i class="fas fa-chevron-right"></i></span>
                             </button>
-                            
-                            <a href="{% url 'show_list' %}" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="return to list of shows">
-                                <span class="icon">
-                                    <i class="fas fa-chevron-left"></i>
-                                </span>
+                            <a href="{% url 'shows:show_list' %}" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="return to list of shows">
+                                <span class="icon"><i class="fas fa-chevron-left"></i></span>
                                 <span class="text-uppercase">Seguir Buscando</span>
                             </a>
                         </div>
-                
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>
+                
                 
             </div>
         </div>

@@ -24,7 +24,7 @@
                         <div class="col-12 col-md-6 col-lg-4 mb-4">
                             <div class="card h-100">
                                 {% if show.image %}
-                                    <a href="{% url 'show_details' show.id %}">
+                                    <a href="{% url 'shows:show_details' show.id %}">
                                         <img src="{{ show.image.url }}" class="card-img-top" alt="{{ show.name }}">
                                     </a>
                                 {% endif %}
@@ -38,7 +38,7 @@
                                     <p class="card-text"><strong>Duration:</strong> {{ show.duration }}</p>
                                     <p class="card-text"><strong>Remaining Seats:</strong> {{ show.remaining_seats }}</p>
                                 </div>
-                                <a href="{% url 'show_details' show.id %}" class="btn-show-card text-uppercase text-center">seleccionar</a>
+                                <a href="{% url 'shows:show_details' show.id %}" class="btn-show-card text-uppercase text-center">seleccionar</a>
                             </div>
                         </div>
                     {% empty %}

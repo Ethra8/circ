@@ -124,10 +124,22 @@ a:hover {
 
 /* INDEX */
 
-#index {
+#index,
+#gallery {
     padding-top: 2rem;
     margin-top: 120px;
 }
+
+/* header.container-fluid
+nav.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;   
+    margin: 0;
+    width: 100% !important;
+    overflow-x: hidden; 
+} */
 
 /* Index Header*/
 .charmonman-title {
@@ -160,9 +172,10 @@ a:hover {
 
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); /* Responsive grid */
     grid-auto-rows: 1fr; /* Adjust rows to fit content */
     gap: 10px; /* Space between items */
+    text-align: center;
 }
 
 .gallery-container img:hover {
@@ -173,7 +186,7 @@ a:hover {
 .gallery-item {
     position: relative;
     overflow: hidden;
-    width: 100%;
+    min-width: 100%;
     height: 100%;
     aspect-ratio: 1; /* Force square cells */
 }
@@ -241,6 +254,34 @@ a:hover {
     max-width: 150px;
 }
 
+
+/* BAG */
+
+#bag {
+    padding: 2rem;
+    margin-top: 80px; 
+    background-color: rgb(0,51,102,0.9);
+    color: #fff;
+}
+
+#bag .col,
+#bag .row,
+#gallery .col,
+#gallery .row {
+    width:99%;
+    margin: 0 auto !important;
+}
+
+#bag-grand-total {
+    font-family: "Big Shoulders Display", sans-serif;
+    color: #fff;
+    font-size: 2rem;
+    text-align: end;
+}
+
+.btn-secure-checkout {
+    margin-right: 2rem !important;
+}
 
 /* FOOTER */
 
@@ -505,7 +546,8 @@ footer a:hover {
         width: 100% !important;
     }
 
-    #index h1 {
+    #index h1,
+    #gallery h1 {
         padding: 3rem;
         font-size: 4rem;
     }

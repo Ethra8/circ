@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bag_tools %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <div id="bag" class="container-fluid mb-2 ml-0 pl-0 pl-sm-3 pl-md-5 pr-0 w-100">
+
+        <div class="row" style="width:98%;">
+            <div class="col" style="width:98%;">
+                <hr>
+                <h2 class="eg-title">Bolsa de la Compra</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% if bag_items %}
+                <div class="table-wrapper" style="overflow-x: auto;">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-borderless  text-white">
+                            <thead class="text-black">
+                                <tr class="text-uppercase">
+                                    <th class="w-25" scope="col">Show</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in bag_items %}
+                                <tr>
+                                    <!-- Image column -->
+                                    <td class="p-3" data-label="Product Info">
+                                        {% if item.show.image %}
+                                        <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
+                                            <img class="img-fluid img-bag" src="{{ item.show.image.url }}" alt="{{ item.show.name }}">
+                                        </a>
+                                        {% else %}
+                                        <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
+                                            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.show.name }}">
+                                        </a>
+                                        {% endif %}
+                                    </td>
+                                    <!-- Name Column -->
+                                    <td class="py-3" data-label="Name">
+                                        <p class="my-0"><strong>{{ item.show.name }}</strong></p>
+                                    </td>
+                                    <!-- Price Column -->
+                                    <td class="py-3" data-label="Price">
+                                        <p class="my-0">€{{ item.show.price_per_seat_adult }}</p>
+                                        <p class="my-0">€{{ item.show.price_per_seat_reduction }}</p>
+                                    </td>
+                                    <!-- Quantity Column -->
+                                    <td class="py-3" data-label="Qty">
+                                        <p class="mb-2"><strong>Adult:</strong> {{ item.quantity_adult }}</p>
+                                        <p><strong>Reduced:</strong> {{ item.quantity_reduced }}</p>
+                                    </td>
+                                    <!-- Subtotal Column -->
+                                    <td class="py-3" data-label="Subtotal">
+                                        <p class="my-0">€{{ item.subtotal|floatformat:2 }}</p>
+                                    </td>
+                                    <!-- Remove Item -->
+                                    <td>
+                                        <form method="POST" action="">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-danger" aria-label="Remove item from bag">
+                                                <i class="fas fa-times-circle fa-sm" aria-hidden="true"></i> Remove
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <hr style="color:white;">
+                                {% endfor %}
+                                <tr>
+                                    <td colspan="7" class="text-right bg-custom-dark py-auto pr-5">
+                                        <p id="bag-grand-total" class="mt-4 text-right"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex flex-wrap">
+                        <a href="{% url 'shows:show_list' %}" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="go back to list of shows">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="text-uppercase">Go Back</span>
+                        </a>
+
+                        <a href="{}" class="btn btn-custom-teal btn-secure-checkout rounded-pill btn-lg mx-auto mr-sm-0 mt-5 order-first order-md-2" aria-label="go to secure checkout page">
+                            <span class="text-uppercase">Secure Checkout</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </a>
+                    </div>
+                {% else %}
+                    <p class="lead mb-5">Your bag is empty.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'js/quantity_selector.js' %}"></script>
+{% endblock %}

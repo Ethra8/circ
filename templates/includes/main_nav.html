@@ -7,7 +7,7 @@
                 </a>
             </li>
             <li class="list-inline-item">
-                <a href="{% url 'show_list' %}" class="nav-link mt-0 pt-0">
+                <a href="{% url 'shows:show_list' %}" class="nav-link mt-0 pt-0">
                   <div class="nav-link">
                     <div class="row">
                         <i class="col-2 col-sm-1 fas fa-ticket fa-lg icon-main-nav mb-0 ml-0"></i>
@@ -18,7 +18,7 @@
                 </a>
                     {% else %}
                       <!-- Non-authenticated users are redirected to login with a message -->
-                      <a href="{% url 'account_login' %}?next={% url 'show_list' %}" 
+                      <a href="{% url 'account_login' %}?next={% url 'shows:show_list' %}" 
                         class="nav-link text-white"
                         onclick="alert('Debes iniciar sesión para comprar entradas.');">
                         <p class="my-0 text-white">Comprar entradas</p>
