@@ -18,7 +18,7 @@
                     {% endif %}
                 </div>
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="user-options1">
+            <div class="dropdown-menu border-0" aria-labelledby="user-options">
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
                 <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Comprar Entradas</a>

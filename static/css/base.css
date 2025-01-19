@@ -18,14 +18,22 @@ body {
 
 /* NAVBAR */
 
-#topnav {
-    background-color: rgba(0, 51, 102,0.8);
+#topnav,
+.mobile-nav {
+    background-color: rgba(0, 51, 102,0.9);
     max-height: 126px;
+    width: 100%;
+}
+
+#main-nav {
+    background-color: rgba(0, 51, 102,1);
+    height: fit-content !important;
     width: 100%;
 }
 
 .icon-nav {
     color: #fff;
+    margin-top: 1.5rem;
 }
 
 .list-inline-item {
@@ -113,7 +121,7 @@ body {
 
 .footer {
     bottom: 0;
-    background-color: rgba(0, 51, 102,0.7);
+    background-color: rgba(0, 51, 102,0.8);
     width: 100%;
     padding: 17px;
     position: relative;
@@ -144,7 +152,8 @@ footer a:hover {
 } 
 
 #subscribe-link {
-    background-color: #003366;
+    background-color: aquamarine;
+    color: #003366 !important;
     padding: 0.5rem;
     display: block;
     width: 100%;
@@ -154,8 +163,8 @@ footer a:hover {
 }
 
 #subscribe-link:hover{
-    background-color: aquamarine;
-    color: #003366 !important;
+    background-color: #003366;
+    color: aquamarine!important;
     font-weight: 600;
 }
 
@@ -333,6 +342,12 @@ footer a:hover {
 
 /* Responsive styles for medium and smaller devices */
 @media (max-width: 768px) { /* Medium devices (tablets) */
+    
+    .main-bg h1 {
+        padding: 3rem;
+        font-size: 4rem;
+    }
+
     .gallery-container {
         grid-template-columns: 1fr; /* Single column layout */
     }

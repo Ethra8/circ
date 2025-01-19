@@ -73,6 +73,11 @@
               <img src="" alt="logo" class="logo">
             </a>
           </div>
+          {% if user.is_authenticated and user.is_superuser %}
+          <div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0  d-block d-md-none">
+              <a href="{}" class="btn btn-custom-teal rounded-pill m-2 m-lg-0" aria-label="add new service">Añadir Evento</a>
+          </div>
+          {% endif %}
           <div class="col-12 col-md-9 my-auto py-1 py-lg-0">
             <ul class="list-inline list-unstyled text-right my-0">
               <li class="list-inline-item dropdown">
@@ -83,15 +88,13 @@
                     {% if request.user.is_authenticated %}
                     <p class="my-0 text-white">Comprar Entradas</p>
                     {% else %}
-                    <p class="my-0 text-white">Entradas</p>
+                    <p class="my-0 text-white">Comprar Entradas</p>
                     {% endif %}
                   </div>
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="user-options">
                   {% if request.user.is_authenticated %}
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
                   <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Comprar Entradas</a>
-                  <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
                   {% else %}
                   <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Ver Espectáculos</a>
                   <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
@@ -143,9 +146,14 @@
         </div>
       
         {% block nav %}
-        <div class="row bg-custom-dark pr-3">
-          <nav class="navbar navbar-dark navbar-expand-lg w-100 pb-0">
-            {% include 'includes/mobile_top_header.html' %}
+        <div class="row bg-custom-dark">
+          <nav class="mobile-nav navbar navbar-dark navbar-expand-lg w-100 pb-0">
+              {% include 'includes/mobile_top_header.html' %}
+              {% include 'includes/main_nav.html' %}
+              <button class="navbar-toggler d-block d-lg-none ml-3 mr-2 mr-sm-4" type="button" data-toggle="collapse" data-target="#main-nav"
+                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
           </nav>
         </div>
         {% endblock %}
@@ -211,7 +219,7 @@
           });
       });
     </script>
-    
+
     {% block postloadjs %}
     {% endblock %}
 
