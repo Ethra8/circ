@@ -482,11 +482,11 @@ footer a:hover {
     }
 
     .nav-link {
-        /* display: block;
-        padding: .5rem 0.5rem; */
+        display: block;
+        padding: .5rem 0.5rem;
     }
 
     .list-inline-item {
-        /* padding-right: 5px; */
+        padding-right: 5px;
     }
 }
