@@ -84,31 +84,22 @@ def adjust_bag(request, item_id):
         return HttpResponse(status=500)
 
 
-def remove_bag_item(request, item_id):
-    """Remove the item from the shopping bag and redirect to the bag page."""
+def remove_bag_item(request, show_id):
+    """Remove the item from the shopping bag."""
     try:
         # Access the shopping bag session
         bag = request.session.get('bag', {})
 
-        # Convert item_id to string for consistency
-        item_id_str = str(item_id)
-
         # Remove the item if it exists
-        if item_id_str in bag:
-            # Get the show to display in messages
-            show = get_object_or_404(Show, id=int(item_id))
-            bag.pop(item_id_str)
-            messages.success(request, f'Successfully removed "{show.name}" from your bag.')
+        if str(show_id) in bag:
+            del bag[str(show_id)]
+            messages.success(request, "Item removed successfully.")
         else:
-            messages.warning(request, f'Item with ID "{item_id}" was not found in your bag.')
+            messages.warning(request, "Item not found in the bag.")
 
-        # Update the session bag
+        # Update the session
         request.session['bag'] = bag
-
-        # Redirect to the shopping bag template
         return redirect('bag:bag')
-
     except Exception as e:
-        # Handle unexpected errors and show an error message
-        messages.error(request, f'Error removing item: {e}')
+        messages.error(request, f"Error removing item: {e}")
         return redirect('bag:bag')

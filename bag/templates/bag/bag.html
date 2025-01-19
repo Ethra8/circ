@@ -73,7 +73,7 @@
                                     </td>
                                     <!-- Remove Item -->
                                     <td class="cell py-3">
-                                        <form method="POST" action="">
+                                        <form method="POST" action="{% url 'bag:remove_bag_item' item.show.id %}">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-sm btn-danger my-3" aria-label="Remove item from bag">
                                                 <i class="fas fa-times-circle fa-sm" aria-hidden="true"></i> Remove
