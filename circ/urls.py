@@ -23,8 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # Required for allauth URLs
     path('', include('home.urls')),
-    path('shows/', include('shows.urls', namespace='shows')),  # Add namespace
+    path('shows/', include('shows.urls', namespace='shows')),
     path('bag/', include('bag.urls', namespace='bag')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 if settings.DEBUG:

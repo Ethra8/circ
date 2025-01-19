@@ -7,7 +7,6 @@ from django_summernote.fields import SummernoteTextField
 
 from django.conf import settings
 
-
 class CompanyContact(models.Model):
     """
     Model for the B2B contact form in the companies page
@@ -72,3 +71,9 @@ class EmailTemplate(models.Model):
 
     def __str__(self):
         return self.name
+    
+class AboutSection(models.Model):
+    content = models.TextField()  # Field for the <p> content
+
+    def __str__(self):
+        return "About Page Content"

@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import JsonResponse
 
-from .models import CompanyContact, Subscription
+from .models import AboutSection, CompanyContact, Subscription
 from .forms import CompanyContactForm, SubscriptionForm
 
 
@@ -47,9 +47,10 @@ def gallery(request):
 #     return render(request, 'home/companies.html', {'form': form})
 
 
-# def about(request):
-#     """ A view to return the about page """
-#     return render(request, 'home/about.html')
+def about(request):
+    """ A view to return the about page """
+    about_content = AboutSection.objects.first()  # Get the first (and only) AboutSection instance
+    return render(request, 'home/about.html', {'about_content': about_content})
 
 
 # def subscribe(request):
