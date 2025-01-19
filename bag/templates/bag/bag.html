@@ -90,27 +90,29 @@
                     <div class="text-right py-auto mt-5">
                         <h5 id="bag-grand-total" class="mt-4 text-right"><strong>Gran Total: {{ grand_total|floatformat:2 }} €</strong></h5>
                     </div>
-                    <div class="d-flex flex-wrap">
-                        <a href="{% url 'shows:show_list' %}" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="go back to list of shows">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left" style="color:white;"></i>
-                            </span>
-                            <span class="text-uppercase text-white">Ver Shows</span>
-                        </a>
 
-                        <!-- "Pago Seguro" button for all users -->
-                        <a 
-                            href="{% if user.is_authenticated %}{% url 'home' %}{% else %}#unauthenticated{% endif %}" 
-                            class="btn btn-custom-teal btn-secure-checkout rounded-pill btn-lg mx-auto mr-sm-0 mt-5 order-first order-md-2" 
-                            aria-label="go to secure checkout page" 
-                            id="secure-checkout-btn"
-                            data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}">
-                            <span class="text-uppercase">Pago Seguro</span>
-                            <span class="icon">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </a>
-
+                    <div class="btns-payment-and-more-shows">
+                        <div class="d-flex flex-wrap">
+                            <a href="{% url 'shows:show_list' %}" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="go back to list of shows">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left" style="color:white;"></i>
+                                </span>
+                                <span class="text-uppercase text-white">Ver Shows</span>
+                            </a>
+    
+                            <!-- "Pago Seguro" button for all users -->
+                            <a 
+                                href="{% if user.is_authenticated %}{% url 'home' %}{% else %}#unauthenticated{% endif %}" 
+                                class="btn btn-custom-teal btn-secure-checkout rounded-pill btn-lg mx-auto mr-sm-0 mt-5 order-first order-md-2" 
+                                aria-label="go to secure checkout page" 
+                                id="secure-checkout-btn"
+                                data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}">
+                                <span class="text-uppercase">Pago Seguro</span>
+                                <span class="icon">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </a>
+                        </div>    
                     </div>
                 {% else %}
                     <p class="lead mb-5">Tu bolsa todavía está vacía...</p>

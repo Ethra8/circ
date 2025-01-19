@@ -340,12 +340,18 @@ nav.container-fluid {
     background-color: aquamarine;
     padding-right: 21px;
     border-radius: 5px;
+    max-width: 1208px;
 }
 
-.btn-secure-checkout,
+.btns-payment-and-more-shows {
+    max-width: 1208px !important;
+    padding-bottom: 70px;
+}
+
+/* .btn-secure-checkout,
 #bag-grand-total {
     margin-right: 2rem !important;
-}
+} */
 
 /* FOOTER */
 
