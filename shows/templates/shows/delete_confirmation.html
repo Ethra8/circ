@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+<div class="overlay"></div>
+<div id="delete_confirmation" class="container mt-5">
+    <h2 class="my-4 text-white eg-title">Eliminar Show</h2>
+    <p class="text-white">Seguro que quieres eliminar permanentemente el show <strong>{{ show.name }}</strong>?</p>
+    
+    <form method="POST" action="{% url 'shows:delete_show' show.id %}">
+        {% csrf_token %}
+        <button type="submit" name="confirm_delete" class="btn btn-danger rounded-pill">Confirma</button>
+        <button type="submit" name="cancel_delete" class="btn btn-custom rounded-pill">Guardar Show</button>
+    </form>
+</div>
+{% endblock %}

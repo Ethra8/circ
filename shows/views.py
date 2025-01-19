@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 from .models import Show
 from .forms import ShowForm
 
@@ -17,6 +18,7 @@ def show_details(request, show_id):
     return render(request, 'shows/show_details.html', {'show': show})
 
 
+@login_required
 def edit_show(request, show_id):
     """Edit an existing show."""
     show = get_object_or_404(Show, id=show_id)
@@ -33,3 +35,34 @@ def edit_show(request, show_id):
         form = ShowForm(instance=show)
 
     return render(request, 'shows/edit_show.html', {'form': form, 'show': show})
+
+
+@login_required
+def delete_show(request, show_id):
+    """Prompt user to confirm deletion and delete show if confirmed"""
+    # Check if the user is an admin or superuser
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    # Get the show or return a 404 if not found
+    show = get_object_or_404(Show, pk=show_id)
+
+    # If POST request and confirmation is 'Confirm', delete the service
+    if request.method == 'POST' and 'confirm_delete' in request.POST:
+        show.delete()
+        messages.success(request, f'Show "{show.name}" se ha eliminado permanentemente.')
+        return redirect(reverse('shows:show_list'))
+
+    # If POST request and confirmation is 'Keep', redirect to show details
+    elif request.method == 'POST' and 'cancel_delete' in request.POST:
+        messages.info(request, f'Show "{show.name}" no se ha eliminado, se ha guardado.')
+        return redirect(reverse('shows:show_details', args=[show.id]))
+
+    # Render confirmation page
+    template = 'shows/delete_confirmation.html'
+    context = {
+        'show': show,
+    }
+    return render(request, template, context)
+

@@ -44,7 +44,7 @@
                 <small class="ml-3">
                     <p>
                         <a href="{% url 'shows:edit_show' show.id %}" class="pr-2" aria-label="edit the show"><i class="fas fa-pencil-square fa-2x"></i></a><span class="vertical-line"> | </span> 
-                        <a href="{}" class="text-danger pl-2" aria-label="delete show"><i class="fas fa-times-circle fa-2x"></i></a>    
+                        <a href="{% url 'shows:delete_show' show.id %}" class="text-danger pl-2" aria-label="delete show"><i class="fas fa-times-circle fa-2x"></i></a>    
                     </p>
                 </small>
                 {% endif %}
