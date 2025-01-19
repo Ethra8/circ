@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # Required for allauth URLs
     path('', include('home.urls')),
+    path('shows/', include('shows.urls')),  # Include URLs for the `shows` app
 ]
 
 if settings.DEBUG:

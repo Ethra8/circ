@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     background: url('/media/chica_telas_circo.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -69,14 +75,24 @@ a:hover {
     margin-top: 1.5rem;
 }
 
+.icon-main-nav {
+    color: #fff;
+    margin-top: 1rem;
+}
+
 .list-inline-item {
     padding-right: 14px;
 }
 
 .list-inline-item p:hover,
-.list-inline-item .icon-nav:hover {
+.list-inline-item .icon-nav:hover
+.list-inline-item .icon-main-nav:hover {
     color: #c1f7e3 !important;
     text-align: left;
+}
+
+.dropdown-item {
+    color: #fff;
 }
 
 .navbar-toggler {
@@ -150,7 +166,49 @@ a:hover {
 }
 
 
-/* FOOTERr */
+/* SHOWS_LIST */
+
+.show {
+    /* border: 1px solid aquamarine; */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 51, 102,0.8);
+}
+
+.show .card {
+    max-width: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+.show img {
+    max-width: 100%;
+    height: fit-content;
+    min-height: 525px;
+    border-radius: 5px;
+}
+
+.btn-show-card {
+    width: 100%;
+    background-color: #aab7c4;
+    color: #222;
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-show-card:hover {
+    background-color: #003366;
+    color: #aab7c4;
+    border: 1px solid #c1f7e3;
+}
+
+
+/* FOOTER */
 
 .footer {
     bottom: 0;
@@ -395,6 +453,10 @@ footer a:hover {
 /* Responsive styles for medium and smaller devices */
 @media (max-width: 768px) { /* Medium devices (tablets) */
     
+    .main-bg {
+        width: 100% !important;
+    }
+
     .main-bg h1 {
         padding: 3rem;
         font-size: 4rem;
@@ -420,11 +482,11 @@ footer a:hover {
     }
 
     .nav-link {
-        display: block;
-        padding: .5rem 0.5rem;
+        /* display: block;
+        padding: .5rem 0.5rem; */
     }
 
     .list-inline-item {
-        padding-right: 5px;
+        /* padding-right: 5px; */
     }
 }

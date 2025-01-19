@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container d-none">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="index" class="container h-100 w-100">
+    <div class="row h-100">
+        <div class="col-12 my-auto ml-md-0 mr-md-0 px-0">
+            <div class="my-auto">
+                <h1 class="display-4 text-white charmonman-title">
+                    Shows a la vista
+                </h1>    
+            </div>
+            <div class="my-5">
+                <div class="row show">
+                    {% for show in shows %}
+                        <div class="col-12 col-md-6 col-lg-4 mb-4">
+                            <div class="card h-100">
+                                {% if show.image %}
+                                    <a href="{{ show.image.url }}" target="_blank">
+                                        <img src="{{ show.image.url }}" class="card-img-top" alt="{{ show.name }}">
+                                    </a>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">{{ show.name }}</h5>
+                                    <p class="card-text"><strong>Location:</strong> {{ show.location }}</p>
+                                    <p class="card-text">
+                                        <strong>Date:</strong> {{ show.time|date:"F j, Y" }}<br>
+                                        <strong>Time:</strong> {{ show.time|date:"g:i a" }}
+                                    </p>
+                                    <p class="card-text"><strong>Duration:</strong> {{ show.duration }}</p>
+                                    <p class="card-text"><strong>Remaining Seats:</strong> {{ show.remaining_seats }}</p>
+                                </div>
+                                <a href="{}" class="btn-show-card text-uppercase text-center">seleccionar</a>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p class="text-white">No shows available at the moment. Check back later!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

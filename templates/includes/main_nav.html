@@ -10,7 +10,7 @@
                 <a href="{}" class="nav-link mt-0 pt-0"></a>
                   <div class="nav-link">
                     <div class="row">
-                        <i class="col-2 col-sm-1 fas fa-ticket fa-lg icon-nav mb-0 ml-0"></i>
+                        <i class="col-2 col-sm-1 fas fa-ticket fa-lg icon-main-nav mb-0 ml-0"></i>
                     {% if user.is_authenticated %}
                       <!-- Authenticated users go to the "comprar entradas" page -->
                       <p class="col-10 col-sm-11 my-0 text-white">Comprar entradas</p>
@@ -51,7 +51,7 @@
     </div>
 
     {% if user.is_authenticated and user.is_superuser %}
-    <div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0  d-block d-lg-none">
+    <div class="col-12 col-md-6 col-lg-2 mb-4 mt-3 d-block d-lg-none">
         <a href="{}" class="btn btn-add-event rounded-pill m-2 m-lg-0" aria-label="add new service">Añadir Evento</a>
     </div>
     {% endif %}
