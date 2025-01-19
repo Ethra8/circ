@@ -79,7 +79,7 @@
               <li class="list-inline-item">
                 {% if user.is_authenticated and user.is_superuser %}
                 <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
-                    <a href="{}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new service">Añadir Evento</a>
+                    <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Añadir Show</a>
                 </div>
                 {% endif %}
               </li>

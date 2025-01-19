@@ -11,7 +11,7 @@
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="container">
+    <div id="bag" class="container">
         <div class="row">
             <div class="col-12 col-md-6">
                 <hr>
@@ -23,7 +23,7 @@
 
         <div class="row">
             <div class="col-12 col-md-6">
-                <!-- form includes enctype to allow include service IMAGE -->
+                <!-- form includes enctype to allow include show IMAGE -->
                 <form method="POST" action="{% url 'shows:edit_show' show.id %}" class="form mb-2" enctype="multipart/form-data"> 
                     {% csrf_token %}
                     {% for field in form %}
@@ -35,8 +35,8 @@
                     {% endfor %}
         
                     <div class="text-right">
-                        <a class="btn btn-danger rounded-pill" href="{% url 'shows:show_list' %}" aria-label="cancel the update and return to list of services">Cancel</a>
-                        <button class="btn btn-custom rounded-pill" type="submit">Update Service</button>
+                        <a class="btn btn-danger rounded-pill mr-4" href="{% url 'shows:show_list' %}" aria-label="cancel the update and return to list of shows">Cancelar</a>
+                        <button class="btn btn-success rounded-pill" type="submit">Actualizar</button>
                     </div>
                 </form>
             </div>

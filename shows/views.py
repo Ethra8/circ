@@ -19,6 +19,33 @@ def show_details(request, show_id):
 
 
 @login_required
+def add_show(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('shows:show_list'))
+
+    if request.method == 'POST':
+        # Include request.FILES for file upload (e.g., show image)
+        form = ShowForm(request.POST, request.FILES)
+        if form.is_valid():
+            show = form.save()  # Save the new show instance
+            messages.success(request, "Has creado un nuevo Show!")
+            # Redirect without args; assume 'shows:show_list' points to a list view
+            return redirect(reverse('shows:show_list'))
+        else:
+            messages.error(request, "Error al crear el nuevo Show.")
+    else:
+        form = ShowForm()
+
+    template = 'shows/add_show.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def edit_show(request, show_id):
     """Edit an existing show."""
     show = get_object_or_404(Show, id=show_id)
@@ -48,7 +75,7 @@ def delete_show(request, show_id):
     # Get the show or return a 404 if not found
     show = get_object_or_404(Show, pk=show_id)
 
-    # If POST request and confirmation is 'Confirm', delete the service
+    # If POST request and confirmation is 'Confirm', delete the show
     if request.method == 'POST' and 'confirm_delete' in request.POST:
         show.delete()
         messages.success(request, f'Show "{show.name}" se ha eliminado permanentemente.')
