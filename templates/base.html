@@ -83,19 +83,19 @@
                     {% if request.user.is_authenticated %}
                     <p class="my-0 text-white">Comprar Entradas</p>
                     {% else %}
-                    <p class="my-0 text-white">Comprar Entradas</p>
+                    <p class="my-0 text-white">Entradas</p>
                     {% endif %}
                   </div>
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="user-options">
                   {% if request.user.is_authenticated %}
-                  <a href="{}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
-                  <a href="{}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Comprar Entradas</a>
-                  <a href="{}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
+                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
+                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Comprar Entradas</a>
+                  <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
                   {% else %}
-                  <a href="{}" class="dropdown-item" aria-label="go to my profile page">Ver Espectáculos</a>
-                  <a href="{}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
-                  <a href="{}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
+                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Ver Espectáculos</a>
+                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
+                  <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
                   {% endif %}
                 </div>
               </li>
@@ -108,7 +108,7 @@
                     {% if request.user.is_authenticated %}
                     <p class="my-0 text-white">{{ user.username }}</p>
                     {% else %}
-                    <p class="my-0 text-white">Cuenta</p>
+                    <p class="my-0 text-white">Mi Cuenta</p>
                     {% endif %}
                   </div>
                 </a>
@@ -116,10 +116,10 @@
                   {% if request.user.is_authenticated %}
                   <a href="{}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
                   <a href="{}" class="dropdown-item" aria-label="go to my profile page">Comprar Entradas</a>
-                  <a href="{}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
+                  <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
                   {% else %}
-                  <a href="{}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
-                  <a href="{}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
+                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
+                  <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
                   {% endif %}
                 </div>
               </li>
@@ -153,9 +153,9 @@
 
     <div class="overlay1"></div>
     {% if messages %}
-    <div class="messages alert alert-dismissible fade show">
+    <div class="messages">
       {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}" role="alert">
+        <div class="alert alert-dismissible alert-{{ message.tags }}" role="alert">
           {{ message }}
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -197,6 +197,21 @@
   
     </footer>
 
+    <script>
+      // Ensure alert disappears fully once -close is clicked
+      document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('.alert .close').forEach(function (closeButton) {
+              closeButton.addEventListener('click', function () {
+                  const alert = closeButton.closest('.alert');
+                  if (alert) {
+                      alert.classList.add('fade');
+                      setTimeout(() => alert.remove(), 300); // Remove from DOM after fade-out
+                  }
+              });
+          });
+      });
+    </script>
+    
     {% block postloadjs %}
     {% endblock %}
 

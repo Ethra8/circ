@@ -19,7 +19,7 @@ body {
 /* NAVBAR */
 
 #topnav {
-    background-color: rgba(0, 51, 102,0.7);
+    background-color: rgba(0, 51, 102,0.8);
     max-height: 126px;
     width: 100%;
 }
@@ -113,7 +113,7 @@ body {
 
 .footer {
     bottom: 0;
-    background-color: rgba(0, 51, 102,0.5);
+    background-color: rgba(0, 51, 102,0.7);
     width: 100%;
     padding: 17px;
     position: relative;
@@ -179,10 +179,172 @@ footer a:hover {
 }
 
 
+/** BUTTTONS **/
+
+/* ALLAUTH */
+.allauth-form-inner-content {
+    background-color: rgb(255, 255, 255);
+    padding: 3rem;
+    margin-bottom: 3rem;
+}
+
+.allauth-headings-custom {
+    font-family: "Big Shoulders Display", sans-serif;
+    font-weight: 500;
+    color: #003366;
+    font-size: 3rem;
+}
+
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input.btn,
+.allauth-form-inner-content form input.btn {
+    width: 100%;
+    /* max-width: 320px;  */
+    font-size: 1.1rem;
+    background: #003366;
+    color: white;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: outset 2px aquamarine;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-custom {
+    max-width: 320px; 
+}
+
+.btn-custom:hover,
+.btn-custom:active,
+.btn-custom:focus,
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content button:active,
+.allauth-form-inner-content button:focus,
+.allauth-form-inner-content form input.btn:hover,
+.allauth-form-inner-content form input.btn:active,
+.allauth-form-inner-content form input.btn:focus {
+    background: teal;
+    color: white;
+    font-weight: 600;
+}
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem; 
+    color: #555;
+}
+
+.form-group input:not([type='checkbox']),
+.form-group input:not([class='qty-input']),
+.form-group textarea,
+.allauth-form-inner-content input:not([type='checkbox']) {
+    border-color: #003366;
+    border-radius: 5px;
+}
+
+/* #id_remember,
+#id_reduced_groups,
+#id_individual_packs {
+    min-width: 15px !important;
+} */
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content input[type='submit'] {
+	/* btn */
+	display: inline-block;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #003366;
+    border: 2px solid #fff;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 25px;
+    padding: 5px 25px;
+    margin: 10px 0 20px;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content input[type='submit']:hover {	
+	color: #fff;
+    background-color: #222;
+    border-color: #222;
+}
+
+.allauth-form-inner-content a {
+	color: #003366; /* text-info */
+    font-weight: 500;
+}
+
+.allauth-form-inner-content a:hover {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+/* Django Messages */
+
+.messages {
+    position: fixed;
+    top: 120px;
+    right: 10px;
+    z-index: 9999;
+    width: fit-content;
+    padding: 10px;
+}
+
+.alert {
+    background-color: #003366;
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 0 !important;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+/* Override padding of close button in alert messages */
+.alert-dismissible .close {
+    padding: 0 !important;
+    margin-right: -10px;
+    color: white;
+}
+
+/* Fading effect for dismissing */
+.alert.fade {
+    opacity: 0;
+    visibility: hidden;
+    height: 0; /* Collapse the height */
+    overflow: hidden;
+}
+
+
 /* Responsive styles for medium and smaller devices */
 @media (max-width: 768px) { /* Medium devices (tablets) */
     .gallery-container {
         grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .btn-custom,
+    .btn-custom-teal, 
+    .allauth-form-inner-content button,
+    .allauth-form-inner-content input.btn,
+    .allauth-form-inner-content form input.btn {
+        width: 100% !important; 
+        max-width: 100% !important; 
     }
 }
 

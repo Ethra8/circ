@@ -39,19 +39,35 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_extensions',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'debug_toolbar',
     'crispy_forms',
+    'crispy_bootstrap4',  # For Bootstrap 4
     'django_summernote',
     'home',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Replace with your desired template pack
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # allauth account
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # django debug
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+# for django-debug-toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
 ]
 
 ROOT_URLCONF = 'circ.urls'
@@ -157,3 +173,37 @@ STATICFILES_DIRS = [
 STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
+
+
+# Required for Django Allauth
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default authentication backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
+]
+
+# Redirect URLs
+LOGIN_REDIRECT_URL = '/'  # Redirect after login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+
+
+# Email settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Options: "none", "optional", "mandatory"
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # Options: "username", "email", "username_email"
+ACCOUNT_USERNAME_REQUIRED = False  # Disable username field
+
+# Allauth templates customization (optional)
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/profile/'  # Redirect after signup (default)
+
+# Email backend for development (prints emails to the console)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# # Email settings (for production)
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-email@gmail.com'
+# EMAIL_HOST_PASSWORD = 'your-email-password'  # Use app-specific password or environment variable
