@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'debug_toolbar',
+    # 'debug_toolbar',
     'crispy_forms',
     'crispy_bootstrap4',  # For Bootstrap 4
     'django_summernote',
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'allauth.account.middleware.AccountMiddleware',  # allauth account
-    'debug_toolbar.middleware.DebugToolbarMiddleware',  # django debug
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',  # django debug
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

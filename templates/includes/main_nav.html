@@ -6,29 +6,26 @@
                     Home
                 </a>
             </li>
-            <li class="list-inline-item dropdown">
-                <a class="nav-link pt-0 pb-0" href="#" id="user-options" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <div class="text-center">
-                    <div><i class="fa-solid fa-ticket fa-lg icon-nav"></i></div> 
-                    {% if request.user.is_authenticated %}
-                    <p class="my-0 text-white">Comprar Entradas</p>
+            <li class="list-inline-item">
+                <a href="{}" class="nav-link mt-0 pt-0"></a>
+                  <div class="nav-link">
+                    <div class="row">
+                        <i class="col-2 col-sm-1 fas fa-ticket fa-lg icon-nav mb-0 ml-0"></i>
+                    {% if user.is_authenticated %}
+                      <!-- Authenticated users go to the "comprar entradas" page -->
+                      <p class="col-10 col-sm-11 my-0 text-white">Comprar entradas</p>
+                    </div> 
                     {% else %}
-                    <p class="my-0 text-white">Comprar Entradas</p>
+                      <!-- Non-authenticated users are redirected to login with a message -->
+                      <a href="{% url 'account_login' %}?next={}" 
+                        class="nav-link text-white"
+                        onclick="alert('Debes iniciar sesión para comprar entradas.');">
+                        <p class="my-0 text-white">Comprar entradas</p>
+                      </a>
                     {% endif %}
                   </div>
                 </a>
-                <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                  {% if request.user.is_authenticated %}
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Comprar Entradas</a>
-                  {% else %}
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Ver Espectáculos</a>
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
-                  <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
-                  {% endif %}
-                </div>
               </li>
-    
             <!-- <li class="nav-item dropdown col-12 col-lg-4">
                 <a class="text-uppercase nav-link text-white mr-5" href="#" id="individual-packs-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Individual
@@ -55,7 +52,7 @@
 
     {% if user.is_authenticated and user.is_superuser %}
     <div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0  d-block d-lg-none">
-        <a href="{}" class="btn btn-custom-teal rounded-pill m-2 m-lg-0" aria-label="add new service">Añadir Evento</a>
+        <a href="{}" class="btn btn-add-event rounded-pill m-2 m-lg-0" aria-label="add new service">Añadir Evento</a>
     </div>
     {% endif %}
 

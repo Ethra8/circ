@@ -4,7 +4,7 @@
     </a>
 </div>
 
-<div class="ml-auto mr-3 mr-lg-0">
+<div class="ml-1 ml-sm-auto mr-3 mr-lg-0">
     <ul class="d-block d-lg-none pl-0">
         <li class="list-inline-item dropdown">
             <a class="text-white nav-link d-block d-lg-none" href="#" id="user-options1" data-toggle="dropdown"
@@ -14,7 +14,7 @@
                     {% if request.user.is_authenticated %}
                     <p class="my-0 text-white">{{ user.username }}</p>
                     {% else %}
-                    <p class="my-0 text-white">Account</p>
+                    <p class="my-0 text-white">Mi Cuenta</p>
                     {% endif %}
                 </div>
             </a>
@@ -24,7 +24,6 @@
                 <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Comprar Entradas</a>
                 <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
                 {% else %}
-                <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Ver Espectáculos</a>
                 <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
                 <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
                 {% endif %}

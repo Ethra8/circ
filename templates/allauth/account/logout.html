@@ -5,18 +5,22 @@
 
 
 <div class="container header-container d-flex">
-  {% block head_title %}{% trans "Sign Out" %}{% endblock %}
+  {% block head_title %}{% trans "Cerrar Serrión" %}{% endblock %}
 
   {% block inner_content %}
 
-  <p>{% trans 'Are you sure you want to sign out?' %}</p>
+  <p>{% trans 'Seguro que quieres cerrar sesión?' %}</p>
 
   <form method="post" action="{% url 'account_logout' %}">
     {% csrf_token %}
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
     {% endif %}
-    <button class="btn rounded-pill mb-3" type="submit">{% trans 'Sign Out' %}</button>
+    <div class="row">
+      <button class="col-5 btn rounded-pill mb-3" type="submit">{% trans 'Si' %}</button>
+      <p class="col-2"></p>
+      <button href="{% url 'home' %}" class="col-5 btn rounded-pill mb-3 success">{% trans 'No' %}</button>  
+    </div>
   </form>
 </div>
 

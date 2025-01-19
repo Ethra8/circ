@@ -8,6 +8,14 @@ body {
     flex-direction: column;  
 }
 
+a {
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
 .main-bg {
     margin: 120px 0 auto;
     flex-grow: 1 !important; /* forces content area to grow and fill remaining space between nav and footer */
@@ -23,12 +31,37 @@ body {
     background-color: rgba(0, 51, 102,0.9);
     max-height: 126px;
     width: 100%;
+    max-width: 100%;
+    padding: 0 17px;
 }
 
 #main-nav {
     background-color: rgba(0, 51, 102,1);
     height: fit-content !important;
     width: 100%;
+}
+
+.btn-add-event,
+.btn-custom-teal {
+    width: 100%;
+    max-width: 320px;
+    background: teal;
+    color: white;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: outset 2px aquamarine;
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.btn-add-event:hover,
+.btn-custom-teal:hover {
+    background: #003366;
+    color: white;
 }
 
 .icon-nav {
@@ -135,7 +168,7 @@ footer a {
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 450;
-    margin: 0 7px;
+    margin: 14px 7px;
 }
 
 footer a:hover {
@@ -152,7 +185,7 @@ footer a:hover {
 } 
 
 #subscribe-link {
-    background-color: aquamarine;
+    background-color: aqua;
     color: #003366 !important;
     padding: 0.5rem;
     display: block;
@@ -163,8 +196,8 @@ footer a:hover {
 }
 
 #subscribe-link:hover{
-    background-color: #003366;
-    color: aquamarine!important;
+    background-color: aquamarine;
+    color: #003366 !important;
     font-weight: 600;
 }
 
@@ -365,5 +398,14 @@ footer a:hover {
 @media (max-width: 480px) { /* Small devices (phones) */
     .gallery-container {
         grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .nav-link {
+        display: block;
+        padding: .5rem 0.5rem;
+    }
+
+    .list-inline-item {
+        padding-right: 5px;
     }
 }

@@ -73,34 +73,33 @@
               <img src="" alt="logo" class="logo">
             </a>
           </div>
-          {% if user.is_authenticated and user.is_superuser %}
-          <div class="col-12 col-md-6 col-lg-2 my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0  d-block d-md-none">
-              <a href="{}" class="btn btn-custom-teal rounded-pill m-2 m-lg-0" aria-label="add new service">Añadir Evento</a>
-          </div>
-          {% endif %}
+          
           <div class="col-12 col-md-9 my-auto py-1 py-lg-0">
             <ul class="list-inline list-unstyled text-right my-0">
-              <li class="list-inline-item dropdown">
-                <a class="nav-link pt-0 pb-0" href="#" id="user-options" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <div class="text-center">
-                    <div><i class="fa-solid fa-ticket fa-lg icon-nav"></i></div> 
-                    {% if request.user.is_authenticated %}
-                    <p class="my-0 text-white">Comprar Entradas</p>
+              <li class="list-inline-item">
+                {% if user.is_authenticated and user.is_superuser %}
+                <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
+                    <a href="{}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new service">Añadir Evento</a>
+                </div>
+                {% endif %}
+              </li>
+              <li class="list-inline-item">
+                <a href="{}" class="mt-0 pt-0">
+                  <div class="nav-link text-center">
+                    <div><i class="fas fa-ticket fa-lg icon-nav mb-0"></i></div> 
+                    {% if user.is_authenticated %}
+                      <!-- Authenticated users go to the "comprar entradas" page -->
+                      <p class="my-0 text-white">Comprar entradas</p>
+                    </a>
                     {% else %}
-                    <p class="my-0 text-white">Comprar Entradas</p>
+                      <!-- Non-authenticated users are redirected to login with a message -->
+                      <a href="{% url 'account_login' %}?next={% url 'home' %}" 
+                        class="nav-link text-white mt-0 pt-0"
+                        onclick="alert('Debes iniciar sesión para comprar entradas.');">
+                        <p class="mb-0 mt-0 pt-0 text-white">Comprar entradas</p>
+                      </a>
                     {% endif %}
                   </div>
-                </a>
-                <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                  {% if request.user.is_authenticated %}
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Comprar Entradas</a>
-                  {% else %}
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Ver Espectáculos</a>
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
-                  <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
-                  {% endif %}
-                </div>
               </li>
 
               <li class="list-inline-item dropdown">
@@ -150,7 +149,7 @@
           <nav class="mobile-nav navbar navbar-dark navbar-expand-lg w-100 pb-0">
               {% include 'includes/mobile_top_header.html' %}
               {% include 'includes/main_nav.html' %}
-              <button class="navbar-toggler d-block d-lg-none ml-3 mr-2 mr-sm-4" type="button" data-toggle="collapse" data-target="#main-nav"
+              <button class="navbar-toggler d-block d-lg-none ml-1 ml-sm-3 mr-2 mr-sm-4" type="button" data-toggle="collapse" data-target="#main-nav"
                 aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
