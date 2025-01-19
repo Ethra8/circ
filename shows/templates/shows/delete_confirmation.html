@@ -18,7 +18,7 @@
     
     <form method="POST" action="{% url 'shows:delete_show' show.id %}">
         {% csrf_token %}
-        <button type="submit" name="confirm_delete" class="btn btn-danger rounded-pill">Confirma</button>
+        <button type="submit" name="confirm_delete" class="btn btn-danger rounded-pill">Eliminar</button>
         <button type="submit" name="cancel_delete" class="btn btn-custom rounded-pill">Guardar Show</button>
     </form>
 </div>
