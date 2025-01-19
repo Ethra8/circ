@@ -108,6 +108,10 @@ a:hover {
 
 /* INDEX */
 
+#index {
+    padding-top: 2rem;
+}
+
 /* Index Header*/
 .charmonman-title {
     font-family: "Charmonman", cursive;

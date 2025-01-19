@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header%}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay1"></div>
+<div class="overlay"></div>
+<div id="pack-details" class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 pffset-lg-2">
+            <div class="image-container my-5">
+                {% if show.image %}
+                <a href="{{ show.image.url }}" target="_blank" aria-label="see image in full size in a new tab">
+                    <img class="img-details img-fluid" src="{{ show.image.url }}" alt="{{ show.name }}">
+                </a>
+                {% else %}
+                <img class="img-details img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ show.name }}">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-10 col-lg-7 ml-lg-5">
+            <div class="product-details-container mb-5 mt-md-5">
+                <h1 class="mb-2 eg-title">{{ show.name }}</h1>
+                <p class="lead mb-0 text-left font-weight-bold">${{ show.price_per_seat_adult }}</p>
+                <p class="small mb-0">Día y Hora: {{ show.time }}</p>
+                
+                <!-- {% if show.type %}
+                <p class="small mt-1 mb-0">
+                    <a class="text-muted" href="{% url 'individual_services' %}?type={{ service.type.name }}" aria-label="see list of this type of service">
+                    {% if service.type.name == "individuals_private" or service.type.name == "individuals_groups" %}
+                        <i class="fas fa-desktop mr-1"></i>
+                    {% else %}
+                        <i class="fas fa-graduation-cap mr-1"></i>
+                    {% endif %}
+                    {{ service.type.friendly_name }}
+                    </a>
+                </p> -->
+                {% endif %}
+
+                {% if request.user.is_superuser %}
+                <small class="ml-3">
+                    <p>
+                        <a href="{% url 'show_details' show.id %}" class="pr-2" aria-label="edit the show"><i class="fas fa-pencil-square fa-2x"></i></a><span class="vertical-line"> | </span> 
+                        <a href="{}" class="text-danger pl-2" aria-label="delete show"><i class="fas fa-times-circle fa-2x"></i></a>    
+                    </p>
+                </small>
+                {% endif %}
+                
+                <p class="mt-3">{{ show.description }}</p>
+                <form class="form" action="{}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-12">
+                            <p class="mt-3"><strong>Quantity:</strong></p>
+                            <div class="form-group w-50">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="decrement-qty btn btn-black rounded-0"
+                                        data-item_id="{{ show.id }}" id="decrement-qty_{{ show.id }}" aria-label="decrement quantity of tickets to this show">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    <input class="form-control qty_input qty-input" type="number"
+                                    name="quantity" value="1" min="1" max="99"
+                                    data-item_id="{{ show.id }}"
+                                    id="id_qty_{{ show.id }}" aria-label="number of items">
+
+                                    <div class="input-group-append">
+                                        <button class="increment-qty btn btn-black rounded-0"
+                                        data-item_id="{{ show.id }}" id="increment-qty_{{ show.id }}" aria-label="increment quantity of tickets to this show">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col{% if s %}-12 mt-2{% endif %} d-flex flex-wrap justify-content-between">
+                            <!-- "Add to Bag" Button -->
+                            <button type="submit" class="col-12 col-sm-5 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
+                                Add to Bag
+                                <span class="icon">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </button>
+                            
+                            <!-- "Keep Shopping" Button -->
+                            <a href="{% url 'show_list' %}" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="return to list of shows">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Seguir Buscando</span>
+                            </a>
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+<!-- <script src="https://english-grows1.s3.eu-west-3.amazonaws.com/static/js/quantity_selector.js"></script> -->
+<script src="../static/js/quantity_selector.js"></script>
+
+{% endblock %}

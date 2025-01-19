@@ -38,7 +38,7 @@
                                     <p class="card-text"><strong>Duration:</strong> {{ show.duration }}</p>
                                     <p class="card-text"><strong>Remaining Seats:</strong> {{ show.remaining_seats }}</p>
                                 </div>
-                                <a href="{}" class="btn-show-card text-uppercase text-center">seleccionar</a>
+                                <a href="{% url 'show_details' show.id %}" class="btn-show-card text-uppercase text-center">seleccionar</a>
                             </div>
                         </div>
                     {% empty %}
