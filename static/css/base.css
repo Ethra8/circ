@@ -214,12 +214,13 @@ nav.container-fluid {
     max-width: 100%;
     border: none;
     border-radius: 5px;
+    background-size: cover;
 }
 
 .show img {
     max-width: 100%;
     height: fit-content;
-    min-height: 525px;
+    min-height: 380px;
     border-radius: 5px;
 }
 
@@ -240,6 +241,24 @@ nav.container-fluid {
 .card-text {
     color: #222;
 }
+
+.card-img-top-container {
+    position: relative; /* Ensures the child image is positioned relative to this container */
+    width: 100%;        /* Full width of the card */
+    height: 22rem;      /* Fixed height for the card header image */
+    overflow: hidden;   /* Hides overflowed image parts */
+}
+
+.card-img-top {
+    position: absolute; /* Allows centering */
+    top: 50%;           /* Center vertically */
+    left: 50%;          /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust image position for perfect centering */
+    width: auto;        /* Maintain aspect ratio */
+    height: 100%;       /* Ensures it fills the height */
+    object-fit: cover;  /* Makes the image cover the container */
+}
+
 
 .card-title {
     color: #003366;
