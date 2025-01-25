@@ -36,12 +36,12 @@ if not SECRET_KEY:
     raise ValueError("The SECRET_KEY environment variable is not set")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() in ['true', '1', 't', 'yes', 'y']
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ['true', '1']
 # It converts valid "truthy" strings ('true', '1', etc.) to True and everything else to False.
 
 
-ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
 
 # Application definition
 
@@ -78,6 +78,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # for serving static files on Heroku
 ]
 
 # # for django-debug-toolbar
