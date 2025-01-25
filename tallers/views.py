@@ -31,7 +31,7 @@ def add_taller(request):
         if form.is_valid():
             taller = form.save()  # Save the new taller instance
             messages.success(request, "Has creado un nuevo Taller!")
-            # Redirect without args; assume 'shows:show_list' points to a list view
+            # Redirect without args; assume 'tallers:taller_list' points to a list view
             return redirect(reverse('tallers:taller_list'))
         else:
             messages.error(request, "Error al crear el nuevo Taller.")
@@ -48,7 +48,7 @@ def add_taller(request):
 
 @login_required
 def edit_taller(request, taller_id):
-    """Edit an existing show."""
+    """Edit an existing taller."""
     taller = get_object_or_404(Taller, id=taller_id)
 
     if request.method == 'POST':
@@ -58,7 +58,7 @@ def edit_taller(request, taller_id):
             messages.success(request, f"El Taller '{taller.name}' ha sido actualizado!")
             return redirect('tallers:taller_details', taller_id=taller.id)
         else:
-            messages.error(request, "Failed to update the show. Please correct the errors below.")
+            messages.error(request, "Error al actualizar taller. Por favor, corrige los siguientes errores.")
     else:
         form = TallerForm(instance=taller)
 
@@ -82,7 +82,7 @@ def delete_taller(request, taller_id):
         messages.success(request, f'El Taller "{taller.name}" se ha eliminado permanentemente.')
         return redirect(reverse('tallers:taller_list'))
 
-    # If POST request and confirmation is 'Keep', redirect to show details
+    # If POST request and confirmation is 'Keep', redirect to taller details
     elif request.method == 'POST' and 'cancel_delete' in request.POST:
         messages.info(request, f'No se ha eliminado el Taller "{taller.name}"')
         return redirect(reverse('tallers:taller_details', args=[taller.id]))

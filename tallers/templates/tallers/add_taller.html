@@ -13,21 +13,21 @@
     <div class="overlay"></div>
     <div id="bag" class="container">
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-9">
                 <hr>
-                <h2 class="eg-title mb-4">Show Management</h2>
-                <h5 class="text-muted">Edita un Show</h5>
+                <h2 class="eg-font mb-4 text-uppercase">Añade Taller</h2>
+                <h5 class="text-muted">Incluye un nuevo taller a la lista</h5>
                 <hr>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 col-md-6">
-                <!-- form includes enctype to allow include show IMAGE -->
-                <form method="POST" action="{% url 'shows:edit_show' show.id %}" class="form mb-2" enctype="multipart/form-data"> 
+            <div class="col-12 col-md-9">
+                <!-- form includes enctype to allow include taller IMAGE -->
+                <form method="POST" action="{% url 'tallers:add_taller' %}" class="form mb-2" enctype="multipart/form-data"> 
                     {% csrf_token %}
                     {% for field in form %}
-                        {% if field.name != 'image' %}
+                        {% if field.name != 'image' and field.name != 'image_url' %}
                             {{ field | as_crispy_field }}
                         {% else %}
                             {{ field }}
@@ -35,8 +35,8 @@
                     {% endfor %}
         
                     <div class="text-right">
-                        <a class="btn btn-danger rounded-pill mr-4" href="{% url 'shows:show_list' %}" aria-label="cancel the update and return to list of shows">Cancelar</a>
-                        <button class="btn btn-success rounded-pill" type="submit">Actualizar</button>
+                        <a class="btn btn-danger rounded-pill mr-4" href="{% url 'tallers:taller_list' %}" aria-label="cancel adding a new taller and return to list of tallers">Cancelar</a>
+                        <button class="btn btn-custom rounded-pill btn-success" type="submit">Crear Taller</button>
                     </div>
                 </form>
             </div>

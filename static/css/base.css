@@ -276,7 +276,8 @@ nav.container-fluid {
 
 #show-details,
 #show_list,
-#taller-details {
+#taller-details,
+#taller_list {
     padding-left: 3rem !important;
     padding-right: 3rem !important;
     margin-top: 120px;

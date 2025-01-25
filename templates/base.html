@@ -86,6 +86,14 @@
               </li>
 
               <li class="list-inline-item">
+                {% if user.is_authenticated and user.is_superuser %}
+                <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
+                    <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Añadir Taller</a>
+                </div>
+                {% endif %}
+              </li>
+
+              <li class="list-inline-item">
                   <div class="nav-link text-center">
                     <a href="{% url 'shows:show_list' %}" class="mt-0 pt-0">
                       <div><i class="fas fa-ticket fa-lg icon-nav mb-0"></i></div> 
