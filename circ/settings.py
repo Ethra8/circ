@@ -180,6 +180,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # # Directory to collect static files for production
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Enable WhiteNoise for serving static files in production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
