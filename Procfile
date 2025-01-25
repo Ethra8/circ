@@ -1,1 +1,1 @@
-web: gunicorn circ.wsgi:application
+web: gunicorn circ.wsgi
