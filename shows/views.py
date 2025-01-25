@@ -21,7 +21,7 @@ def show_details(request, show_id):
 @login_required
 def add_show(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
+        messages.error(request, 'Solamente los usuarios de la administración pueden añadir un evento.')
         return redirect(reverse('shows:show_list'))
 
     if request.method == 'POST':
@@ -29,11 +29,11 @@ def add_show(request):
         form = ShowForm(request.POST, request.FILES)
         if form.is_valid():
             show = form.save()  # Save the new show instance
-            messages.success(request, "Has creado un nuevo Show!")
+            messages.success(request, "Has creado un nuevo Evento!")
             # Redirect without args; assume 'shows:show_list' points to a list view
             return redirect(reverse('shows:show_list'))
         else:
-            messages.error(request, "Error al crear el nuevo Show.")
+            messages.error(request, "Error al crear el nuevo Evento.")
     else:
         form = ShowForm()
 
@@ -54,10 +54,10 @@ def edit_show(request, show_id):
         form = ShowForm(request.POST, request.FILES, instance=show)
         if form.is_valid():
             form.save()
-            messages.success(request, f"The show '{show.name}' has been updated successfully!")
+            messages.success(request, f"El Evento '{show.name}' ha sido actualizado!")
             return redirect('shows:show_details', show_id=show.id)
         else:
-            messages.error(request, "Failed to update the show. Please correct the errors below.")
+            messages.error(request, "Error al actualizar el Evento. Corrige los siguientes errores.")
     else:
         form = ShowForm(instance=show)
 
@@ -69,7 +69,7 @@ def delete_show(request, show_id):
     """Prompt user to confirm deletion and delete show if confirmed"""
     # Check if the user is an admin or superuser
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
+        messages.error(request, 'Solamente los usuarios de la administración pueden borrar un evento.')
         return redirect(reverse('home'))
 
     # Get the show or return a 404 if not found
@@ -78,12 +78,12 @@ def delete_show(request, show_id):
     # If POST request and confirmation is 'Confirm', delete the show
     if request.method == 'POST' and 'confirm_delete' in request.POST:
         show.delete()
-        messages.success(request, f'Show "{show.name}" se ha eliminado permanentemente.')
+        messages.success(request, f'El Evento "{show.name}" se ha eliminado permanentemente.')
         return redirect(reverse('shows:show_list'))
 
     # If POST request and confirmation is 'Keep', redirect to show details
     elif request.method == 'POST' and 'cancel_delete' in request.POST:
-        messages.info(request, f'Show "{show.name}" no se ha eliminado, se ha guardado.')
+        messages.info(request, f'El Evento "{show.name}" no se ha eliminado, se ha guardado.')
         return redirect(reverse('shows:show_details', args=[show.id]))
 
     # Render confirmation page

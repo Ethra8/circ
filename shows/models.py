@@ -6,25 +6,25 @@ from decimal import Decimal
 
 class Show(models.Model):
     id = models.IntegerField(primary_key=True, unique=True, editable=False)
-    name = models.CharField(max_length=200, help_text="Name of the show")
+    name = models.CharField(max_length=200, help_text="Nombre del Evento")
     description = models.TextField(blank=True, null=True)
-    location = models.CharField(max_length=200, help_text="Location of the show")
-    time = models.DateTimeField(help_text="Date and time of the show")
-    duration = models.DurationField(help_text="Duration of the show (HH:MM:SS)")
-    image = models.ImageField(upload_to='shows/images/', help_text="Image representing the show", blank=True, null=True)
-    total_seats = models.PositiveIntegerField(help_text="Total number of seats available")
-    remaining_seats = models.PositiveIntegerField(help_text="Number of seats still available")
+    location = models.CharField(max_length=200, help_text="Local del Evento")
+    time = models.DateTimeField(help_text="Fecha y hora del evento")
+    duration = models.DurationField(help_text="Duración del evento (HH:MM:SS)")
+    image = models.ImageField(upload_to='shows/images/', help_text="Image de promoción del evento", blank=True, null=True)
+    total_seats = models.PositiveIntegerField(help_text="Máximo de plazas disponibles")
+    remaining_seats = models.PositiveIntegerField(help_text="Número de plazas disponibles")
     price_per_seat_adult = models.DecimalField(
         max_digits=5, 
         decimal_places=2,
         default=Decimal('20.00'),
-        help_text="Price per seat for adults",
+        help_text="Precio por ticket adulto",
     )
     price_per_seat_reduction = models.DecimalField(
         max_digits=5, 
         decimal_places=2,
         default=Decimal('15.00'),
-        help_text="Price per seat with a reduction"
+        help_text="Precio por ticket reducido"
     )
 
     def __str__(self):
@@ -38,18 +38,18 @@ class Show(models.Model):
             self.remaining_seats -= number_of_seats
             self.save()
         else:
-            raise ValueError("Not enough seats available")
+            raise ValueError("No quedan suficientes plazas")
 
 
 class Taller(models.Model):
     WEEKDAYS = [
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-        ('Sunday', 'Sunday'),
+        ('Lunes', 'Lunes'),
+        ('Martes', 'Martes'),
+        ('Miércoles', 'Miércoles'),
+        ('Jueves', 'Jueves'),
+        ('Viernes', 'Viernes'),
+        ('Sábado', 'Sábado'),
+        ('Domingo', 'Domingo'),
     ]
 
     id = models.AutoField(primary_key=True)
@@ -58,7 +58,7 @@ class Taller(models.Model):
     starting_date = models.DateField(default=now)  # Starting date of the taller
     starting_time = models.TimeField()  # Starting time of the taller
     end_time = models.TimeField()  # End time of the taller
-    duration = models.PositiveIntegerField(help_text="Duration in weeks")  # Duration in weeks
+    duration = models.PositiveIntegerField(help_text="Duración en semanas")  # Duration in weeks
     max_participants = models.PositiveIntegerField()  # Maximum participants allowed
     booked_participants = models.PositiveIntegerField(default=0)  # Booked participants, starts at 0
     price = models.DecimalField(max_digits=10, decimal_places=2)  # Price of the taller
@@ -73,10 +73,10 @@ class Taller(models.Model):
         - Weekday 1 and Weekday 2 must be different if both are provided.
         """
         if self.end_time <= self.starting_time:
-            raise ValidationError("End time must be after the starting time.")
+            raise ValidationError("El tiempo de acabado tiene que ser superior al tiempo de inicio.")
         
         if self.weekday_2 and self.weekday_1 == self.weekday_2:
-            raise ValidationError("Weekday 1 and Weekday 2 cannot be the same.")
+            raise ValidationError("Dia 1 y Dia 2 no pueden ser el mismo.")
 
     def book_participant(self):
         """
@@ -86,7 +86,7 @@ class Taller(models.Model):
             self.booked_participants += 1
             self.save()
         else:
-            raise ValueError("This taller is fully booked!")
+            raise ValueError("Este evento está completo!")
 
     def __str__(self):
         return self.name

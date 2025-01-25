@@ -30,13 +30,13 @@
                                 {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase">{{ show.name }}</h5>
-                                    <p class="card-text"><strong>Location:</strong> {{ show.location }}</p>
+                                    <p class="card-text"><strong>Sitio:</strong> {{ show.location }}</p>
                                     <p class="card-text">
-                                        <strong>Date:</strong> {{ show.time|date:"F j, Y" }}<br>
-                                        <strong>Time:</strong> {{ show.time|date:"g:i a" }}
+                                        <strong>Día:</strong> {{ show.time|date:"F j, Y" }}<br>
+                                        <strong>Hora:</strong> {{ show.time|date:"g:i a" }}
                                     </p>
-                                    <p class="card-text"><strong>Duration:</strong> {{ show.duration }}</p>
-                                    <p class="card-text"><strong>Remaining Seats:</strong> {{ show.remaining_seats }}</p>
+                                    <p class="card-text"><strong>Duración:</strong> {{ show.duration }}</p>
+                                    <p class="card-text"><strong>Plazas libres:</strong> {{ show.remaining_seats }}</p>
                                 </div>
                                 <a href="{% url 'shows:show_details' show.id %}" class="btn-show-card text-uppercase text-center">ver detalles</a>
                             </div>

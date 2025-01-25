@@ -45,6 +45,9 @@ a:hover {
     padding: 0 0 120px;
 }
 
+.text-muted {
+    color: #6f7a8a;
+}
 
 /* NAVBAR */
 
@@ -618,17 +621,17 @@ footer a:hover {
 }
 
 .alert-success {
-    color: green;
+    background-color: green;
     font-weight: bold;
 }
 
 .alert-warning {
-    color: orange;
+    background-color: orange;
     font-weight: bold;
 }
 
 .alert-error {
-    color: red;
+    background-color: red;
     font-weight: bold;
 }
 

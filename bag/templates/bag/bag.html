@@ -30,7 +30,7 @@
                         <table class="table table-sm table-borderless  text-white">
                             <thead class="text-black">
                                 <tr class="text-uppercase eg-font">
-                                    <th class="pl-3" scope="col">Show</th>
+                                    <th class="pl-3" scope="col">Objeto</th>
                                     <th class="" scope="col"> </th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">Precio</th>
@@ -44,35 +44,64 @@
                                 {% for item in bag_items %}
                                     <!-- Image column -->
                                     <td class="cell" data-label="Shows Info">
+                                    {% if item.show %}
                                         {% if item.show.image %}
-                                        <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
-                                            <img class="img-fluid img-bag" src="{{ item.show.image.url }}" alt="{{ item.show.name }}">
-                                        </a>
+                                            <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
+                                                <img class="img-fluid img-bag" src="{{ item.show.image.url }}" alt="{{ item.show.name }}">
+                                            </a>
                                         {% else %}
-                                        <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
-                                            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.show.name }}">
-                                        </a>
+                                            <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
+                                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.show.name }}">
+                                            </a>
                                         {% endif %}
+                                    {% elif item.taller %}
+                                        {% if item.taller.image %}
+                                            <a href="{% url 'tallers:taller_details' item.taller.id %}" aria-label="go to the taller details page">
+                                                <img class="img-fluid img-bag" src="{{ item.taller.image.url }}" alt="{{ item.taller.name }}">
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'tallers:taller_details' item.taller.id %}" aria-label="go to the taller details page">
+                                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.taller.name }}">
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                    
                                     </td>
+                                <tr>
                                     <!-- Name Column -->
                                     <td class="cell" data-label="Name">
-                                        <p class="my-0 eg-font text-uppercase td-show-name"><strong>{{ item.show.name }}</strong></p>
+                                        {% if item.show %}
+                                            <p class="my-0 eg-font text-uppercase td-show-name"><strong>{{ item.show.name }}</strong></p>
+                                        {% elif item.taller %}
+                                            <p class="my-0 eg-font text-uppercase td-taller-name"><strong>{{ item.taller.name }}</strong></p>
+                                        {% endif %}
                                     </td>
+                                
                                     <!-- Quantity Column -->
                                     <td class="cell py-3 eg-font" data-label="Qty">
-                                        <p class="my-0 mb-2"><strong>Adulto:<br>{{ item.quantity_adult }}</strong> x {{ item.show.price_per_seat_adult|floatformat:2 }} €</p>
-                                        <p class="my-0"><strong>Reducida:<br>{{ item.quantity_reduced }}</strong> x {{ item.show.price_per_seat_reduction|floatformat:2 }} €</p>
+                                        {% if item.show %}
+                                            <p class="my-0 mb-2"><strong>Adulto:<br>{{ item.quantity_adult }}</strong> x {{ item.show.price_per_seat_adult|floatformat:2 }} €</p>
+                                            <p class="my-0"><strong>Reducida:<br>{{ item.quantity_reduced }}</strong> x {{ item.show.price_per_seat_reduction|floatformat:2 }} €</p>
+                                        {% elif item.taller %}
+                                            <p class="my-0"><strong>Plazas:<br>{{ item.quantity }}</strong> x {{ item.taller.price|floatformat:2 }} €</p>
+                                        {% endif %}
                                     </td>
-
+                                
                                     <!-- Price Column -->
                                     <td class="cell py-3 eg-font" data-label="Price">
-                                        <p class="my-0 mb-2">{{ item.show.price_per_seat_adult|floatformat:2|mul:item.quantity_adult }} €</p>
-                                        <p class="my-0">{{ item.show.price_per_seat_reduction|floatformat:2|mul:item.quantity_reduced }} €</p>
-                                    </td>                                    <!-- Subtotal Column -->
+                                        {% if item.show %}
+                                            <p class="my-0 mb-2">{{ item.show.price_per_seat_adult|floatformat:2|mul:item.quantity_adult }} €</p>
+                                            <p class="my-0">{{ item.show.price_per_seat_reduction|floatformat:2|mul:item.quantity_reduced }} €</p>
+                                        {% elif item.taller %}
+                                            <p class="my-0">{{ item.taller.price|floatformat:2|mul:item.quantity }} €</p>
+                                        {% endif %}
+                                    </td>
+                                
+                                    <!-- Subtotal Column -->
                                     <td class="cell py-3 eg-font" data-label="Subtotal">
                                         <p class="my-0"><strong>{{ item.subtotal|floatformat:2 }} €</strong></p>
                                     </td>
-                                    <!-- Remove Item -->
+                                                                        <!-- Remove Item -->
                                     <td class="cell py-3">
                                         <form method="POST" action="{% url 'bag:remove_bag_item' item.show.id %}">
                                             {% csrf_token %}
