@@ -40,8 +40,7 @@ DEBUG = os.environ.get('DEBUG', 'False').lower() in ['true', '1']
 # It converts valid "truthy" strings ('true', '1', etc.) to True and everything else to False.
 
 
-
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(",")
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')  # Split the string into a list
 
 # Application definition
 
@@ -122,12 +121,26 @@ WSGI_APPLICATION = 'circ.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# for PostgreeSQL Database (for deployment in Heroku):
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    # if we're using IDE Gitpod (sqlite3)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
