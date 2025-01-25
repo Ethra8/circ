@@ -10,33 +10,35 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+
+from django.contrib import messages
+
 from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
+
 if os.path.isfile("env.py"):
     import env
 
-from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Load environment variables from .env file
-load_dotenv()
-
-# Retrieve the secret key
-SECRET_KEY = os.getenv('SECRET_KEY')
-# SECRET_KEY = os.environ.get('SECRET_KEY', '')
-# SECRET_KEY = 'django-insecure-nhmaym)d&xz994orliq_)hrf*guz=_crsu7@rmg1zw!g1i3t8b'
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
+if not SECRET_KEY:
+    raise ValueError("The SECRET_KEY environment variable is not set")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ['true', '1', 't', 'yes', 'y']
+# It converts valid "truthy" strings ('true', '1', etc.) to True and everything else to False.
+
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
@@ -65,8 +67,6 @@ INSTALLED_APPS = [
     'bag',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Replace with your desired template pack
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,10 +80,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# for django-debug-toolbar
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
+# # for django-debug-toolbar
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]
 
 ROOT_URLCONF = 'circ.urls'
 
@@ -110,6 +110,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Replace with your template pack
 
