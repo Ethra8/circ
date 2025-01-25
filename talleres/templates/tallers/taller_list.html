@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container d-none">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="show_list" class="container h-100 w-100">
+    <div class="row h-100">
+        <div class="col-12 my-auto ml-md-0 mr-md-0 px-0">
+            <div class="my-auto">
+                <h1 class="display-4 text-white charmonman-title">Nuestros talleres</h1>    
+            </div>
+            <div class="my-5">
+                <div class="row show">
+                    {% for taller in tallers %}
+                        <div class="col-12 col-md-6 col-lg-4 mb-4">
+                            <div class="card h-100">
+                                {% if taller.image %}
+                                    <a href="{% url 'tallers:taller_details' taller.id %}">
+                                        <div class="card-img-top-container">
+                                            <img src="{{ taller.image.url }}" class="card-img-top" alt="{{ taller.name }}">
+                                        </div>
+                                    </a>
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title text-uppercase">{{ taller.name }}</h5>
+                                    <p class="card-text"><strong>Location:</strong> {{ taller.location }}</p>
+                                    <p class="card-text">
+                                        <strong>Date:</strong> {{ taller.time|date:"F j, Y" }}<br>
+                                        <strong>Time:</strong> {{ taller.time|date:"g:i a" }}
+                                    </p>
+                                    <p class="card-text"><strong>Duration:</strong> {{ taller.duration }} semanas</p>
+                                    <p class="card-text"><strong>Remaining Seats:</strong> {{ taller.max_participants }}</p>
+                                </div>
+                                <a href="{% url 'tallers:taller_details' taller.id %}" class="btn-show-card text-uppercase text-center">ver detalles</a>
+                            </div>
+                            
+                        </div>
+                    {% empty %}
+                        <p class="text-white">No tenemos ningún taller programado por ahora. Vuelve en un par de días, o <a href="{}">suscríbete a nuestra newsletter</a> para estar al día de cualquier novedad, y recibir alguna que otra oferta!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('shows/', include('shows.urls', namespace='shows')),
     path('bag/', include('bag.urls', namespace='bag')),
+    path('tallers/', include('tallers.urls', namespace='tallers')),
     path('summernote/', include('django_summernote.urls')),
 ]
 

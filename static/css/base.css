@@ -272,16 +272,18 @@ nav.container-fluid {
     border: 1px solid #c1f7e3;
 }
 
-/* SHOW DETAILS */
+/* SHOW DETAILS & TALLER DETAILS */
 
 #show-details,
-#show_list {
+#show_list,
+#taller-details {
     padding-left: 3rem !important;
     padding-right: 3rem !important;
     margin-top: 120px;
 }
 
-#show-details h1 {
+#show-details h1,
+#taller-details h1 {
     font-size: 2.5rem;
     color: #003366;
 }
@@ -613,6 +615,22 @@ footer a:hover {
     height: 0; /* Collapse the height */
     overflow: hidden;
 }
+
+.alert-success {
+    color: green;
+    font-weight: bold;
+}
+
+.alert-warning {
+    color: orange;
+    font-weight: bold;
+}
+
+.alert-error {
+    color: red;
+    font-weight: bold;
+}
+
 
 
 /* Responsive styles for xl devices */
