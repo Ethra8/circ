@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
+from dotenv import load_dotenv
+
+if os.path.isfile("env.py"):
+    import env
+
+from django.contrib import messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +27,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-nhmaym)d&xz994orliq_)hrf*guz=_crsu7@rmg1zw!g1i3t8b'
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the secret key
+SECRET_KEY = os.getenv('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY', '')
+# SECRET_KEY = 'django-insecure-nhmaym)d&xz994orliq_)hrf*guz=_crsu7@rmg1zw!g1i3t8b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
@@ -152,17 +165,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # Static files (CSS, JavaScript, Images)
-# # https://docs.djangoproject.com/en/3.2/howto/static-files/
-# STATIC_URL = '/static/'
-
-# # Directories for static files (for development)
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-
-# # Directory to collect static files for production
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media URL and Root
 MEDIA_URL = '/media/'  # URL prefix for media files
@@ -173,6 +175,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",  # Adjust for your project structure
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+# # Directory to collect static files for production
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 
