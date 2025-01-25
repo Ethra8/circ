@@ -7,14 +7,6 @@
 <div class="ml-1 ml-sm-auto mr-3 mr-lg-0">
     <ul class="d-block d-lg-none pl-0">
 
-        {% if user.is_authenticated and user.is_superuser %}
-        <li class="list-inline-item">
-            <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
-                <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Añadir Show</a>
-            </div>
-        </li>
-        {% endif %}
-
         <li class="list-inline-item dropdown">
             <a class="text-white nav-link d-block d-lg-none" href="#" id="user-options1" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">

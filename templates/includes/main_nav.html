@@ -1,30 +1,36 @@
 <div class="collapse navbar-collapse pl-1 order-last" id="main-nav">
     <div class="col-lg-8 d-block d-lg-none">
         <ul class="navbar-nav col-12">
-            <li class="list-inline-item">
-                <!-- {% if user.is_authenticated and user.is_superuser %} -->
-                <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
-                    <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Añadir Show</a>
-                </div>
-                <!-- {% endif %} -->
-            </li>
 
             <li class="list-inline-item">
                 <a href="{% url 'shows:show_list' %}" class="nav-link mt-0 pt-0">
                     <div class="nav-link">
                     <div class="row">
                         <i class="col-2 col-sm-1 fas fa-ticket fa-lg icon-main-nav mb-0 ml-0"></i>
-                        <p class="col-10 col-sm-11 my-0 text-white">Talleres</p>
+                        <p class="col-10 col-sm-11 my-0 text-white pl-0 mt-1">Eventos</p>
+                    </div> 
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="{% url 'tallers:taller_list' %}" class="nav-link mt-0 pt-0">
+                    <div class="nav-link">
+                    <div class="row">
+                        <i class="col-2 col-sm-1 fas fa-ticket fa-lg icon-main-nav mb-0 ml-0"></i>
+                        <p class="col-10 col-sm-11 my-0 text-white pl-0 mt-1">Talleres</p>
                     </div> 
                 </a>
             </li>
         </ul>    
     </div>
 
+    
     {% if user.is_authenticated and user.is_superuser %}
-    <div class="col-12 col-md-6 col-lg-2 mb-4 mt-3 d-block d-lg-none">
-        <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill m-2 m-lg-0" aria-label="add new service">Añadir Evento</a>
-    </div>
+        <div class="col-12 col-md-6 col-lg-2 mb-4 mt-3 d-block d-lg-none">
+            <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill m-2 m-lg-0" aria-label="add new service">Añadir Evento</a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-2 mb-4 mt-3 d-block d-lg-none">
+            <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill m-2 m-lg-0" aria-label="add new show">Añadir Taller</a>
+        </div>
     {% endif %}
 
     <div class=" d-block d-lg-none col-12 col-sm-6 {% if user.is_authenticated and user.is_superuser %}col-lg-2{% else %}col-lg-4{% endif %} my-auto py-2 py-lg-0 mb-4 mb-md-0">

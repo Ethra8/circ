@@ -103,6 +103,7 @@ a:hover {
     padding-right: 14px;
 }
 
+.fas:hover,
 .list-inline-item p:hover,
 .list-inline-item .icon-nav:hover
 .list-inline-item .icon-main-nav:hover {

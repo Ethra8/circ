@@ -32,11 +32,11 @@
                                     <h5 class="card-title text-uppercase">{{ taller.name }}</h5>
                                     <p class="card-text"><strong>Location:</strong> {{ taller.location }}</p>
                                     <p class="card-text">
-                                        <strong>Date:</strong> {{ taller.time|date:"F j, Y" }}<br>
-                                        <strong>Time:</strong> {{ taller.time|date:"g:i a" }}
+                                        <strong>Inicio:</strong> {{ taller.starting_time|date:"F j, Y" }}
+                                        <strong>Horario:</strong> {{ taller.starting_time|date:"g:i a" }} - {{ taller.end_time|date:"g:i a" }}
                                     </p>
-                                    <p class="card-text"><strong>Duration:</strong> {{ taller.duration }} semanas</p>
-                                    <p class="card-text"><strong>Remaining Seats:</strong> {{ taller.max_participants }}</p>
+                                    <p class="card-text"><strong>Duración:</strong> {{ taller.duration }} semanas</p>
+                                    <p class="card-text"><strong>Máximas plazas:</strong> {{ taller.max_participants }}</p>
                                 </div>
                                 <a href="{% url 'tallers:taller_details' taller.id %}" class="btn-show-card text-uppercase text-center">ver detalles</a>
                             </div>
