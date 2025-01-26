@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header%}
+{% block page_header %}
 <div class="container header-container">
     <div class="row">
         <div class="col"></div>
@@ -13,7 +13,7 @@
 <div id="taller-details" class="container-fluid">
     <div class="overlay"></div>
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 pffset-lg-2">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
             <div class="image-container my-5">
                 {% if taller.image %}
                 <a href="{{ taller.image.url }}" target="_blank" aria-label="see image in full size in a new tab">
@@ -30,10 +30,22 @@
                 {% if taller.description %}
                 <h5 class="mb-2 eg-title">{{ taller.description }}</h5>
                 {% endif %}
-                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">precio: {{ taller.price }} €</p>
+                
+                <!-- Pricing Display -->
+                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">
+                    {% if taller.audience == 'adultos' %}
+                        Precio: {{ taller.price_per_seat_adult|floatformat:2 }} €
+                    {% elif taller.audience == 'niños' %}
+                        Precio: {{ taller.price_per_seat_reduction|floatformat:2 }} €
+                    {% else %}
+                        Precio Adultos: {{ taller.price_per_seat_adult|floatformat:2 }} €<br>
+                        Precio Niños: {{ taller.price_per_seat_reduction|floatformat:2 }} €
+                    {% endif %}
+                </p>
 
                 <p class="mb-0 mt-3">
-                    <strong>Dia:</strong> {{ taller.starting_date|date:"F j, Y" }}<br>
+                    <strong>Dia:</strong> {{ taller.starting_date|date:"DATE_FORMAT" }}
+                    <br>
                     <strong>Hora:</strong> {{ taller.starting_time|date:"g:i a" }}
                 </p>
                 <p class="mb-2"><strong>Dónde:</strong> {{ taller.location_name }}</p>
@@ -52,64 +64,88 @@
                 <form class="form" action="{% url 'bag:add_to_bag' 'taller' taller.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
-                        <!-- Quantity Selector -->
-                        <div class="col-12">
-                            <p class="mt-3"><strong>Plazas:</strong></p>
-                            <div class="form-group ticket-qty">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="decrement-qty btn btn-black rounded-0"
-                                            data-item_id="{{ taller.id }}" 
-                                            id="decrement-qty-adult_{{ taller.id }}" 
-                                            aria-label="Decrement quantity">
-                                            <span class="icon"><i class="fas fa-minus"></i></span>
-                                        </button>
-                                    </div>
-                
-                                    <!-- Input field to pass quantity -->
-                                    <input class="form-control qty_input qty-input" 
-                                        type="number" name="quantity" 
-                                        value="1" min="1" max="{{ taller.max_participants }}"
-                                        data-item_id="{{ taller.id }}" 
-                                        id="id_qty_adult_{{ taller.id }}" 
-                                        aria-label="Number of plazas" readonly>
-                
-                                    <div class="input-group-append">
-                                        <button class="increment-qty btn btn-black rounded-0"
-                                            data-item_id="{{ taller.id }}" 
-                                            id="increment-qty-adult_{{ taller.id }}" 
-                                            aria-label="Increment quantity">
-                                            <span class="icon"><i class="fas fa-plus"></i></span>
-                                        </button>
+                        {% if taller.audience == 'todo_publico' %}
+                            <!-- Adult Quantity Selector -->
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Plazas Adulto:</strong></p>
+                                <div class="form-group ticket-qty">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0"
+                                                data-item_id="{{ taller.id }}"
+                                                id="decrement-qty-adult_{{ taller.id }}"
+                                                aria-label="Decrement adult quantity">
+                                                <span class="icon"><i class="fas fa-minus"></i></span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control qty_input qty-input"
+                                            type="number" name="quantity_adult"
+                                            value="0" min="0" max="{{ taller.max_participants }}"
+                                            data-item_id="{{ taller.id }}"
+                                            id="id_qty_adult_{{ taller.id }}"
+                                            aria-label="Number of adult plazas">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ taller.id }}"
+                                                id="increment-qty-adult_{{ taller.id }}"
+                                                aria-label="Increment adult quantity">
+                                                <span class="icon"><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                 
+                            <!-- Child Quantity Selector -->
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Plazas Niño:</strong></p>
+                                <div class="form-group ticket-qty">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0"
+                                                data-item_id="{{ taller.id }}"
+                                                id="decrement-qty-child_{{ taller.id }}"
+                                                aria-label="Decrement child quantity">
+                                                <span class="icon"><i class="fas fa-minus"></i></span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control qty_input qty-input"
+                                            type="number" name="quantity_child"
+                                            value="0" min="0" max="{{ taller.max_participants }}"
+                                            data-item_id="{{ taller.id }}"
+                                            id="id_qty_child_{{ taller.id }}"
+                                            aria-label="Number of child plazas">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ taller.id }}"
+                                                id="increment-qty-child_{{ taller.id }}"
+                                                aria-label="Increment child quantity">
+                                                <span class="icon"><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                         <!-- Submit Button -->
                         <div class="col d-flex flex-wrap justify-content-between">
                             <button type="submit" class="col-12 col-sm-5 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
-                                Add to Bag
+                                Añadir a Cesta
                                 <span class="icon"><i class="fas fa-chevron-right"></i></span>
                             </button>
-                            <a href="{% url 'tallers:taller_list' %}" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="Return to taller list">
+                            <a href="javascript:history.back()" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="Return to previous page">
                                 <span class="icon"><i class="fas fa-chevron-left"></i></span>
-                                <span class="text-uppercase">Ver talleres</span>
+                                <span class="text-uppercase">Volver</span>
                             </a>
                         </div>
                     </div>
                 </form>
-                
-       
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block postloadjs %}
-<!-- <script src="https://english-grows1.s3.eu-west-3.amazonaws.com/static/js/quantity_selector.js"></script> -->
 <script src="{% static 'js/quantity_selector.js' %}"></script>
-
 {% endblock %}

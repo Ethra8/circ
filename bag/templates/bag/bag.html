@@ -1,181 +1,173 @@
 {% extends "base.html" %}
 {% load static %}
 {% load bag_tools %}
+{% load bag_filters %}
 
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 
 {% block content %}
-    <div id="bag" class="container-fluid mb-2 ml-0 pl-0 pl-sm-3 pl-md-5 pr-0 w-100">
+<div id="bag" class="container-fluid mb-2 ml-0 pl-0 pl-sm-3 pl-md-5 pr-0 w-100">
 
-        <div class="row" style="width:98%;">
-            <div class="col" style="width:98%;">
-                <!-- <hr> -->
-                <h2 class="eg-font text-uppercase">Cesta de la Compra</h2>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                {% if bag_items %}
-                <div class="table-wrapper" style="overflow-x: auto;">
-                    <div class="table-responsive">
-                        <table class="table table-sm table-borderless  text-white">
-                            <thead class="text-black">
-                                <tr class="text-uppercase eg-font">
-                                    <th class="pl-3" scope="col">Objeto</th>
-                                    <th class="" scope="col"> </th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col"> </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <hr>
-
-                                {% for item in bag_items %}
-                                    <!-- Image column -->
-                                    <td class="cell" data-label="Shows Info">
-                                    {% if item.show %}
-                                        {% if item.show.image %}
-                                            <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
-                                                <img class="img-fluid img-bag" src="{{ item.show.image.url }}" alt="{{ item.show.name }}">
-                                            </a>
-                                        {% else %}
-                                            <a href="{% url 'shows:show_details' item.show.id %}" aria-label="go to the show details page">
-                                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.show.name }}">
-                                            </a>
-                                        {% endif %}
-                                    {% elif item.taller %}
-                                        {% if item.taller.image %}
-                                            <a href="{% url 'tallers:taller_details' item.taller.id %}" aria-label="go to the taller details page">
-                                                <img class="img-fluid img-bag" src="{{ item.taller.image.url }}" alt="{{ item.taller.name }}">
-                                            </a>
-                                        {% else %}
-                                            <a href="{% url 'tallers:taller_details' item.taller.id %}" aria-label="go to the taller details page">
-                                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.taller.name }}">
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}
-                                    
-                                    </td>
-                                <tr>
-                                    <!-- Name Column -->
-                                    <td class="cell" data-label="Name">
-                                        {% if item.show %}
-                                            <p class="my-0 eg-font text-uppercase td-show-name"><strong>{{ item.show.name }}</strong></p>
-                                        {% elif item.taller %}
-                                            <p class="my-0 eg-font text-uppercase td-taller-name"><strong>{{ item.taller.name }}</strong></p>
-                                        {% endif %}
-                                    </td>
-                                
-                                    <!-- Quantity Column -->
-                                    <td class="cell py-3 eg-font" data-label="Qty">
-                                        {% if item.show %}
-                                            <p class="my-0 mb-2"><strong>Adulto:<br>{{ item.quantity_adult }}</strong> x {{ item.show.price_per_seat_adult|floatformat:2 }} €</p>
-                                            <p class="my-0"><strong>Reducida:<br>{{ item.quantity_reduced }}</strong> x {{ item.show.price_per_seat_reduction|floatformat:2 }} €</p>
-                                        {% elif item.taller %}
-                                            <p class="my-0"><strong>Plazas:<br>{{ item.quantity }}</strong> x {{ item.taller.price|floatformat:2 }} €</p>
-                                        {% endif %}
-                                    </td>
-                                
-                                    <!-- Price Column -->
-                                    <td class="cell py-3 eg-font" data-label="Price">
-                                        {% if item.show %}
-                                            <p class="my-0 mb-2">{{ item.show.price_per_seat_adult|floatformat:2|mul:item.quantity_adult }} €</p>
-                                            <p class="my-0">{{ item.show.price_per_seat_reduction|floatformat:2|mul:item.quantity_reduced }} €</p>
-                                        {% elif item.taller %}
-                                            <p class="my-0">{{ item.taller.price|floatformat:2|mul:item.quantity }} €</p>
-                                        {% endif %}
-                                    </td>
-                                
-                                    <!-- Subtotal Column -->
-                                    <td class="cell py-3 eg-font" data-label="Subtotal">
-                                        <p class="my-0"><strong>{{ item.subtotal|floatformat:2 }} €</strong></p>
-                                    </td>
-                                                                        <!-- Remove Item -->
-                                    <td class="cell py-3">
-                                        <form method="POST" action="{% if item.show %}{% url 'bag:remove_bag_item' 'show' item.show.id %}{% elif item.taller %}{% url 'bag:remove_bag_item' 'taller' item.taller.id %}{% endif %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-sm btn-danger my-3" aria-label="Remove item from bag">
-                                                <i class="fas fa-times-circle fa-sm" aria-hidden="true"></i> Elimina
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>                                
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="text-right py-auto mt-5">
-                        <h5 id="bag-grand-total" class="mt-4 text-right"><strong>Gran Total: {{ grand_total|floatformat:2 }} €</strong></h5>
-                    </div>
-
-                    <div class="btns-payment-and-more-shows">
-                        <div class="d-flex flex-wrap">
-                            <a href="{% url 'shows:show_list' %}" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="go back to list of shows">
-                                <span class="icon">
-                                    <i class="fas fa-chevron-left" style="color:white;"></i>
-                                </span>
-                                <span class="text-uppercase text-white">Ver Shows</span>
-                            </a>
-    
-                            <!-- "Pago Seguro" button for all users -->
-                            <a 
-                                href="{% if user.is_authenticated %}{% url 'home' %}{% else %}#unauthenticated{% endif %}" 
-                                class="btn btn-custom-teal btn-secure-checkout rounded-pill btn-lg mx-auto mr-sm-0 mt-5 order-first order-md-2" 
-                                aria-label="go to secure checkout page" 
-                                id="secure-checkout-btn"
-                                data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}">
-                                <span class="text-uppercase">Pago Seguro</span>
-                                <span class="icon">
-                                    <i class="fas fa-lock"></i>
-                                </span>
-                            </a>
-                        </div>    
-                    </div>
-                {% else %}
-                    <p class="lead mb-5">Tu bolsa todavía está vacía...</p>
-                    <a href="{% url 'shows:show_list' %}" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="go back to list of shows">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left" style="color:white;"></i>
-                        </span>
-                        <span class="text-uppercase text-white">VER SHOWS</span>
-                    </a>
-                {% endif %}
-            </div>
+    <div class="row" style="width:98%;">
+        <div class="col" style="width:98%;">
+            <h2 class="eg-font text-uppercase">Cesta de la Compra</h2>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col">
+            {% if bag_items %}
+            <div class="table-wrapper" style="overflow-x: auto;">
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless text-white">
+                        <thead class="text-black">
+                            <tr class="text-uppercase eg-font">
+                                <th class="pl-3" scope="col">Objeto</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Plazas</th>
+                                <th scope="col">Precio Unitario</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in bag_items %}
+                            <tr>
+                                <!-- Image column -->
+                                <td class="cell" data-label="Item Info">
+                                    {% if item.item.image %}
+                                    <a href="{% if item.type == 'show' %}{% url 'shows:show_details' item.item.id %}{% else %}{% url 'tallers:taller_details' item.item.id %}{% endif %}" aria-label="Go to item details page">
+                                        <img class="img-fluid img-bag" src="{{ item.item.image.url }}" alt="{{ item.item.name }}">
+                                    </a>
+                                    {% else %}
+                                    <a href="{% if item.type == 'show' %}{% url 'shows:show_details' item.item.id %}{% else %}{% url 'tallers:taller_details' item.item.id %}{% endif %}" aria-label="Go to item details page">
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.item.name }}">
+                                    </a>
+                                    {% endif %}
+                                </td>
+
+                                <!-- Name Column -->
+                                <td class="cell" data-label="Name">
+                                    <p class="my-0 eg-font text-uppercase"><strong>{{ item.item.name }}</strong></p>
+                                    <p class="my-0 text-capitalize audience-display-details">{{ item.item.get_audience_display }}</p>
+                                </td>
+
+                                <!-- Quantity Column -->
+                                <td class="cell eg-font" data-label="Qty">
+                                    {% if item.type == 'show' %}
+                                        {% if item.item.audience == 'adultos' %}
+                                        <p>{{ item.quantity_adult }}</p>
+                                        {% elif item.item.audience == 'niños' %}
+                                        <p>{{ item.quantity_child }}</p>
+                                        {% else %}
+                                        <p class="mb-2"><strong>Adulto:</strong> {{ item.quantity_adult }}</p>
+                                        <p><strong>Niño:</strong> {{ item.quantity_child }}</p>
+                                        {% endif %}
+                                    {% elif item.type == 'taller' %}
+                                        {% if item.item.audience == 'adultos' %}
+                                            <p class="mb-2">{{ item.quantity_adult }}</p>
+                                        {% elif item.item.audience == 'niños' %}
+                                            <p class="mb-2">{{ item.quantity_child }}</p>
+                                        {% else %}
+                                            <p class="mb-2"><strong>Adulto:</strong> {{ item.quantity_adult }}</p>
+                                            <p><strong>Niño:</strong> {{ item.quantity_child }}</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+
+                                <!-- Price Column -->
+                                <td class="cell eg-font" data-label="Price">
+                                    {% if item.type|is_in:"show,taller" %}
+                                        {% if item.item.audience == 'adultos' %}
+                                            <p class="my-0">{{ item.item.price_per_seat_adult|floatformat:2 }} €</p>
+                                        {% elif item.item.audience == 'niños' %}
+                                            <p class="my-0">{{ item.item.price_per_seat_reduction|floatformat:2 }} €</p>
+                                        {% elif item.item.audience == 'todo_publico' %}
+                                            <p class="my-0 mb-2"><strong>Precio Adulto:</strong> {{ item.item.price_per_seat_adult|floatformat:2 }} €</p>
+                                            <p class="my-0"><strong>Precio Niño:</strong> {{ item.item.price_per_seat_reduction|floatformat:2 }} €</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+
+                                <!-- Subtotal Column -->
+                                <td class="cell eg-font" data-label="Subtotal">
+                                    <p class="my-0"><strong>{{ item.subtotal|floatformat:2 }} €</strong></p>
+                                </td>
+
+                                <!-- Remove Item -->
+                                <td class="cell py-3">
+                                    <form method="POST" action="{% url 'bag:remove_bag_item' item.type item.item.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-danger my-3" aria-label="Remove item from bag">
+                                            <i class="fas fa-times-circle fa-sm" aria-hidden="true"></i> Elimina
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-right py-auto mt-5">
+                    <h5 id="bag-grand-total" class="mt-4 text-right text-uppercase"><strong>Total: {{ grand_total|floatformat:2 }} €</strong></h5>
+                </div>
+
+                <div class="btns-payment-and-more-shows">
+                    <div class="d-flex flex-wrap">
+                        <a href="javascript:history.back()" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="Go back to the previous page">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left" style="color:white;"></i>
+                            </span>
+                            <span class="text-uppercase text-white">Volver</span>
+                        </a>
+
+                        <!-- Secure Checkout Button -->
+                        <a href="{% if user.is_authenticated %}{% url 'home' %}{% else %}#unauthenticated{% endif %}" class="btn btn-custom-teal btn-secure-checkout rounded-pill btn-lg mx-auto mr-sm-0 mt-5 order-first order-md-2" aria-label="Go to secure checkout page" id="secure-checkout-btn" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}">
+                            <span class="text-uppercase">Pago Seguro</span>
+                            <span class="icon">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p class="lead mb-5">Tu bolsa todavía está vacía...</p>
+            <a href="javascript:history.back()" class="btn btn-custom rounded-pill btn-lg mt-5 mr-0 mx-auto ml-sm-0" aria-label="Go back to the previous page">
+                <span class="icon">
+                    <i class="fas fa-chevron-left" style="color:white;"></i>
+                </span>
+                <span class="text-uppercase text-white">VOLVER</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 <script>
-    // verifies that user is authentified to proceed to checkout
     document.addEventListener('DOMContentLoaded', function () {
-    const secureCheckoutBtn = document.getElementById('secure-checkout-btn');
-    
-    // Retrieve the authentication status from the data attribute
-    const isAuthenticated = secureCheckoutBtn.dataset.authenticated === 'true';
-
-    secureCheckoutBtn.addEventListener('click', function (event) {
-        if (!isAuthenticated) {
-            event.preventDefault(); // Prevent default navigation
-            alert('Debes iniciar sesión para poder comprar entradas. Por seguridad y protección de datos, solamente desde tu perfil se podrá acceder a tus datos y tu factura. Tus entradas entán a salvo!');
-            const loginUrl = secureCheckoutBtn.getAttribute('href');
-            window.location.href = loginUrl.replace('#unauthenticated', "{% url 'account_login' %}?next={% url 'home' %}");
-        }
+        const secureCheckoutBtn = document.getElementById('secure-checkout-btn');
+        const isAuthenticated = secureCheckoutBtn.dataset.authenticated === 'true';
+        secureCheckoutBtn.addEventListener('click', function (event) {
+            if (!isAuthenticated) {
+                event.preventDefault();
+                alert('Debes iniciar sesión para poder comprar entradas.');
+                const loginUrl = secureCheckoutBtn.getAttribute('href');
+                window.location.href = loginUrl.replace('#unauthenticated', "{% url 'account_login' %}?next={% url 'home' %}");
+            }
+        });
     });
-});
-
 </script>
 {% endblock %}

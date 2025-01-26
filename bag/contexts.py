@@ -1,5 +1,5 @@
 from decimal import Decimal
-from django.conf import settings
+from django.shortcuts import get_object_or_404
 from shows.models import Show
 from tallers.models import Taller
 
@@ -12,34 +12,38 @@ def bag_contents(request):
     grand_total = Decimal('0.00')
 
     for item_key, quantities in bag.items():
-        # Parse the item key to determine the type and ID
-        item_type, item_id = item_key.split("-")
-        item = None
+        try:
+            # Parse the item key to determine the type and ID
+            item_type, item_id = item_key.split("-")
+            item = None
 
-        if item_type == 'show':
-            item = Show.objects.get(id=item_id)
-            adult_total = quantities.get('adult', 0) * Decimal(item.price_per_seat_adult)
-            reduced_total = quantities.get('reduced', 0) * Decimal(item.price_per_seat_reduction)
+            # Fetch the corresponding item (Show or Taller)
+            if item_type == 'show':
+                item = get_object_or_404(Show, id=item_id)
+            elif item_type == 'taller':
+                item = get_object_or_404(Taller, id=item_id)
+
+            # Retrieve quantities
+            quantity_adult = quantities.get('quantity_adult', 0)
+            quantity_reduced = quantities.get('quantity_reduced', 0)
+
+            # Calculate totals
+            adult_total = quantity_adult * Decimal(item.price_per_seat_adult)
+            reduced_total = quantity_reduced * Decimal(item.price_per_seat_reduction)
             subtotal = adult_total + reduced_total
             grand_total += subtotal
+
+            # Append the item details to bag_items
             bag_items.append({
-                'type': 'show',
+                'type': item_type,  # 'show' or 'taller'
                 'item': item,
-                'quantity_adult': quantities.get('adult', 0),
-                'quantity_reduced': quantities.get('reduced', 0),
+                'quantity_adult': quantity_adult,
+                'quantity_reduced': quantity_reduced,
                 'subtotal': subtotal,
             })
-        elif item_type == 'taller':
-            item = Taller.objects.get(id=item_id)
-            quantity = quantities.get('quantity', 0)
-            subtotal = quantity * Decimal(item.price)
-            grand_total += subtotal
-            bag_items.append({
-                'type': 'taller',
-                'item': item,
-                'quantity': quantity,
-                'subtotal': subtotal,
-            })
+
+        except Exception as e:
+            print(f"Error processing bag item {item_key}: {e}")
 
     return {
         'bag_items': bag_items,

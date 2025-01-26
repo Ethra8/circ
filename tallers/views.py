@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
+from itertools import chain
+
 from shows.models import Show
 from .forms import TallerForm
 from .models import Taller
@@ -116,16 +118,28 @@ def book_taller(request, taller_id):
 def search_results(request):
     """
     Query within descriptions of Shows & Tallers for words included
-    by user in navbar's search bar
+    by user in navbar's search bar.
+    Combines results from both models, identifying their types.
     """
-
     query = request.GET.get('q', '')
-    show_results = Show.objects.filter(Q(name__icontains=query) | Q(description__icontains=query)) if query else Show.objects.none()
-    taller_results = Taller.objects.filter(Q(name__icontains=query) | Q(description__icontains=query)) if query else Taller.objects.none()
+    # Filter shows and tallers by the query
+    show_results = Show.objects.filter(
+        Q(name__icontains=query) | Q(description__icontains=query)
+    ) if query else Show.objects.none()
+
+    taller_results = Taller.objects.filter(
+        Q(name__icontains=query) | Q(description__icontains=query)
+    ) if query else Taller.objects.none()
+
+    # Annotate each result with its type for combined context
+    show_results = show_results.annotate(type=Value('show', output_field=CharField()))
+    taller_results = taller_results.annotate(type=Value('taller', output_field=CharField()))
+
+    # Combine both querysets into a single list
+    combined_results = list(chain(show_results, taller_results))
 
     context = {
         'query': query,
-        'show_results': show_results,
-        'taller_results': taller_results,
+        'results': combined_results,  # Unified results with type field
     }
     return render(request, 'tallers/search_results.html', context)

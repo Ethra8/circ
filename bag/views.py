@@ -10,38 +10,38 @@ def view_bag(request):
     bag_items = []
     grand_total = 0
 
-    for item_id, details in bag.items():
+    for item_key, details in bag.items():
+        item_type, item_id = item_key.split("-")
+        item_id = int(item_id)  # Convert back to integer
+        item = None
+
         # Check if the item is a Show or Taller
-        if details.get('type') == 'show':
-            item = get_object_or_404(Show, id=int(item_id))
-            quantity_adult = details.get('adult', 0)
-            quantity_reduced = details.get('reduced', 0)
+        if item_type == 'show':
+            item = get_object_or_404(Show, id=item_id)
+            quantity_adult = details.get('quantity_adult', 0)
+            quantity_child = details.get('quantity_child', 0)
 
             adult_subtotal = quantity_adult * item.price_per_seat_adult
-            reduced_subtotal = quantity_reduced * item.price_per_seat_reduction
+            reduced_subtotal = quantity_child * item.price_per_seat_reduction
             subtotal = adult_subtotal + reduced_subtotal
+        elif item_type == 'taller':
+            item = get_object_or_404(Taller, id=item_id)
+            quantity_adult = details.get('quantity_adult', 0)
+            quantity_child = 0  # Tallers don't have reduced tickets
 
-            bag_items.append({
-                'show': item,
-                'taller': None,
-                'quantity_adult': quantity_adult,
-                'quantity_reduced': quantity_reduced,
-                'subtotal': subtotal,
-            })
-            grand_total += subtotal
+            subtotal = quantity_adult * item.price_per_seat_adult
 
-        elif details.get('type') == 'taller':
-            item = get_object_or_404(Taller, id=int(item_id))
-            quantity = details.get('quantity', 0)
+        # Add item to the bag items list
+        bag_items.append({
+            'type': item_type,
+            'item': item,
+            'quantity_adult': quantity_adult,
+            'quantity_child': quantity_child,
+            'subtotal': subtotal,
+        })
 
-            subtotal = quantity * item.price
-            bag_items.append({
-                'show': None,
-                'taller': item,
-                'quantity': quantity,
-                'subtotal': subtotal,
-            })
-            grand_total += subtotal
+        # Add to grand total
+        grand_total += subtotal
 
     context = {
         'bag_items': bag_items,
@@ -51,44 +51,48 @@ def view_bag(request):
 
 
 def add_to_bag(request, item_type, item_id):
-    """Add a quantity of the specified item (show or taller) to the bag."""
+    """
+    Add a quantity of the specified item to the shopping bag.
+    """
     try:
-        # Retrieve the item based on type
-        if item_type == 'show':
-            item = get_object_or_404(Show, id=item_id)
-            quantity_adult = int(request.POST.get('quantity_adult', 0))
-            quantity_reduced = int(request.POST.get('quantity_reduced', 0))
-        elif item_type == 'taller':
-            item = get_object_or_404(Taller, id=item_id)
-            quantity_adult = int(request.POST.get('quantity', 0))  # For taller, use 'quantity'
-
-        # Retrieve or initialize the bag
+        # Retrieve the session bag
         bag = request.session.get('bag', {})
 
-        # Construct a unique key for each item
+        # Construct the item_key (e.g., "taller-1")
         item_key = f"{item_type}-{item_id}"
+        
+        # Retrieve the item object
+        if item_type == 'taller':
+            item = get_object_or_404(Taller, id=item_id)
+        elif item_type == 'show':
+            item = get_object_or_404(Show, id=item_id)
+        else:
+            messages.error(request, "Invalid item type.")
+            return redirect('bag:bag')
 
-        # Initialize the item in the bag if it doesn't exist
+        # Retrieve quantities from POST data
+        quantity_adult = int(request.POST.get('quantity_adult', 0))
+        quantity_child = int(request.POST.get('quantity_child', 0))
+
+        # Initialize or update the item in the bag
         if item_key not in bag:
-            bag[item_key] = {'quantity_adult': 0, 'quantity_reduced': 0} if item_type == 'show' else {'quantity': 0}
-
-        # Update quantities
-        if item_type == 'show':
+            bag[item_key] = {
+                'type': item_type,
+                'quantity_adult': quantity_adult,
+                'quantity_child': quantity_child,
+            }
+        else:
             bag[item_key]['quantity_adult'] += quantity_adult
-            bag[item_key]['quantity_reduced'] += quantity_reduced
-        elif item_type == 'taller':
-            bag[item_key]['quantity'] += quantity_adult  # Add the adult quantity for taller
+            bag[item_key]['quantity_child'] += quantity_child
 
-        # Save back to session
+        # Save the updated bag to the session
         request.session['bag'] = bag
+        messages.success(request, f"Added {item.name} to your bag!")
 
-        # Success message
-        messages.success(request, f'Added {quantity_adult} tickets for {item.name} to your bag!')
-        return redirect('bag:bag')
     except Exception as e:
-        # Error message for unexpected issues
-        messages.error(request, f"Error adding item to bag: {e}")
-        return redirect('bag:bag')
+        messages.error(request, f"Error adding item to the bag: {e}")
+
+    return redirect('bag:bag')
 
 
 def adjust_bag(request, item_key):
@@ -113,12 +117,12 @@ def adjust_bag(request, item_key):
         if item_type == 'show':
             # Get adult and reduced ticket quantities for shows
             quantity_adult = int(request.POST.get('quantity_adult', 0))
-            quantity_reduced = int(request.POST.get('quantity_reduced', 0))
+            quantity_child = int(request.POST.get('quantity_child', 0))
 
-            if quantity_adult >= 1 or quantity_reduced >= 1:
+            if quantity_adult >= 1 or quantity_child >= 1:
                 # Update the quantities in the bag
                 bag[item_key]['adult'] = quantity_adult
-                bag[item_key]['reduced'] = quantity_reduced
+                bag[item_key]['reduced'] = quantity_child
                 messages.success(
                     request, 
                     f'Quantities for {item.name} successfully updated.'
@@ -182,21 +186,18 @@ def adjust_bag(request, item_key):
 
 
 def remove_bag_item(request, item_type, item_id):
-    """Remove the item from the shopping bag."""
+    """Remove the specified item (show or taller) from the shopping bag."""
     try:
         # Access the shopping bag session
         bag = request.session.get('bag', {})
 
-        # Convert item_id to a string to match the session keys
-        item_id = str(item_id)
+        # Construct the item key
+        item_key = f"{item_type}-{item_id}"
 
-        # Check the type and remove the item if it exists
-        if item_type == 'show' and item_id in bag:
-            del bag[item_id]
-            messages.success(request, "Show removed successfully.")
-        elif item_type == 'taller' and item_id in bag:
-            del bag[item_id]
-            messages.success(request, "Taller removed successfully.")
+        # Check if the item exists in the bag
+        if item_key in bag:
+            del bag[item_key]
+            messages.success(request, f"{item_type.capitalize()} removed successfully from the bag.")
         else:
             messages.warning(request, "Item not found in the bag.")
 

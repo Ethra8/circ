@@ -14,7 +14,9 @@ class TallerForm(forms.ModelForm):
             'duration', 
             'max_participants', 
             'booked_participants', 
-            'price', 
+            'audience',  # Include audience
+            'price_per_seat_adult',
+            'price_per_seat_reduction',
             'circ_category', 
             'weekday_1', 
             'weekday_2', 
@@ -28,30 +30,32 @@ class TallerForm(forms.ModelForm):
             'starting_time': forms.TimeInput(attrs={'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'type': 'time'}),
             'description': forms.Textarea(attrs={'rows': 4}),
+            'audience': forms.Select(attrs={'class': 'form-control'}),  # Dropdown for audience
         }
         help_texts = {
-            'booked_participants': 'Number of participants already booked.',
-            'duration': 'Duration in weeks.',
-            'weekday_1': 'Select the primary weekday for the session.',
-            'weekday_2': 'Optional: Select a second weekday.',
+            'audience': 'Specify whether the taller is for children, adults, or both.',
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.audience == 'adultos':
+            self.fields['price_per_seat_reduction'].widget = forms.HiddenInput()
+            self.fields['price_per_seat_reduction'].required = False
+        elif self.instance and self.instance.audience == 'niños':
+            self.fields['price_per_seat_adult'].widget = forms.HiddenInput()
+            self.fields['price_per_seat_adult'].required = False
 
     def clean(self):
         """
-        Add custom validation for the form fields.
+        Add custom validation to ensure appropriate pricing fields are filled based on the audience.
         """
         cleaned_data = super().clean()
-        starting_time = cleaned_data.get('starting_time')
-        end_time = cleaned_data.get('end_time')
-        weekday_1 = cleaned_data.get('weekday_1')
-        weekday_2 = cleaned_data.get('weekday_2')
+        audience = cleaned_data.get('audience')
 
-        # Validation: End time must be after starting time
-        if starting_time and end_time and end_time <= starting_time:
-            self.add_error('end_time', "End time must be after starting time.")
+        if audience == 'adultos' and not cleaned_data.get('price_per_seat_adult'):
+            self.add_error('price_per_seat_adult', "Price per seat for adults is required when audience is 'adultos'.")
 
-        # Validation: Weekday 1 and Weekday 2 must not be the same
-        if weekday_1 and weekday_2 and weekday_1 == weekday_2:
-            self.add_error('weekday_2', "Weekday 2 must be different from Weekday 1.")
+        if audience == 'niños' and not cleaned_data.get('price_per_seat_reduction'):
+            self.add_error('price_per_seat_reduction', "Price per seat for children is required when audience is 'niños'.")
 
         return cleaned_data

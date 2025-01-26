@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.utils.timezone import now
 from django.core.exceptions import ValidationError
 from decimal import Decimal
@@ -15,7 +14,14 @@ class Taller(models.Model):
         ('Sunday', 'Sunday'),
     ]
 
+    AUDIENCE_TYPES = [
+        ('niños', 'Niños'),
+        ('adultos', 'Adultos'),
+        ('todo_publico', 'Todo Público'),
+    ]
+
     id = models.AutoField(primary_key=True)
+    item_type = models.CharField(default='taller', max_length=10, editable=False)
     name = models.CharField(max_length=255)  # Name of the taller
     image = models.ImageField(upload_to='tallers/images/', help_text="Image de promoción del taller", blank=True, null=True)
     description = models.TextField()  # Detailed description of the taller
@@ -26,11 +32,23 @@ class Taller(models.Model):
     max_participants = models.PositiveIntegerField()  # Maximum participants allowed
     booked_participants = models.PositiveIntegerField(default=0)  # Booked participants, starts at 0
     users_missed_requests = models.PositiveIntegerField(default=0)  # Track users who couldn't enroll
-    price = models.DecimalField(
-        max_digits=5, 
+    audience = models.CharField(
+    max_length=15,
+    choices=AUDIENCE_TYPES,
+    default='todo_publico',
+    help_text="Especifique si el taller es para niños, adultos, o todo público."
+    )
+    price_per_seat_adult = models.DecimalField(
+        max_digits=6, 
         decimal_places=2,
-        default=Decimal('20.00'),
-        help_text="Price per seat for adults",
+        help_text="Precio por ticket adulto",
+    )
+    price_per_seat_reduction = models.DecimalField(
+        max_digits=6, 
+        decimal_places=2,
+        blank=True,
+        null=True,
+        help_text="Precio por ticket reducido (solo para niños)"
     )
     circ_category = models.CharField(max_length=100)  # Category for the taller
     weekday_1 = models.CharField(max_length=9, choices=WEEKDAYS)  # Mandatory first weekday
@@ -62,12 +80,25 @@ class Taller(models.Model):
         Validation:
         - End time must be after the starting time.
         - Weekday 1 and Weekday 2 must be different if both are provided.
+        - Automatically set price_per_seat_reduction to 0 if the audience is 'adults'.
         """
         if self.end_time <= self.starting_time:
             raise ValidationError("End time must be after the starting time.")
         
         if self.weekday_2 and self.weekday_1 == self.weekday_2:
             raise ValidationError("Weekday 1 and Weekday 2 cannot be the same.")
+
+        if self.audience == 'adultos' and self.price_per_seat_reduction:
+            raise ValidationError("price_per_seat_reduction must not be set for audience='adultos'.")
+
+    def save(self, *args, **kwargs):
+        """
+        Save the Taller instance while respecting audience-specific logic.
+        """
+        if self.audience == 'adultos':
+            self.price_per_seat_reduction = None  # Ignore this field for adultos
+        super().save(*args, **kwargs)
+
 
     def book_participant(self):
         """

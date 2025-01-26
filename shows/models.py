@@ -6,6 +6,7 @@ from decimal import Decimal
 
 class Show(models.Model):
     id = models.IntegerField(primary_key=True, unique=True, editable=False)
+    item_type = models.CharField(default='show', max_length=10, editable=False)
     name = models.CharField(max_length=200, help_text="Nombre del Evento")
     description = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=200, help_text="Local del Evento")
