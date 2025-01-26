@@ -15,7 +15,7 @@
                 <a href="{% url 'tallers:taller_list' %}" class="nav-link mt-0 pt-0">
                     <div class="nav-link">
                     <div class="row">
-                        <i class="col-2 col-sm-1 fas fa-ticket fa-lg icon-main-nav mb-0 ml-0"></i>
+                        <i class="fas fa-solid fa-wand-magic-sparkles col-2 col-sm-1 icon-main-nav mb-0 ml-0 fa-lg"></i>
                         <p class="col-10 col-sm-11 my-0 text-white pl-0 mt-1">Talleres</p>
                     </div> 
                 </a>
@@ -34,7 +34,7 @@
     {% endif %}
 
     <div class=" d-block d-lg-none col-12 col-sm-6 {% if user.is_authenticated and user.is_superuser %}col-lg-2{% else %}col-lg-4{% endif %} my-auto py-2 py-lg-0 mb-4 mb-md-0">
-        <form action="" method="GET">
+        <form action="{% url 'tallers:search_results' %}" method="GET">
             <div class="input-group w-100">
                 <input type="text" class="form-control rounded-searchbar" name="q"
                     placeholder="Busca en la web" role="searchbox">

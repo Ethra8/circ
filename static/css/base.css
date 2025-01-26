@@ -281,10 +281,11 @@ nav.container-fluid {
 #show-details,
 #show_list,
 #taller-details,
-#taller_list {
+#taller_list,
+#search_results {
     padding-left: 3rem !important;
     padding-right: 3rem !important;
-    margin-top: 120px;
+    margin-top: 120px !important;
 }
 
 #show-details h1,
@@ -297,6 +298,31 @@ nav.container-fluid {
     max-width: 150px;
 }
 
+#show_list p a,
+#taller_list p a {
+    color: aquamarine;
+}
+
+#show_list p a:hover,
+#taller_list p a:hover {
+    color: aqua;
+}
+
+
+/* SEARCH RESULTS */
+
+#search_results {
+    background-color: #003366;
+}
+
+#search_results h2 {
+    font-size: 2rem;
+    color: antiquewhite;
+}
+
+#search_results p {
+    color: antiquewhite;
+}
 
 /* BAG */
 
@@ -684,6 +710,20 @@ footer a:hover {
     .btn-secure-checkout,
     #bag-grand-total {
         margin-right: 0 !important;
+    }
+
+    #show_list h1,
+    #taller_list h1,
+    #search_results h1 {
+        font-size: 2.9rem;
+        text-align: left;
+    }
+
+
+    #show-details h1,
+    #taller-details h1 {
+        font-size: 2rem;
+        color: #003366;
     }
 
 }

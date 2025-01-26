@@ -2,14 +2,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
+from shows.models import Show
 from .forms import TallerForm
 from .models import Taller
 
 
 def taller_list(request):
     # Fetch all tallers from the database
-    tallers = Taller.objects.all().order_by('time')  # Order by time (upcoming first)
+    tallers = Taller.objects.all().order_by('starting_date')  # Order by dates (upcoming first)
     return render(request, 'tallers/taller_list.html', {'tallers': tallers})
 
 
@@ -95,8 +97,11 @@ def delete_taller(request, taller_id):
     return render(request, template, context)
 
 
-
 def book_taller(request, taller_id):
+    """User books a taller,
+    if taller is fully booked, returns warning.
+    """
+
     taller = get_object_or_404(Taller, id=taller_id)
 
     try:
@@ -106,3 +111,21 @@ def book_taller(request, taller_id):
         messages.warning(request, f"El Taller '{taller.name}' está completo. Missed requests count: {taller.users_missed_requests}")
 
     return redirect('taller_detail', taller_id=taller.id)
+
+
+def search_results(request):
+    """
+    Query within descriptions of Shows & Tallers for words included
+    by user in navbar's search bar
+    """
+
+    query = request.GET.get('q', '')
+    show_results = Show.objects.filter(Q(name__icontains=query) | Q(description__icontains=query)) if query else Show.objects.none()
+    taller_results = Taller.objects.filter(Q(name__icontains=query) | Q(description__icontains=query)) if query else Taller.objects.none()
+
+    context = {
+        'query': query,
+        'show_results': show_results,
+        'taller_results': taller_results,
+    }
+    return render(request, 'tallers/search_results.html', context)

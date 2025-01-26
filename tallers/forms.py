@@ -5,7 +5,8 @@ class TallerForm(forms.ModelForm):
     class Meta:
         model = Taller
         fields = [
-            'name', 
+            'name',
+            'image',
             'description', 
             'starting_date', 
             'starting_time', 

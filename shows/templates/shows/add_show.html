@@ -26,12 +26,8 @@
                 <!-- form includes enctype to allow include evento IMAGE -->
                 <form method="POST" action="{% url 'shows:add_show' %}" class="form mb-2" enctype="multipart/form-data"> 
                     {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != 'image' and field.name != 'image_url' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
+                    {% for field in form %}           
+                        {{ field | as_crispy_field }}
                     {% endfor %}
         
                     <div class="text-right">

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="search_results" class="container mt-4">
+        <h1 class="display-4 text-white charmonman-title">Resultados</h1>
+        <p class="text-white ">Hemos encontrado estos resultados relacionados con tu búsqueda - '<strong>{{ request.GET.q }}</strong>':</p>
+
+        <h2 class="eg-font text-uppercase">Eventos</h2>
+        {% if show_results %}
+            <ul>
+                {% for show in show_results %}
+                    <li>
+                        <a href="{% url 'shows:show_details' show.id %}">
+                            {{ show.name }}
+                        </a>
+                        - {{ show.description|truncatewords:20 }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Por el momento, ningún evento se corresponde a tu búsqueda.</p>
+        {% endif %}
+
+        <h2 class="eg-font text-uppercase">Talleres</h2>
+        {% if taller_results %}
+            <ul>
+                {% for taller in taller_results %}
+                    <li>
+                        <a href="{% url 'tallers:taller_details' taller.id %}">
+                            {{ taller.name }}
+                        </a>
+                        - {{ taller.description|truncatewords:20 }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Por el momento, ningún taller se corresponde a tu búsqueda.</p>
+        {% endif %}
+    </div>
+{% endblock %}

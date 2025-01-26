@@ -42,6 +42,12 @@ DEBUG = os.environ.get('DEBUG', 'False').lower() in ['true', '1']
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')  # Split the string into a list
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',
+    'https://v0szxb9w-8000.uks1.devtunnels.ms',
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,6 +67,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',  # For Bootstrap 4
     'django_summernote',
+    'corsheaders',
+    # my apps
     'home',
     'shows',
     'bag',
@@ -79,7 +87,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",  # for serving static files on Heroku
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
 # # for django-debug-toolbar
 # INTERNAL_IPS = [
@@ -103,6 +114,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'bag.contexts.bag_contents',  # Add this line
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

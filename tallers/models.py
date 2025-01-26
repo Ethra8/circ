@@ -17,6 +17,7 @@ class Taller(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)  # Name of the taller
+    image = models.ImageField(upload_to='tallers/images/', help_text="Image de promoción del taller", blank=True, null=True)
     description = models.TextField()  # Detailed description of the taller
     starting_date = models.DateField(default=now)  # Starting date of the taller
     starting_time = models.TimeField()  # Starting time of the taller
