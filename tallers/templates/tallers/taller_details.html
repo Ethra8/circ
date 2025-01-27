@@ -46,7 +46,7 @@
                 </p>
 
                 <p class="mb-0 mt-3"><strong>Cuando:</strong> {{ taller.starting_date|date:"DATE_FORMAT" }} - {{ taller.end_date|date:"DATE_FORMAT" }}</p>
-                    <p class="card-text"><strong>Horario:</strong> {{ taller.starting_time|date:"TIME_FORMAT" }} - {{ taller.end_time|date:"TIME_FORMAT" }}</p>
+                <p class="mb-2"><strong>Horario:</strong> {{ taller.starting_time|date:"TIME_FORMAT" }} - {{ taller.end_time|date:"TIME_FORMAT" }}</p>
                 
                 <p class="mb-2"><strong>Dónde:</strong> {{ taller.location_name }}</p>
                 <p class="mb-2"><strong>Ciudad:</strong> {{ taller.location_city }}</p>
