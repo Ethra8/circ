@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 
+if os.path.exists("env.py"):
+    import env
 from django.contrib import messages
 
 from pathlib import Path
@@ -19,9 +21,6 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
-
-if os.path.isfile("env.py"):
-    import env
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,6 +155,8 @@ else:
         }
     }
 
+print(os.environ.get('DATABASE_URL'))
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -210,10 +211,17 @@ MEDIA_URL = '/media/'  # URL prefix for media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Local directory for media files
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Adjust for your project structure
-]
-STATIC_ROOT = BASE_DIR / "staticfiles"
+
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",  # Adjust for your project structure
+# ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # This is the folder you're seeing
+
+# STATIC_ROOT = BASE_DIR / "staticfiles"
 # # Directory to collect static files for production
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
