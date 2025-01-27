@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load time_filters %}
+
 
 {% block page_header %}
 <div class="container header-container d-none">
@@ -31,8 +33,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase">{{ taller.name }}</h5>
                                     <p class="card-text"><strong>Lugar:</strong> {{ taller.location_name }} - {{ taller.location_city }} </p>
-                                    <p class="card-text"><strong>Inicio:</strong> {{ taller.starting_date|date:"F j, Y" }}</p>
-                                    <p class="card-text"><strong>Horario:</strong> {{ taller.starting_time|date:"g:i a" }} - {{ taller.end_time|date:"g:i a" }}</p>
+                                    <p class="card-text"><strong>Inicio:</strong> {{ taller.starting_date|date:"DATE_FORMAT" }}</p>
+                                    <p class="card-text"><strong>Horario:</strong> {{ taller.starting_time|date:"TIME_FORMAT" }} - {{ taller.end_time|date:"TIME_FORMAT" }}</p>
                                     <p class="card-text"><strong>Duración:</strong> {{ taller.duration }} semanas</p>
                                     <p class="card-text"><strong>Plazas:</strong> {{ taller.max_participants }}</p>
                                 </div>

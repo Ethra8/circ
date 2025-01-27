@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'corsheaders',
     # my apps
+    'circ',
     'home',
     'shows',
     'bag',

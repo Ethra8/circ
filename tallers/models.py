@@ -20,12 +20,20 @@ class Taller(models.Model):
         ('todo_publico', 'Todo Público'),
     ]
 
+    CIRC_CATEGORIES = [
+        ('malabares', 'Malabares'),
+        ('trapecio', 'Trapecio'),
+        ('clown', 'Clown (Payaso)'),
+        ('cuerda_floja', 'Cuerda Floja'),
+    ]
+
     id = models.AutoField(primary_key=True)
     item_type = models.CharField(default='taller', max_length=10, editable=False)
     name = models.CharField(max_length=255)  # Name of the taller
     image = models.ImageField(upload_to='tallers/images/', help_text="Image de promoción del taller", blank=True, null=True)
     description = models.TextField()  # Detailed description of the taller
     starting_date = models.DateField(default=now)  # Starting date of the taller
+    end_date = models.DateField(blank=True, null=True, help_text="Fecha de finalización del evento")
     starting_time = models.TimeField()  # Starting time of the taller
     end_time = models.TimeField()  # End time of the taller
     duration = models.PositiveIntegerField(help_text="Duration in weeks")  # Duration in weeks
@@ -33,10 +41,10 @@ class Taller(models.Model):
     booked_participants = models.PositiveIntegerField(default=0)  # Booked participants, starts at 0
     users_missed_requests = models.PositiveIntegerField(default=0)  # Track users who couldn't enroll
     audience = models.CharField(
-    max_length=15,
-    choices=AUDIENCE_TYPES,
-    default='todo_publico',
-    help_text="Especifique si el taller es para niños, adultos, o todo público."
+        max_length=15,
+        choices=AUDIENCE_TYPES,
+        default='todo_publico',
+        help_text="Especifique si el taller es para niños, adultos, o todo público."
     )
     price_per_seat_adult = models.DecimalField(
         max_digits=6, 
@@ -50,7 +58,12 @@ class Taller(models.Model):
         null=True,
         help_text="Precio por ticket reducido (solo para niños)"
     )
-    circ_category = models.CharField(max_length=100)  # Category for the taller
+    circ_category = models.CharField(
+        max_length=100,
+        choices=CIRC_CATEGORIES,
+        default='',
+        null=True,
+    ) 
     weekday_1 = models.CharField(max_length=9, choices=WEEKDAYS)  # Mandatory first weekday
     weekday_2 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Optional second weekday
     # Location fields
@@ -111,7 +124,7 @@ class Taller(models.Model):
         else:
             self.users_missed_requests += 1
             self.save()
-            raise ValueError("This taller is fully booked!")
+            raise ValueError("Este taller está completo!")
 
     def __str__(self):
         return self.name

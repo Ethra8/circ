@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load time_filters %}
+
 
 {% block page_header%}
 <div class="container header-container">
@@ -10,10 +12,10 @@
 {% endblock %}
 
 {% block content %}
-<div id="show-details" class="container-fluid">
+<div id="show-details" class="container">
     <div class="overlay"></div>
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 pffset-lg-2">
+        <div class="col-12 col-md-4 col-lg-4">
             <div class="image-container my-5">
                 {% if show.image %}
                 <a href="{{ show.image.url }}" target="_blank" aria-label="see image in full size in a new tab">
@@ -24,116 +26,186 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-12 col-md-10 col-lg-7 ml-lg-5">
+        <div class="col-12 col-md-8 col-lg-8 pl-4">
             <div class="product-details-container mb-5 mt-md-5">
                 <h1 class="mb-2 eg-font text-uppercase">{{ show.name }}</h1>
                 {% if show.description %}
-                <h5 class="mb-2 eg-title">{{ show.description }}</h5>
+                <h5 class="mb-2 eg-title text-justify">{{ show.description }}</h5>
                 {% endif %}
-                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">adulto: {{ show.price_per_seat_adult }} €</p>
-                <p class="lead mb-0 text-left font-weight-bold text-uppercase">reducido *: {{ show.price_per_seat_reduction }} €</p>
-
-                <p class="mb-0 mt-3">
-                    <strong>Dia:</strong> {{ show.time|date:"F j, Y" }}<br>
-                    <strong>Hora:</strong> {{ show.time|date:"g:i a" }}
+                
+                <!-- Pricing Display -->
+                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">
+                    {% if show.audience == 'adultos' %}
+                        Precio: {{ show.price_per_seat_adult|floatformat:2 }} €
+                    {% elif show.audience == 'niños' %}
+                        Precio: {{ show.price_per_seat_reduction|floatformat:2 }} €
+                    {% else %}
+                        Precio Adultos: {{ show.price_per_seat_adult|floatformat:2 }} €<br>
+                        Precio Niños: {{ show.price_per_seat_reduction|floatformat:2 }} €
+                    {% endif %}
                 </p>
-                <p class="mb-2"><strong>Donde:</strong> {{ show.location }}</p>
-                <p class="mb-0"><strong>Duración:</strong> {{ show.duration }}</p>
+
+                <p class="mb-0 mt-3"><strong>Dia:</strong> {{ show.starting_date|date:"DATE_FORMAT" }}</p>
+                <p class="mb-2"><strong>Horario:</strong> {{ show.starting_time|date:"TIME_FORMAT" }}</p>                
+                <p class="mb-2"><strong>Dónde:</strong> {{ show.location_name }}</p>
+                <p class="mb-2"><strong>Ciudad:</strong> {{ show.location_city }}</p>
+                <p class="mb-0"><strong>Duración:</strong> {{ show.duration }} {% if show.duration >= '1:59:59' %}horas{% else %}hora{% endif %}</p>
 
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <p>
-                        <a href="{% url 'shows:edit_show' show.id %}" class="pr-2" aria-label="edit the show"><i class="fas fa-pencil-square fa-2x"></i></a><span class="vertical-line"> | </span> 
-                        <a href="{% url 'shows:delete_show' show.id %}" class="text-danger pl-2" aria-label="delete show"><i class="fas fa-times-circle fa-2x"></i></a>    
+                        <a href="{% url 'shows:edit_show' show.id %}" class="pr-2" aria-label="edit the show">
+                            <i class="fas fa-pencil-square fa-2x"></i>
+                        </a>
+                        <span class="vertical-line"> | </span>
+                        <a href="{% url 'shows:delete_show' show.id %}" class="text-danger pl-2" aria-label="delete show">
+                            <i class="fas fa-times-circle fa-2x"></i>
+                        </a>
                     </p>
                 </small>
                 {% endif %}
                 
-                <form class="form" action="{% url 'bag:add_to_bag' show.id %}" method="POST">
+                <form class="form" action="{% url 'bag:add_to_bag' 'show' show.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
-                        <!-- Adult Quantity Selector -->
-                        <div class="col-12">
-                            <p class="mt-3"><strong>Adult Tickets:</strong></p>
-                            <div class="form-group ticket-qty">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="decrement-qty btn btn-black rounded-0"
-                                            data-item_id="{{ show.id }}" 
-                                            id="decrement-qty-adult_{{ show.id }}" 
-                                            aria-label="decrement quantity of adult tickets">
-                                            <span class="icon"><i class="fas fa-minus"></i></span>
-                                        </button>
-                                    </div>
-                
-                                    <input class="form-control qty_input qty-input" 
-                                        type="number" name="quantity_adult" 
-                                        value="0" min="0" max="99"
-                                        data-item_id="{{ show.id }}" 
-                                        id="id_qty_adult_{{ show.id }}" 
-                                        aria-label="number of adult tickets">
-                
-                                    <div class="input-group-append">
-                                        <button class="increment-qty btn btn-black rounded-0"
-                                            data-item_id="{{ show.id }}" 
-                                            id="increment-qty-adult_{{ show.id }}" 
-                                            aria-label="increment quantity of adult tickets">
-                                            <span class="icon"><i class="fas fa-plus"></i></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <!-- Reduced Quantity Selector -->
-                        <div class="col-12">
-                            <p class="mt-3"><strong>Reduced Tickets:</strong></p>
-                            <div class="form-group ticket-qty">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="decrement-qty btn btn-black rounded-0"
-                                            data-item_id="{{ show.id }}" 
-                                            id="decrement-qty-reduced_{{ show.id }}" 
-                                            aria-label="decrement quantity of reduced tickets">
-                                            <span class="icon"><i class="fas fa-minus"></i></span>
-                                        </button>
-                                    </div>
-                
-                                    <input class="form-control qty_input qty-input" 
-                                        type="number" name="quantity_reduced" 
-                                        value="0" min="0" max="99"
-                                        data-item_id="{{ show.id }}" 
-                                        id="id_qty_reduced_{{ show.id }}" 
-                                        aria-label="number of reduced tickets">
-                
-                                    <div class="input-group-append">
-                                        <button class="increment-qty btn btn-black rounded-0"
-                                            data-item_id="{{ show.id }}" 
-                                            id="increment-qty-reduced_{{ show.id }}" 
-                                            aria-label="increment quantity of reduced tickets">
-                                            <span class="icon"><i class="fas fa-plus"></i></span>
-                                        </button>
+                        {% if show.audience == 'todo_publico' %}
+                            <!-- Adult Quantity Selector -->
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Plazas Adulto:</strong></p>
+                                <div class="form-group ticket-qty">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="decrement-qty-adult_{{ show.id }}"
+                                                aria-label="Decrement adult quantity">
+                                                <span class="icon"><i class="fas fa-minus"></i></span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control qty_input qty-input"
+                                            type="number" name="quantity_adult"
+                                            value="0" min="0" max="{{ show.max_participants }}"
+                                            data-item_id="{{ show.id }}"
+                                            id="id_qty_adult_{{ show.id }}"
+                                            aria-label="Number of adult plazas">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="increment-qty-adult_{{ show.id }}"
+                                                aria-label="Increment adult quantity">
+                                                <span class="icon"><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                 
+                            <!-- Child Quantity Selector -->
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Plazas Niño:</strong></p>
+                                <div class="form-group ticket-qty">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="decrement-qty-child_{{ show.id }}"
+                                                aria-label="Decrement child quantity">
+                                                <span class="icon"><i class="fas fa-minus"></i></span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control qty_input qty-input"
+                                            type="number" name="quantity_child"
+                                            value="0" min="0" max="{{ show.max_participants }}"
+                                            data-item_id="{{ show.id }}"
+                                            id="id_qty_child_{{ show.id }}"
+                                            aria-label="Number of child plazas">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="increment-qty-child_{{ show.id }}"
+                                                aria-label="Increment child quantity">
+                                                <span class="icon"><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif show.audience == 'adultos' %}
+                            <!-- Adult-Only Quantity Selector -->
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Plazas Adulto:</strong></p>
+                                <div class="form-group ticket-qty">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="decrement-qty-adult_{{ show.id }}"
+                                                aria-label="Decrement adult quantity">
+                                                <span class="icon"><i class="fas fa-minus"></i></span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control qty_input qty-input"
+                                            type="number" name="quantity_adult"
+                                            value="0" min="0" max="{{ show.max_participants }}"
+                                            data-item_id="{{ show.id }}"
+                                            id="id_qty_adult_{{ show.id }}"
+                                            aria-label="Number of adult plazas">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="increment-qty-adult_{{ show.id }}"
+                                                aria-label="Increment adult quantity">
+                                                <span class="icon"><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif show.audience == 'niños' %}
+                            <!-- Child-Only Quantity Selector -->
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Plazas Niño:</strong></p>
+                                <div class="form-group ticket-qty">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="decrement-qty-child_{{ show.id }}"
+                                                aria-label="Decrement child quantity">
+                                                <span class="icon"><i class="fas fa-minus"></i></span>
+                                            </button>
+                                        </div>
+                                        <input class="form-control qty_input qty-input"
+                                            type="number" name="quantity_child"
+                                            value="0" min="0" max="{{ show.max_participants }}"
+                                            data-item_id="{{ show.id }}"
+                                            id="id_qty_child_{{ show.id }}"
+                                            aria-label="Number of child plazas">
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ show.id }}"
+                                                id="increment-qty-child_{{ show.id }}"
+                                                aria-label="Increment child quantity">
+                                                <span class="icon"><i class="fas fa-plus"></i></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                         <!-- Submit Button -->
                         <div class="col d-flex flex-wrap justify-content-between">
                             <button type="submit" class="col-12 col-sm-5 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
                                 Añadir a Cesta
                                 <span class="icon"><i class="fas fa-chevron-right"></i></span>
                             </button>
-                            <a href="{% url 'shows:show_list' %}" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="return to list of shows">
+                            <a href="javascript:history.back()" class="col-12 col-sm-5 btn btn-custom rounded-pill mt-5 order-2 order-sm-1" aria-label="Return to previous page">
                                 <span class="icon"><i class="fas fa-chevron-left"></i></span>
-                                <span class="text-uppercase">Ver talleres</span>
+                                <span class="text-uppercase">Volver</span>
                             </a>
                         </div>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>
-                
-                
             </div>
         </div>
     </div>

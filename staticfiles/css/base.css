@@ -298,6 +298,10 @@ nav.container-fluid {
     max-width: 150px;
 }
 
+.audience-display-details{
+    font-size: 1rem !important;
+}
+
 #show_list p a,
 #taller_list p a {
     color: aquamarine;
@@ -374,9 +378,9 @@ nav.container-fluid {
 
 #bag .img-bag {
     min-height: 280px;
-    min-width: 280px;
+    min-width: 220px;
     max-height: 300px;
-    max-width: 280px;
+    max-width: 220px;
     border-radius: 5px;
 }
 

@@ -1,97 +1,104 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse, HttpResponse
 from django.contrib import messages
+from django.http import Http404
+
 from shows.models import Show
 from tallers.models import Taller
 
 
 def view_bag(request):
-    """A view that renders the bag contents page."""
+    """Render the shopping bag page."""
     bag = request.session.get('bag', {})
     bag_items = []
-    grand_total = 0
+    grand_total = 0  # Initialize the grand total
 
     for item_key, details in bag.items():
-        item_type, item_id = item_key.split("-")
-        item_id = int(item_id)  # Convert back to integer
-        item = None
+        try:
+            # Split the key to get item_type and item_id
+            item_type, item_id = item_key.split('-')
+            if item_type == 'taller':
+                item = Taller.objects.get(id=item_id)
+            elif item_type == 'show':
+                item = Show.objects.get(id=item_id)
+            else:
+                continue  # Skip unknown item types
 
-        # Check if the item is a Show or Taller
-        if item_type == 'show':
-            item = get_object_or_404(Show, id=item_id)
-            quantity_adult = details.get('quantity_adult', 0)
-            quantity_child = details.get('quantity_child', 0)
+            # Calculate the subtotal for this item
+            subtotal_adult = details['adult'] * float(item.price_per_seat_adult)
+            subtotal_child = details['child'] * float(item.price_per_seat_reduction or 0)
+            subtotal = subtotal_adult + subtotal_child
 
-            adult_subtotal = quantity_adult * item.price_per_seat_adult
-            reduced_subtotal = quantity_child * item.price_per_seat_reduction
-            subtotal = adult_subtotal + reduced_subtotal
-        elif item_type == 'taller':
-            item = get_object_or_404(Taller, id=item_id)
-            quantity_adult = details.get('quantity_adult', 0)
-            quantity_child = 0  # Tallers don't have reduced tickets
+            # Add the subtotal to the grand total
+            grand_total += subtotal
 
-            subtotal = quantity_adult * item.price_per_seat_adult
-
-        # Add item to the bag items list
-        bag_items.append({
-            'type': item_type,
-            'item': item,
-            'quantity_adult': quantity_adult,
-            'quantity_child': quantity_child,
-            'subtotal': subtotal,
-        })
-
-        # Add to grand total
-        grand_total += subtotal
+            # Append each item with its details to bag_items
+            bag_items.append({
+                'type': item_type,  # item.type will be available in the template
+                'item': item,       # item.item.id will resolve to the item ID
+                'quantity_adult': details['adult'],
+                'quantity_child': details['child'],
+                'subtotal_adult': subtotal_adult,
+                'subtotal_child': subtotal_child,
+                'subtotal': subtotal,
+            })
+        except (Taller.DoesNotExist, Show.DoesNotExist):
+            # Handle cases where items might not exist
+            print(f"Error processing bag item {item_key}: Item not found.")
+            continue
 
     context = {
         'bag_items': bag_items,
-        'grand_total': grand_total,
+        'grand_total': grand_total,  # Pass the grand total to the template
     }
     return render(request, 'bag/bag.html', context)
 
 
 def add_to_bag(request, item_type, item_id):
-    """
-    Add a quantity of the specified item to the shopping bag.
-    """
-    try:
-        # Retrieve the session bag
-        bag = request.session.get('bag', {})
+    """Add a quantity of the specified item to the shopping bag."""
+    # Validate item_type and retrieve the object
+    if item_type == 'taller':
+        try:
+            item = Taller.objects.get(id=item_id)
+        except Taller.DoesNotExist:
+            raise Http404("Taller not found.")
+    elif item_type == 'show':
+        try:
+            item = Show.objects.get(id=item_id)
+        except Show.DoesNotExist:
+            raise Http404("Show not found.")
+    else:
+        raise Http404("Invalid item type.")
 
-        # Construct the item_key (e.g., "taller-1")
-        item_key = f"{item_type}-{item_id}"
-        
-        # Retrieve the item object
-        if item_type == 'taller':
-            item = get_object_or_404(Taller, id=item_id)
-        elif item_type == 'show':
-            item = get_object_or_404(Show, id=item_id)
-        else:
-            messages.error(request, "Invalid item type.")
-            return redirect('bag:bag')
+    # Retrieve quantities from the POST request
+    quantity_adult = int(request.POST.get('quantity_adult', 0))
+    quantity_child = int(request.POST.get('quantity_child', 0))
 
-        # Retrieve quantities from POST data
-        quantity_adult = int(request.POST.get('quantity_adult', 0))
-        quantity_child = int(request.POST.get('quantity_child', 0))
+    # Ensure at least one quantity is provided
+    if quantity_adult <= 0 and quantity_child <= 0:
+        messages.error(request, "Please add at least one ticket.")
+        return redirect('bag:bag')
 
-        # Initialize or update the item in the bag
-        if item_key not in bag:
-            bag[item_key] = {
-                'type': item_type,
-                'quantity_adult': quantity_adult,
-                'quantity_child': quantity_child,
-            }
-        else:
-            bag[item_key]['quantity_adult'] += quantity_adult
-            bag[item_key]['quantity_child'] += quantity_child
+    # Retrieve or initialize the shopping bag
+    bag = request.session.get('bag', {})
 
-        # Save the updated bag to the session
-        request.session['bag'] = bag
-        messages.success(request, f"Added {item.name} to your bag!")
+    # Create a unique key for the item
+    item_key = f"{item_type}-{item_id}"
 
-    except Exception as e:
-        messages.error(request, f"Error adding item to the bag: {e}")
+    # Update or add the item to the bag
+    if item_key in bag:
+        bag[item_key]['adult'] += quantity_adult
+        bag[item_key]['child'] += quantity_child
+    else:
+        bag[item_key] = {'adult': quantity_adult, 'child': quantity_child, 'name': item.name}
 
+    # Save the updated bag back into the session
+    request.session['bag'] = bag
+
+    # Log bag contents for debugging
+    print("Bag contents:", request.session['bag'])
+
+    # Success message and redirect
+    messages.success(request, f"Added {item.name} to your bag!")
     return redirect('bag:bag')
 
 

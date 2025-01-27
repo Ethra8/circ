@@ -8,7 +8,7 @@ from .forms import ShowForm
 
 def show_list(request):
     # Fetch all shows from the database
-    shows = Show.objects.all().order_by('time')  # Order by time (upcoming first)
+    shows = Show.objects.all().order_by('starting_date')  # Order by date (upcoming first)
     return render(request, 'shows/show_list.html', {'shows': shows})
 
 

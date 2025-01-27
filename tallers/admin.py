@@ -7,9 +7,13 @@ class TallerAdmin(admin.ModelAdmin):
     Admin configuration for the Taller model.
     """
     list_display = (
+        'id',
         'name', 
         'audience', 
         'starting_date', 
+        'end_date',
+        'starting_time',
+        'end_time',
         'duration', 
         'price_per_seat_adult', 
         'price_per_seat_reduction', 

@@ -56,6 +56,7 @@
 
                                 <!-- Name Column -->
                                 <td class="cell" data-label="Name">
+                                    <p class="my-0 eg-font text-uppercase">{{ item.item.item_type }}</p>
                                     <p class="my-0 eg-font text-uppercase"><strong>{{ item.item.name }}</strong></p>
                                     <p class="my-0 text-capitalize audience-display-details">{{ item.item.get_audience_display }}</p>
                                 </td>
@@ -91,17 +92,26 @@
                                         {% elif item.item.audience == 'niños' %}
                                             <p class="my-0">{{ item.item.price_per_seat_reduction|floatformat:2 }} €</p>
                                         {% elif item.item.audience == 'todo_publico' %}
-                                            <p class="my-0 mb-2"><strong>Precio Adulto:</strong> {{ item.item.price_per_seat_adult|floatformat:2 }} €</p>
-                                            <p class="my-0"><strong>Precio Niño:</strong> {{ item.item.price_per_seat_reduction|floatformat:2 }} €</p>
+                                            <p class="my-0 mb-2">{{ item.item.price_per_seat_adult|floatformat:2 }} €</p>
+                                            <p class="my-0">{{ item.item.price_per_seat_reduction|floatformat:2 }} €</p>
                                         {% endif %}
                                     {% endif %}
                                 </td>
 
                                 <!-- Subtotal Column -->
                                 <td class="cell eg-font" data-label="Subtotal">
-                                    <p class="my-0"><strong>{{ item.subtotal|floatformat:2 }} €</strong></p>
-                                </td>
-
+                                    {% if item.type == 'show' or item.type == 'taller' %}
+                                        {% if item.item.audience == 'adultos' %}
+                                            <p class="my-0">{{ item.subtotal_adult|floatformat:2 }} €</p>
+                                        {% elif item.item.audience == 'niños' %}
+                                            <p class="my-0">{{ item.subtotal_child|floatformat:2 }} €</p>
+                                        {% elif item.item.audience == 'todo_publico' %}
+                                            <p class="my-0 mb-2">{{ item.subtotal_adult|floatformat:2 }} €</p>
+                                            <p class="my-0">{{ item.subtotal_child|floatformat:2 }} €</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </td>            
+                                                    
                                 <!-- Remove Item -->
                                 <td class="cell py-3">
                                     <form method="POST" action="{% url 'bag:remove_bag_item' item.type item.item.id %}">
@@ -110,8 +120,7 @@
                                             <i class="fas fa-times-circle fa-sm" aria-hidden="true"></i> Elimina
                                         </button>
                                     </form>
-                                </td>
-                            </tr>
+                                </td>                            </tr>
                             {% endfor %}
                         </tbody>
                     </table>

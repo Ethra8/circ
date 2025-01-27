@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load time_filters %}
+
 
 {% block page_header %}
 <div class="container header-container d-none">
@@ -31,10 +33,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase">{{ show.name }}</h5>
                                     <p class="card-text"><strong>Sitio:</strong> {{ show.location }}</p>
-                                    <p class="card-text">
-                                        <strong>Día:</strong> {{ show.time|date:"F j, Y" }}<br>
-                                        <strong>Hora:</strong> {{ show.time|date:"g:i a" }}
-                                    </p>
+                                    <p class="card-text"><strong>Día:</strong> {{ show.starting_date|date:"DATE_FORMAT" }} - {{ show.end_date|date:"DATE_FORMAT" }}</p>
+                                    <p class="card-text"><strong>Horario:</strong> {{ show.starting_time|date:"TIME_FORMAT" }} - {{ show.end_time|date:"TIME_FORMAT" }}</p>
+                                    
                                     <p class="card-text"><strong>Duración:</strong> {{ show.duration }}</p>
                                     <p class="card-text"><strong>Plazas libres:</strong> {{ show.remaining_seats }}</p>
                                 </div>
@@ -42,6 +43,7 @@
                             </div>
                             
                         </div>
+
                     {% empty %}
                         <p class="text-white">No tenemos eventos ni espectáculos a la vista. Vuelve en un par de días, o <a href="{}">suscríbete a nuestra newsletter</a> para estar al día de cualquier novedad, y recibir alguna que otra oferta!</p>
                     {% endfor %}
