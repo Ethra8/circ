@@ -155,8 +155,6 @@ else:
         }
     }
 
-print(os.environ.get('DATABASE_URL'))
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -215,22 +213,14 @@ STATIC_URL = '/static/'
 if DEBUG:
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",  # Adjust for your project structure
-# ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # This is the folder you're seeing
-
-# STATIC_ROOT = BASE_DIR / "staticfiles"
-# # Directory to collect static files for production
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Enable WhiteNoise for serving static files in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
-
 
 # Required for Django Allauth
 SITE_ID = 1
@@ -257,10 +247,10 @@ ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/profile/'  # Redirect after signup (def
 # Email backend for development (prints emails to the console)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# # Email settings (for production)
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your-email@gmail.com'
-# EMAIL_HOST_PASSWORD = 'your-email-password'  # Use app-specific password or environment variable
+# Email settings (for production)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = os.environ.get('EMAIL_PORT', '')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', '')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')  # Use app-specific password or environment variable
