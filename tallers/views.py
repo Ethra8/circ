@@ -142,4 +142,7 @@ def search_results(request):
         'query': query,
         'results': combined_results,  # Unified results with type field
     }
+
+    print("Query:", query)
+
     return render(request, 'tallers/search_results.html', context)

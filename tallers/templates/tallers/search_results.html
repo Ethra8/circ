@@ -1,40 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div id="search_results" class="container mt-4">
+    <div id="search-results" class="container mt-4">
         <h1 class="display-4 text-white charmonman-title">Resultados</h1>
         <p class="text-white ">Hemos encontrado estos resultados relacionados con tu búsqueda - '<strong>{{ request.GET.q }}</strong>':</p>
 
-        <h2 class="eg-font text-uppercase">Eventos</h2>
-        {% if show_results %}
-            <ul>
-                {% for show in show_results %}
-                    <li>
-                        <a href="{% url 'shows:show_details' show.id %}">
-                            {{ show.name }}
-                        </a>
-                        - {{ show.description|truncatewords:20 }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Por el momento, ningún evento se corresponde a tu búsqueda.</p>
-        {% endif %}
-
-        <h2 class="eg-font text-uppercase">Talleres</h2>
-        {% if taller_results %}
-            <ul>
-                {% for taller in taller_results %}
-                    <li>
-                        <a href="{% url 'tallers:taller_details' taller.id %}">
-                            {{ taller.name }}
-                        </a>
-                        - {{ taller.description|truncatewords:20 }}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Por el momento, ningún taller se corresponde a tu búsqueda.</p>
-        {% endif %}
-    </div>
+        <ul class="mt-3">
+            {% for result in results %}
+                
+                <li class="mt-3">
+                    <h2 class="eg-font text-uppercase mt-3">{% if result.type == 'show' %}Eventos{% elif result.type == 'taller' %}Talleres{% endif %}</h2>
+                    <h3 class="pt-3"><a href="{% url 'shows:show_details' result.id %}">{{ result.name }}</a></h3>
+                    <p class="pb-3 pt-2 text-justify"><a href="{% url 'shows:show_details' result.id %}">{{ result.description }}</a>
+                    <hr>
+                
+            {% empty %}
+                <li class="mt-3">No results found.</li>
+            {% endfor %}
+        </ul>    </div>
 {% endblock %}

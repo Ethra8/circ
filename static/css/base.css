@@ -499,6 +499,49 @@ a.return-prev-page:hover {
     margin-right: 2rem !important;
 } */
 
+
+/* SEARCH BAR */
+#search-results {
+    margin-top: 120px !important;
+    padding: 36px 20px;
+    background-color: rgba(2, 28, 54, 0.8);
+    border-radius: 5px;
+}
+
+#search-results ul {
+    list-style: none; /* Removes bullet points */
+    padding: 0; /* Optional: Removes default padding */
+    margin: 0; /* Optional: Removes default margin */
+}
+
+#search-results li {
+    background-color: rgba(0, 51, 102, 0.8);
+    padding: 17px;
+}
+
+#search-results h2 {
+    color: antiquewhite !important;
+    font-size: 2rem;
+}
+
+#search-results h3 a {
+    color: aquamarine !important;
+}
+
+#search-results p a {
+    color: antiquewhite;
+    font-size: 1rem;
+}
+
+#search-results li hr {
+    border: 1px solid aquamarine;
+    margin: 15px auto !important;
+    padding: 15px auto !important;
+    background-color: rgba(0, 51, 102,0) !important;
+
+}
+
+
 /* FOOTER */
 
 .footer {
