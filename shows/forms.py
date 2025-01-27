@@ -31,7 +31,7 @@ class ShowForm(forms.ModelForm):
             'starting_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'starting_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'duration': forms.TextInput(attrs={'placeholder': 'HH:MM', 'class': 'form-control'}),
+            'duration': forms.TextInput(attrs={'placeholder': 'HH:MM'}),
             'description': forms.Textarea(attrs={'rows': 4, 'class': 'form-control'}),
             'audience': forms.Select(attrs={'class': 'form-control'}),
             'circ_category': forms.Select(attrs={'class': 'form-control'}),
@@ -56,6 +56,25 @@ class ShowForm(forms.ModelForm):
         elif audience == 'niños':
             self.fields['price_per_seat_adult'].widget = forms.HiddenInput()
             self.fields['price_per_seat_adult'].required = False
+
+    def clean_duration(self):
+        """
+        Ensure the duration is saved in the format "HH:MM" and converted to timedelta.
+        """
+        duration_input = self.cleaned_data.get('duration')
+
+        # Handle both timedelta and string input
+        if isinstance(duration_input, timedelta):
+            return duration_input
+
+        try:
+            # Parse "HH:MM" format into hours and minutes
+            hours, minutes = map(int, duration_input.split(':'))
+            duration_timedelta = timedelta(hours=hours, minutes=minutes)
+        except (ValueError, AttributeError):
+            raise forms.ValidationError("Duration must be in the format 'HH:MM'.")
+        
+        return duration_timedelta
 
     def clean(self):
         """

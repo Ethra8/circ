@@ -4,14 +4,15 @@ from django.core.exceptions import ValidationError
 from decimal import Decimal
 
 class Taller(models.Model):
+
     WEEKDAYS = [
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-        ('Sunday', 'Sunday'),
+        ('lun.', 'Lunes'),
+        ('mar.', 'Martes'),
+        ('miérc.', 'Miércoles'),
+        ('juev.', 'Jueves'),
+        ('vier.', 'Viernes'),
+        ('sáb.', 'Sábado'),
+        ('dom.', 'Domingo'),
     ]
 
     AUDIENCE_TYPES = [
@@ -131,6 +132,10 @@ class Taller(models.Model):
             self.users_missed_requests += 1
             self.save()
             raise ValueError("Este taller está completo!")
+
+    def remaining_seats(self):
+        remaining_seats = self.max_participants - self.booked_participants
+        return remaining_seats
 
     def __str__(self):
         return self.name

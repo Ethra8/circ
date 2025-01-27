@@ -36,6 +36,17 @@ a:hover {
 	z-index: -1;
 }
 
+.overlay-night-sky {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: url('/media/night_sky.jpg') no-repeat center center fixed;
+    background-size: cover;
+	z-index: -1;
+}
+
 .main-bg {
     margin: 0 0 auto;
     flex-grow: 1 !important; /* forces content area to grow and fill remaining space between nav and footer */
@@ -225,6 +236,17 @@ nav.container-fluid {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
+.details-div-icons-info {
+    color: #003366;
+    background-color: aquamarine;
+}
+
+.admin-div-ticket-info {
+    background-color: #272323;
+    color: #c1f7e3;
+}
+
+
 /* SHOWS_LIST */
 
 .show {
@@ -338,7 +360,7 @@ a.return-prev-page:hover {
 #show-details h2,
 #taller-details h2 {
     font-size: 2rem;
-    color: #003366;
+    color: aquamarine;
 }
 
 

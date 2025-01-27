@@ -5,14 +5,15 @@ from django.core.exceptions import ValidationError
 from decimal import Decimal
 
 class Show(models.Model):
+   
     WEEKDAYS = [
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-        ('Sunday', 'Sunday'),
+        ('lun.', 'Lunes'),
+        ('mar.', 'Martes'),
+        ('miérc.', 'Miércoles'),
+        ('juev.', 'Jueves'),
+        ('vier.', 'Viernes'),
+        ('sáb.', 'Sábado'),
+        ('dom.', 'Domingo'),
     ]
 
     AUDIENCE_TYPES = [
@@ -36,7 +37,7 @@ class Show(models.Model):
     starting_date = models.DateField(default=now, help_text="Fecha de inicio")  # Starting date of the taller
     end_date = models.DateField(blank=True, null=True, help_text="Fecha de finalización del evento")
     starting_time = models.TimeField(help_text="Hora de inicio")  # Starting time of the taller
-    duration = models.DurationField(help_text="Duración del evento (HH:MM:SS)")
+    duration = models.DurationField(help_text="Duración en formato HH:MM (horas:minutos)")
     max_participants = models.PositiveIntegerField(default=100)  # Maximum participants allowed
     booked_participants = models.PositiveIntegerField(default=0)  # Booked participants, starts at 0
     users_missed_requests = models.PositiveIntegerField(default=0)  # Track users who couldn't enroll
@@ -111,6 +112,18 @@ class Show(models.Model):
             self.users_missed_requests += 1
             self.save()
             raise ValueError("Este evento está completo!")
+
+    def remaining_seats(self):
+        remaining_seats = self.max_participants - self.booked_participants
+        return remaining_seats
+
+    def get_formatted_duration(self):
+        if self.duration:
+            total_seconds = self.duration.total_seconds()
+            hours = int(total_seconds // 3600)
+            minutes = int((total_seconds % 3600) // 60)
+            return f"{hours:02}:{minutes:02}"
+        return "00:00"
 
     def __str__(self):
         return self.name

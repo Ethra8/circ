@@ -13,7 +13,7 @@
 
 {% block content %}
 <div id="show-details" class="container">
-    <div class="overlay"></div>
+    <div class="overlay-night-sky"></div>
     <div class="row details-frame">
         <div class="col-12">
             <a href="javascript:history.back()" class="return-prev-page col-12 col-sm-5" aria-label="Return to previous page">
@@ -36,28 +36,51 @@
         <div class="col-12 col-md-8 col-lg-8 pl-4">
             <div class="product-details-container mb-5 mt-md-5">
                 <h1 class="mb-2 eg-font text-uppercase">{{ show.name }}</h1>
-                <h2>Para {{ show.get_audience_display }}</h2>
+ 
                 {% if show.description %}
-                <p class="mb-2 eg-title text-justify pr-1 pr-md-3 pr-lg-5">{{ show.description }}</p>
+                <p class="mb-3 eg-title text-justify pr-1 pr-md-3 pr-lg-5">{{ show.description }}</p>
                 {% endif %}
                 
+                <div class="row details-div-icons-info p-2 ml-1 mr-md-3 mr-lg-5 mt-4">
+                    <div class="col-12 col-lg-6">
+                        <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i> Para {{ show.get_audience_display }}</p>        
+                        <p class="mb-3"><i class="fa-regular fa-calendar fa-lg mr-3"></i>{% if show.starting_date == show.end_date %}{{ show.starting_date|date:"DATE_FORMAT" }}{% else %}{{ show.starting_date|date:"d M" }}
+                            - {{ show.end_date|date:"DATE_FORMAT" }}{% endif %}</p>
+                        <p class="mb-3"><i class="fa-solid fa-calendar-day fa-lg mr-3"></i>{{ show.weekday_1 }} {% if show.weekday_2 %}& {{ show.weekday_2 }}{% endif %}</p>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <p class="mb-3 mt-2"><i class="fa-regular fa-clock fa-lg mr-3"></i> {{ show.starting_time|date:"TIME_FORMAT" }}</p>                
+                        <p class="mb-3"><i class="fa-solid fa-building-columns fa-lg mr-3"></i> {{ show.location_name }} ({{ show.location_city }})</p>    
+                        <p class="mb-3"><i class="fa-solid fa-arrow-rotate-right fa-lg mr-3"></i> {{ show.get_formatted_duration }} h</p>
+                    </div>
+                </div>
+
+                <!-- Admin Info only for authenticated admin users -->
+                {% if user.is_authenticated and user.is_superuser %}
+                <div class="row admin-div-ticket-info p-2 ml-1 mr-md-3 mr-lg-5 mt-4 mb-2">
+                    <div class="col-12 mt-3">
+                        <h2>Admin Info</h2>
+                        <p class="mb-3"><i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.remaining_seats }} Libres</p>
+                        <p class="mb-3"><i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.booked_participants }} Reservadas</p>
+                        <p class="mb-3"><i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.users_missed_requests }} Sin Entrada</p>
+                    </div>
+                </div>
+                {% endif %}
+
                 <!-- Pricing Display -->
-                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">
+                <p class="lead admin-div-ticket-info mb-0 mt-5 text-left font-weight-bold text-uppercase">
                     {% if show.audience == 'adultos' %}
-                        Precio: {{ show.price_per_seat_adult|floatformat:2 }} €
+                    <i class="fa-solid fa-ticket fa-lg mr-3"></i><h2>Precio</h2>
+                     {{ show.price_per_seat_adult|floatformat:2 }} €
                     {% elif show.audience == 'niños' %}
-                        Precio: {{ show.price_per_seat_reduction|floatformat:2 }} €
+                    <i class="fa-solid fa-ticket fa-lg mr-3"></i><h2>Precio</h2>
+                    <i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.price_per_seat_reduction|floatformat:2 }} €
                     {% else %}
-                        Precio Adultos: {{ show.price_per_seat_adult|floatformat:2 }} €<br>
-                        Precio Niños: {{ show.price_per_seat_reduction|floatformat:2 }} €
+                    <h2><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precios</h2>
+                    <i class="fa-solid fa-ticket fa-lg mr-3"></i> Adultos: {{ show.price_per_seat_adult|floatformat:2 }} €<br>
+                    <i class="fa-solid fa-ticket fa-lg mr-3"></i> Niños: {{ show.price_per_seat_reduction|floatformat:2 }} €
                     {% endif %}
                 </p>
-
-                <p class="mb-0 mt-3"><strong>Dia:</strong> {{ show.starting_date|date:"DATE_FORMAT" }}</p>
-                <p class="mb-2"><strong>Horario:</strong> {{ show.starting_time|date:"TIME_FORMAT" }}</p>                
-                <p class="mb-2"><strong>Dónde:</strong> {{ show.location_name }}</p>
-                <p class="mb-2"><strong>Ciudad:</strong> {{ show.location_city }}</p>
-                <p class="mb-0"><strong>Duración:</strong> {{ show.duration }} {% if show.duration >= '1:59:59' %}horas{% else %}hora{% endif %}</p>
 
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
@@ -203,7 +226,7 @@
                         {% endif %}
                         <!-- Submit Button -->
                         <div class="col d-flex flex-wrap justify-content-between">
-                            <button type="submit" class="col-12 col-sm-5 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
+                            <button type="submit" class="col-12 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
                                 Añadir a Cesta
                                 <span class="icon"><i class="fas fa-chevron-right"></i></span>
                             </button>

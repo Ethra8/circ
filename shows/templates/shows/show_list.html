@@ -13,7 +13,7 @@
 
 {% block content %}
 <div id="show_list" class="container h-100 w-100">
-    <div class="overlay"></div>
+    <div class="overlay-night-sky"></div>
 
     <div class="row h-100">
         <div class="col-12 my-auto ml-md-0 mr-md-0 px-0 show">
@@ -34,12 +34,13 @@
                                 {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase">{{ show.name }}</h5>
-                                    <p class="card-text"><strong>Sitio:</strong> {{ show.location }}</p>
-                                    <p class="card-text"><strong>Día:</strong> {{ show.starting_date|date:"DATE_FORMAT" }} - {{ show.end_date|date:"DATE_FORMAT" }}</p>
-                                    <p class="card-text"><strong>Horario:</strong> {{ show.starting_time|date:"TIME_FORMAT" }} - {{ show.end_time|date:"TIME_FORMAT" }}</p>
+                                    <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-2"></i></i> Para {{ show.get_audience_display }}</p>        
+                                    <p class="mb-3 mt-2"><i class="fa-solid fa-building-columns fa-lg mr-2"></i> {{ show.location_name }} ( {{ show.location_city }} )</p> 
+                                    <p class="mb-3"><i class="fa-regular fa-calendar fa-lg mr-2"></i>{% if show.starting_date == show.end_date %}{{ show.starting_date|date:"DATE_FORMAT" }}{% else %}{{ show.starting_date|date:"d M" }}
+                                        - {{ show.end_date|date:"DATE_FORMAT" }}{% endif %}</p>
+                                    <p class="mb-3"><i class="fa-regular fa-clock fa-lg mr-2"></i> {{ show.starting_time|date:"TIME_FORMAT" }}</p>     
                                     
-                                    <p class="card-text"><strong>Duración:</strong> {{ show.duration }}</p>
-                                    <p class="card-text"><strong>Plazas libres:</strong> {{ show.remaining_seats }}</p>
+                                    <p class="mb-3"><i class="fa-solid fa-arrow-rotate-right fa-lg mr-2"></i> {{ show.get_formatted_duration }} h</p>
                                 </div>
                                 <a href="{% url 'shows:show_details' show.id %}" class="btn-show-card text-uppercase text-center">ver detalles</a>
                             </div>

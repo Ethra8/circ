@@ -32,7 +32,17 @@ a:hover {
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: rgba(240, 255, 255, 0.9);
+	background: rgba(20, 25, 25, 0.9);
+	z-index: -1;
+}
+
+.overlay-night-sky {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: url('/media/night_sky.jpg') no-repeat center center fixed;
 	z-index: -1;
 }
 
@@ -48,6 +58,11 @@ a:hover {
 .text-muted {
     color: #6f7a8a;
 }
+
+.text-dark {
+    color: #003366;
+}
+
 
 /* NAVBAR */
 
@@ -103,7 +118,10 @@ a:hover {
     padding-right: 14px;
 }
 
-.fas:hover,
+.fas:hover {
+    color: #c1f7e3;
+}
+
 .list-inline-item p:hover,
 .list-inline-item .icon-nav:hover
 .list-inline-item .icon-main-nav:hover {
@@ -204,6 +222,19 @@ nav.container-fluid {
 }
 
 
+/* DETAILS PAGE GENERAL */
+
+.list-row {
+    padding: 3%;
+}
+
+.details-frame {
+    padding: 25px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
 /* SHOWS_LIST */
 
 .show {
@@ -211,7 +242,7 @@ nav.container-fluid {
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: rgba(0, 51, 102,0.8);
+    background-color: rgba(2, 28, 54, 0.8);
 }
 
 .show .card {
@@ -277,6 +308,11 @@ nav.container-fluid {
 }
 
 /* SHOW DETAILS & TALLER DETAILS */
+#show_list,
+#taller_list {
+    background-color: rgba(0, 51, 102,0.8);
+    padding: 20px;
+}
 
 #show-details,
 #show_list,
@@ -288,11 +324,33 @@ nav.container-fluid {
     margin-top: 120px !important;
 }
 
+#show_details .fas:hover,
+#tallers_details .fas:hover {
+    color: #003366 !important;
+}
+
+a.return-prev-page {
+    color: #003366 !important;
+    font-weight: 600 !important;
+}
+
+a.return-prev-page:hover {
+    color: #16212c !important;
+    font-weight: 700 !important;
+}
+
 #show-details h1,
 #taller-details h1 {
     font-size: 2.5rem;
     color: #003366;
 }
+
+#show-details h2,
+#taller-details h2 {
+    font-size: 2rem;
+    color: #003366;
+}
+
 
 .ticket-qty {
     max-width: 150px;

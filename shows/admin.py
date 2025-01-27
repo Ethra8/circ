@@ -15,7 +15,7 @@ class ShowAdmin(admin.ModelAdmin):
         'end_date',
         'starting_time',
         'get_end_time',  # Use a method to calculate end_time dynamically
-        'duration',
+        'duration_display',
         'price_per_seat_adult',
         'price_per_seat_reduction',
         'max_participants',
@@ -57,7 +57,7 @@ class ShowAdmin(admin.ModelAdmin):
                 'starting_date',
                 'starting_time',
                 'end_date',
-                'duration',
+                'duration_display',
             ),
         }),
         ('Participants', {
@@ -106,6 +106,14 @@ class ShowAdmin(admin.ModelAdmin):
         return None    
     get_end_time.short_description = "End Time"
 
+    def duration_display(self, obj):
+        """Display duration in HH:MM format."""
+        total_seconds = obj.duration.total_seconds()
+        hours = int(total_seconds // 3600)
+        minutes = int((total_seconds % 3600) // 60)
+        return f"{hours:02}:{minutes:02}"
+
+    duration_display.short_description = "Duración (HH:MM)"
 
     def save_model(self, request, obj, form, change):
         """
