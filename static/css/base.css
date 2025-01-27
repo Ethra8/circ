@@ -108,7 +108,10 @@ a:hover {
     padding-right: 14px;
 }
 
-.fas:hover,
+.fas:hover {
+    color: #c1f7e3;
+}
+
 .list-inline-item p:hover,
 .list-inline-item .icon-nav:hover
 .list-inline-item .icon-main-nav:hover {
@@ -311,13 +314,19 @@ nav.container-fluid {
     margin-top: 120px !important;
 }
 
-.fas:hover {
+#show_details .fas:hover,
+#tallers_details .fas:hover {
     color: #003366 !important;
 }
 
 a.return-prev-page {
     color: #003366 !important;
     font-weight: 600 !important;
+}
+
+a.return-prev-page:hover {
+    color: #16212c !important;
+    font-weight: 700 !important;
 }
 
 #show-details h1,
