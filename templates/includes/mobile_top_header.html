@@ -21,6 +21,10 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="user-options">
                 {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4 mt-2" aria-label="add new show">Crear Evento</a>
+                    <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
+                    {% endif %}
                 <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
                 <a href="{% url 'shows:show_list' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Mis Talleres</a>
                 <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
