@@ -30,16 +30,21 @@ class Taller(models.Model):
     id = models.AutoField(primary_key=True)
     item_type = models.CharField(default='taller', max_length=10, editable=False)
     name = models.CharField(max_length=255)  # Name of the taller
-    image = models.ImageField(upload_to='tallers/images/', help_text="Image de promoción del taller", blank=True, null=True)
+    image = models.ImageField(
+        upload_to='tallers/images/', 
+        help_text="Image de promoción del taller", 
+        blank=True, 
+        null=True
+    )
     description = models.TextField()  # Detailed description of the taller
-    starting_date = models.DateField(default=now)  # Starting date of the taller
-    end_date = models.DateField(blank=True, null=True, help_text="Fecha de finalización del evento")
-    starting_time = models.TimeField()  # Starting time of the taller
-    end_time = models.TimeField()  # End time of the taller
-    duration = models.PositiveIntegerField(help_text="Duration in weeks")  # Duration in weeks
-    max_participants = models.PositiveIntegerField()  # Maximum participants allowed
-    booked_participants = models.PositiveIntegerField(default=0)  # Booked participants, starts at 0
-    users_missed_requests = models.PositiveIntegerField(default=0)  # Track users who couldn't enroll
+    starting_date = models.DateField(default=now, help_text="Fecha de inicio del taller")  # Starting date of the taller
+    end_date = models.DateField(blank=True, null=True, help_text="Fecha de finalización del taller")
+    starting_time = models.TimeField(help_text="Hora de inicio del taller")  # Starting time of the taller
+    end_time = models.TimeField(help_text="Hora de fin del taller")  # End time of the taller
+    duration = models.PositiveIntegerField(help_text="Duración en semanas")  # Duration in weeks
+    max_participants = models.PositiveIntegerField(help_text="Máximas plazas")  # Maximum participants allowed
+    booked_participants = models.PositiveIntegerField(default=0, help_text="Plazas ocupadas (reservada)")  # Booked participants, starts at 0
+    users_missed_requests = models.PositiveIntegerField(default=0, help_text="Usuarios que han pedido tener plaza, una vez agotadas - ¿Interesa repetir evento?")  # Track users who couldn't enroll
     audience = models.CharField(
         max_length=15,
         choices=AUDIENCE_TYPES,
@@ -63,29 +68,30 @@ class Taller(models.Model):
         choices=CIRC_CATEGORIES,
         default='',
         null=True,
+        help_text="Categoría de circo del taller"
     ) 
-    weekday_1 = models.CharField(max_length=9, choices=WEEKDAYS)  # Mandatory first weekday
-    weekday_2 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Optional second weekday
+    weekday_1 = models.CharField(max_length=9, choices=WEEKDAYS, help_text="Día de la semana en el que desarrola el taller (1º es obligatorio)")  # Mandatory first weekday
+    weekday_2 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True, help_text="Día de la semana en el que desarrola el taller (2º es opcional)") 
     # Location fields
     location_name = models.CharField(
         max_length=255,
         default='por determinar',
-        help_text="Name of the location"
+        help_text="Nombre del lugar/local/teatro donde se desarrolla el taller"
     )
     location_street = models.CharField(
         max_length=255,
         default='por determinar',
-        help_text="Street address of the location"
+        help_text="Dirección del local/teatro/lugar"
     )
     location_cp = models.IntegerField(
         blank=True,
         null=True,
-        help_text="Postal code (optional)"
+        help_text="Código postal del local/teatro/lugar (opcional)"
     )
     location_city = models.CharField(
         max_length=255,
         default='por determinar',
-        help_text="City where the taller is held"
+        help_text="Ciudad donde se desarrolla el taller"
     )
 
     def clean(self):
