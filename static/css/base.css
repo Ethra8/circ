@@ -237,13 +237,19 @@ nav.container-fluid {
 }
 
 .details-div-icons-info {
-    color: #003366;
-    background-color: aquamarine;
+    background-color: #003366;
+    color: antiquewhite;
 }
 
 .admin-div-ticket-info {
     background-color: #272323;
     color: #c1f7e3;
+}
+
+.decrement-qty,
+.increment-qty {
+    background-color: #003366;
+    color: antiquewhite;
 }
 
 
@@ -363,6 +369,20 @@ a.return-prev-page:hover {
     color: aquamarine;
 }
 
+#show-details h3,
+#show-details h4,
+#taller-details h3,
+#taller-details h4 {
+    color: #003366 !important;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+#show-details h5,
+#taller-details h5 {
+    color: #003366 !important;
+    text-transform: uppercase;
+}
 
 .ticket-qty {
     max-width: 150px;

@@ -69,14 +69,17 @@
 
 
                 <!-- Pricing Display -->
-                <p class="lead mb-0 mt-3 text-left font-weight-bold text-uppercase">
+                <p class="lead mb-0 mt-4 ml-2 text-left font-weight-bold text-uppercase">
                     {% if taller.audience == 'adultos' %}
-                        Precio: {{ taller.price_per_seat_adult|floatformat:2 }} €
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h4>{{ taller.price_per_seat_adult|floatformat:2 }} €</h4>
                     {% elif taller.audience == 'niños' %}
-                        Precio: {{ taller.price_per_seat_reduction|floatformat:2 }} €
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h4>{{ taller.price_per_seat_reduction|floatformat:2 }} €</h4>
                     {% else %}
-                        Precio Adultos: {{ taller.price_per_seat_adult|floatformat:2 }} €<br>
-                        Precio Niños: {{ taller.price_per_seat_reduction|floatformat:2 }} €
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precios</h3>
+                    <h5><small>Adultos:</small> {{ taller.price_per_seat_adult|floatformat:2 }} €</h5>
+                    <h5><small>Niños:</small> {{ taller.price_per_seat_reduction|floatformat:2 }} €</h5>
                     {% endif %}
                 </p>
                 

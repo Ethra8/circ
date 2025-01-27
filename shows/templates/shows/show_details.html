@@ -41,7 +41,7 @@
                 <p class="mb-3 eg-title text-justify pr-1 pr-md-3 pr-lg-5">{{ show.description }}</p>
                 {% endif %}
                 
-                <div class="row details-div-icons-info p-2 ml-1 mr-md-3 mr-lg-5 mt-4">
+                <div class="row details-div-icons-info p-2 m-0 ml-md-1 mr-md-3 mr-lg-5 mt-4">
                     <div class="col-12 col-lg-6">
                         <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i> Para {{ show.get_audience_display }}</p>        
                         <p class="mb-3"><i class="fa-regular fa-calendar fa-lg mr-3"></i>{% if show.starting_date == show.end_date %}{{ show.starting_date|date:"DATE_FORMAT" }}{% else %}{{ show.starting_date|date:"d M" }}
@@ -59,7 +59,7 @@
                 {% if user.is_authenticated and user.is_superuser %}
                 <div class="row admin-div-ticket-info p-2 ml-1 mr-md-3 mr-lg-5 mt-4 mb-2">
                     <div class="col-12 mt-3">
-                        <h2>Admin Info</h2>
+                        <h2 class="text-uppercase"><small>Admin Info</small></h2>
                         <p class="mb-3"><i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.remaining_seats }} Libres</p>
                         <p class="mb-3"><i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.booked_participants }} Reservadas</p>
                         <p class="mb-3"><i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.users_missed_requests }} Sin Entrada</p>
@@ -68,17 +68,17 @@
                 {% endif %}
 
                 <!-- Pricing Display -->
-                <p class="lead admin-div-ticket-info mb-0 mt-5 text-left font-weight-bold text-uppercase">
+                <p class="lead mb-0 mt-4 ml-2 text-left font-weight-bold text-uppercase">
                     {% if show.audience == 'adultos' %}
-                    <i class="fa-solid fa-ticket fa-lg mr-3"></i><h2>Precio</h2>
-                     {{ show.price_per_seat_adult|floatformat:2 }} €
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h4>{{ show.price_per_seat_adult|floatformat:2 }} €</h4>
                     {% elif show.audience == 'niños' %}
-                    <i class="fa-solid fa-ticket fa-lg mr-3"></i><h2>Precio</h2>
-                    <i class="fa-solid fa-ticket fa-lg mr-3"></i> {{ show.price_per_seat_reduction|floatformat:2 }} €
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h4>{{ show.price_per_seat_reduction|floatformat:2 }} €</h4>
                     {% else %}
-                    <h2><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precios</h2>
-                    <i class="fa-solid fa-ticket fa-lg mr-3"></i> Adultos: {{ show.price_per_seat_adult|floatformat:2 }} €<br>
-                    <i class="fa-solid fa-ticket fa-lg mr-3"></i> Niños: {{ show.price_per_seat_reduction|floatformat:2 }} €
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precios</h3>
+                    <h5><small>Adultos:</small> {{ show.price_per_seat_adult|floatformat:2 }} €</h5>
+                    <h5><small>Niños:</small> {{ show.price_per_seat_reduction|floatformat:2 }} €</h5>
                     {% endif %}
                 </p>
 
