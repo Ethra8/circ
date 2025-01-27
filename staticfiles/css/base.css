@@ -43,6 +43,7 @@ a:hover {
 	left: 0;
 	position: fixed;
 	background: url('/media/night_sky.jpg') no-repeat center center fixed;
+    background-size: cover;
 	z-index: -1;
 }
 
@@ -235,6 +236,23 @@ nav.container-fluid {
     background-color: rgba(255, 255, 255, 0.7);
 }
 
+.details-div-icons-info {
+    background-color: #003366;
+    color: antiquewhite;
+}
+
+.admin-div-ticket-info {
+    background-color: #272323;
+    color: #c1f7e3;
+}
+
+.decrement-qty,
+.increment-qty {
+    background-color: #003366;
+    color: antiquewhite;
+}
+
+
 /* SHOWS_LIST */
 
 .show {
@@ -348,9 +366,23 @@ a.return-prev-page:hover {
 #show-details h2,
 #taller-details h2 {
     font-size: 2rem;
-    color: #003366;
+    color: aquamarine;
 }
 
+#show-details h3,
+#show-details h4,
+#taller-details h3,
+#taller-details h4 {
+    color: #003366 !important;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+#show-details h5,
+#taller-details h5 {
+    color: #003366 !important;
+    text-transform: uppercase;
+}
 
 .ticket-qty {
     max-width: 150px;
@@ -466,6 +498,49 @@ a.return-prev-page:hover {
 #bag-grand-total {
     margin-right: 2rem !important;
 } */
+
+
+/* SEARCH BAR */
+#search-results {
+    margin-top: 120px !important;
+    padding: 36px 20px;
+    background-color: rgba(2, 28, 54, 0.8);
+    border-radius: 5px;
+}
+
+#search-results ul {
+    list-style: none; /* Removes bullet points */
+    padding: 0; /* Optional: Removes default padding */
+    margin: 0; /* Optional: Removes default margin */
+}
+
+#search-results li {
+    background-color: rgba(0, 51, 102, 0.8);
+    padding: 17px;
+}
+
+#search-results h2 {
+    color: antiquewhite !important;
+    font-size: 2rem;
+}
+
+#search-results h3 a {
+    color: aquamarine !important;
+}
+
+#search-results p a {
+    color: antiquewhite;
+    font-size: 1rem;
+}
+
+#search-results li hr {
+    border: 1px solid aquamarine;
+    margin: 15px auto !important;
+    padding: 15px auto !important;
+    background-color: rgba(0, 51, 102,0) !important;
+
+}
+
 
 /* FOOTER */
 

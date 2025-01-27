@@ -115,34 +115,54 @@ def book_taller(request, taller_id):
     return redirect('taller_detail', taller_id=taller.id)
 
 
-def search_results(request):
-    """
-    Query within descriptions of Shows & Tallers for words included
-    by user in navbar's search bar.
-    Combines results from both models, identifying their types.
-    """
-    query = request.GET.get('q', '')
-    # Filter shows and tallers by the query
-    show_results = Show.objects.filter(
-        Q(name__icontains=query) | Q(description__icontains=query)
-    ) if query else Show.objects.none()
+# def search_results(request):
+#     """
+#     Query within all fields of Shows & Tallers for words included
+#     by user in the navbar's search bar.
+#     Combines results from both models, identifying their types.
+#     """
+#     query = request.GET.get('q', '').strip()
+    
+#     # Check if there's a query
+#     if query:
+#         # Filter shows by all relevant fields
+#         show_results = Show.objects.filter(
+#             Q(name__icontains=query) |
+#             Q(description__icontains=query) |
+#             Q(audience__icontains=query) |
+#             Q(circ_category__icontains=query) |
+#             Q(location_name__icontains=query) |
+#             Q(location_city__icontains=query)
+#         )
 
-    taller_results = Taller.objects.filter(
-        Q(name__icontains=query) | Q(description__icontains=query)
-    ) if query else Taller.objects.none()
+#         # Filter tallers by all relevant fields
+#         taller_results = Taller.objects.filter(
+#             Q(name__icontains=query) |
+#             Q(description__icontains=query) |
+#             Q(audience__icontains=query) |
+#             Q(circ_category__icontains=query) |
+#             Q(location_name__icontains=query) |
+#             Q(location_city__icontains=query)
+#         )
+#     else:
+#         # Return empty results if no query
+#         show_results = Show.objects.none()
+#         taller_results = Taller.objects.none()
 
-    # Annotate each result with its type for combined context
-    show_results = show_results.annotate(type=Value('show', output_field=CharField()))
-    taller_results = taller_results.annotate(type=Value('taller', output_field=CharField()))
+#     # Annotate results with their type
+#     show_results = show_results.annotate(type=Value('show', output_field=CharField()))
+#     taller_results = taller_results.annotate(type=Value('taller', output_field=CharField()))
 
-    # Combine both querysets into a single list
-    combined_results = list(chain(show_results, taller_results))
+#     # Combine results
+#     combined_results = list(chain(show_results, taller_results))
 
-    context = {
-        'query': query,
-        'results': combined_results,  # Unified results with type field
-    }
+#     # Context for template
+#     context = {
+#         'query': query,
+#         'results': combined_results,  # Unified results with type field
+#     }
 
-    print("Query:", query)
+#     print("Query:", query)  # Debugging
+#     print("Number of results:", len(combined_results))  # Debugging
 
-    return render(request, 'tallers/search_results.html', context)
+#     return render(request, 'tallers/search_results.html', context)

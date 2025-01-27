@@ -9,7 +9,7 @@ urlpatterns = [
     path('<int:taller_id>/edit/', views.edit_taller, name='edit_taller'),
     path('<int:taller_id>/delete/', views.delete_taller, name='delete_taller'),
     path('add_taller/', views.add_taller, name='add_taller'),
-    path('search_results/', views.search_results, name='search_results'),  # Search bar view
+    # path('search_results/', views.search_results, name='search_results'),  # Search bar view
 ]
 
 

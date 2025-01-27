@@ -17,22 +17,22 @@
     <div class="row h-100">
         <div class="col-12 my-auto ml-md-0 mr-md-0 px-0">
             <div class="my-auto">
-                <h1 class="display-4 text-white charmonman-title">
+                <h1 class="pl-5 text-white charmonman-title">
                     el arte eterno<br>del <span class="eg-font text-uppercase ml-4">Circo</span>
                 </h1>    
             </div>
-            <div class="my-5">
-                <div class="row">
-                    <div class="col-12 col-lg-4 mb-4 text-center text-sm-left mt-2 px-0">
-                        <h2>
-                            <a href="{% url 'shows:show_list' %}" class="index-cta-button btn btn-lg rounded-pill text-uppercase py-3" aria-label="go to the shows section to view upcoming events">Espectáculos</a>
+            <div class="mt-5">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-12 col-lg-6 text-center">
+                        <h2 class="mt-2">
+                            <a href="{% url 'tallers:taller_list' %}" class="index-cta-button btn btn-lg rounded-pill text-uppercase py-3" aria-label="go to the section with services tailored for inividuals">Talleres</a>
                         </h2>
                     </div>
-                    <!-- <div class="col-12 col-lg-4 text-center text-sm-left mt-2 px-0">
-                        <h2>
-                            <a href="{}" class="index-cta-button btn btn-lg rounded-pill text-uppercase py-3" aria-label="go to the section with services tailored for inividuals">For You</a>
+                    <div class="col-12 col-lg-6 mb-4 text-center">
+                        <h2 class="mt-2">
+                            <a href="{% url 'shows:show_list' %}" class="index-cta-button btn btn-lg rounded-pill text-uppercase py-3" aria-label="go to the shows section to view upcoming events">Eventos</a>
                         </h2>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
