@@ -219,8 +219,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # This is the folder you're
 # Enable WhiteNoise for serving static files in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / "media"
 
 # Required for Django Allauth
 SITE_ID = 1
