@@ -951,4 +951,10 @@ footer a:hover {
         font-size: 1.4rem;
     }
 
+    #show-details h1,
+    #taller-details h1 {
+        padding: 30px;
+    }
+
+
 }
