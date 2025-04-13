@@ -20,11 +20,11 @@
             <div class="my-auto pt-3 pl-4 pb-0">
                 <h1 class="display-4 text-white charmonman-title">Nuestros talleres</h1>    
             </div>
-            <div class="my-5">
+            <div>
                 <div class="row list-row">
                     {% for taller in tallers %}
                         <div class="col-12 col-md-6 col-lg-4 mb-4">
-                            <div class="card h-100 mb-5">
+                            <div class="card h-100 my-5">
                                 {% if taller.image %}
                                     <a href="{% url 'tallers:taller_details' taller.id %}">
                                         <div class="card-img-top-container">
