@@ -919,6 +919,7 @@ footer a:hover {
         padding-left: 5%; 
         padding-right: 5%;   
         margin-top: 0;
+        background: transparent;
     }
 
     #show_list h1,
