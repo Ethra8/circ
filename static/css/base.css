@@ -916,8 +916,8 @@ footer a:hover {
     #show_list,
     #taller_list,
     #search_results {
-        padding-left: 0; 
-        padding-right: 0;   
+        padding-left: 5%; 
+        padding-right: 5%;   
         margin-top: 0;
     }
 
