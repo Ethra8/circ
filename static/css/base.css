@@ -855,6 +855,13 @@ footer a:hover {
     }
 } */
 
+@media (max-width: 978px) {
+
+    .index-cta-button {
+        margin-bottom: 40px;
+    }
+}
+
 /* Responsive styles for medium and smaller devices */
 @media (max-width: 768px) { /* Medium devices (tablets) */
     
