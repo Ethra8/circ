@@ -125,8 +125,8 @@ TEMPLATES = [
 ]
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'  # Replace with your template pack
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap4"]  # or "bootstrap5" if using that
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 WSGI_APPLICATION = 'circ.wsgi.application'
 

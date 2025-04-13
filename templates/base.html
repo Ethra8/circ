@@ -4,7 +4,7 @@
 {% url 'home:subscribe_form' as subscribe_form %} -->
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     {% block meta %}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -137,7 +137,7 @@
                     {% if request.user.is_authenticated %}
                     <p class="my-0 text-white">{{ user.username }}</p>
                     {% else %}
-                    <p class="my-0 text-white">Acceder</p>
+                    <p class="my-0 text-white">Cuenta</p>
                     {% endif %}
                   </div>
                 </a>

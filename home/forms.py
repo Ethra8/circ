@@ -7,6 +7,11 @@ from crispy_forms.layout import Submit
 
 from .models import CompanyContact, Subscription, ContactRequest
 
+from django.utils.translation import gettext_lazy as _
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Field
+from django import forms
+from .models import ContactRequest
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -22,7 +27,12 @@ class ContactForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', _('Send')))
+        self.helper.layout = Layout(
+            Field('name'),
+            Field('email'),
+            Field('message'),
+            Submit('submit', _('Send'))
+        )
 
 
 class CompanyContactForm(forms.ModelForm):
