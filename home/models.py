@@ -3,9 +3,17 @@ from django.shortcuts import reverse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django_summernote.fields import SummernoteTextField
-
-
 from django.conf import settings
+
+
+class ContactRequest(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} ({self.email})"
+    
 
 class CompanyContact(models.Model):
     """

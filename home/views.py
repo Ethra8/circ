@@ -13,8 +13,8 @@ from shows.models import Show
 from tallers.models import Taller
 
 
-from .models import AboutSection, CompanyContact, Subscription
-from .forms import CompanyContactForm, SubscriptionForm
+from .models import AboutSection, CompanyContact, Subscription, ContactRequest
+from .forms import CompanyContactForm, SubscriptionForm, ContactForm
 
 
 
@@ -79,8 +79,19 @@ def about(request):
 #     return render(request, 'home/subscribe_form.html', {'form': form})
 
 
-from django.db.models import Q, Value, CharField
-from itertools import chain
+
+def contact(request):
+    """A view to handle the contact page and its form"""
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contact_success')  # Optional success page
+    else:
+        form = ContactForm()
+    return render(request, 'home/contact.html', {'form': form})
+
+
 
 def search_results(request):
     """

@@ -9,6 +9,7 @@ urlpatterns = [
     path('gallery/', views.gallery, name='gallery'),
     path('search_results/', views.search_results, name='search_results'),  # Search bar view
     path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
     # path('subscribe/', views.subscribe, name='subscribe'),
     # path('companies/', views.companies, name='companies'),
 ]

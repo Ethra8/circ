@@ -1,0 +1,11 @@
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Send"
+msgstr "Enviar"

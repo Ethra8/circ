@@ -1,9 +1,28 @@
 from django import forms
-from .models import CompanyContact
+
+from django.utils.translation import gettext_lazy as _
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
-from .models import CompanyContact, Subscription
+from .models import CompanyContact, Subscription, ContactRequest
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactRequest
+        fields = ['name', 'email', 'message']
+        labels = {
+            'name': _('Name'),
+            'email': _('Email'),
+            'message': _('Message'),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', _('Send')))
 
 
 class CompanyContactForm(forms.ModelForm):

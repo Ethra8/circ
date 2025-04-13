@@ -79,8 +79,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # LocaleMiddleware after SessionMiddleware and before CommonMIddleware to serve data in language set by user in browser
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  # LocaleMiddleware after CommonMiddleware to serve data in language set by user in browser
     'allauth.account.middleware.AccountMiddleware',  # allauth account
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -178,7 +178,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -191,8 +191,9 @@ USE_TZ = True
 
 LANGUAGES = [
     ('en', 'English'),
-    ('es', 'Español'),
-    ('fr', 'Français'),
+    ('ca', 'Catalan'),
+    ('es', 'Spanish'),
+    ('fr', 'French'),
 ]
 
 LOCALE_PATHS = [

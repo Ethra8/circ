@@ -52,7 +52,7 @@ a:hover {
     flex-grow: 1 !important; /* forces content area to grow and fill remaining space between nav and footer */
     min-height: calc(100vh - 252.8px) !important;  /* nav + main nav + footer height */
     max-height: fit-content !important;
-    background-color: rgba(0, 51, 102,0.4);
+    /* background-color: rgba(0, 51, 102,0.4); */
     padding: 0 0 120px;
 }
 
@@ -164,6 +164,16 @@ a:hover {
     padding-left: 7%;
 }
 
+#index h1 span {
+    letter-spacing: 5px;
+}
+
+#index h2 {
+    padding-left: 7%;
+    font-family: "Big Shoulders Display", sans-serif;
+    text-transform: uppercase;
+}
+
 #index>.row {
     background-color: rgba(0, 51, 102,0.8);
     padding: 48px 24px;
@@ -171,16 +181,6 @@ a:hover {
     border-radius: 5px;
 }
 
-/* header.container-fluid
-nav.container-fluid {
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: 0;
-    margin-right: 0;   
-    margin: 0;
-    width: 100% !important;
-    overflow-x: hidden; 
-} */
 
 /* Index Header*/
 .charmonman-title {
@@ -192,7 +192,7 @@ nav.container-fluid {
 
 .eg-font {
     font-family: "Big Shoulders Display", sans-serif;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .index-cta-button {
@@ -626,18 +626,19 @@ footer a:hover {
 } 
 
 #subscribe-link {
-    background-color: aqua;
+    background-color: aquamarine;
     color: #003366 !important;
     padding: 0.5rem;
     display: block;
     width: 100%;
     font-weight: 500;
+    border-radius: 5px;
     /* standard bootstrap btn transitions */
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 #subscribe-link:hover{
-    background-color: aquamarine;
+    background-color: #c1f7e3;
     color: #003366 !important;
     font-weight: 600;
 }
@@ -648,14 +649,14 @@ footer a:hover {
 } 
 
 .icons-social {
-    color: #c1f7e3;
-    font-size: 1.5rem;
+    color: white;
+    font-size: 2rem;
     padding: 15px;
     transition: all 0.15s linear;
 }
 
 .icons-social:hover {
-    color: white; 
+    color: aquamarine; 
     transform: scale(1.2);
     transform: rotate(4deg);
 }
