@@ -937,7 +937,7 @@ footer a:hover {
 }
 
 
-@media (max-width: 480px) { /* Small devices (phones) */
+@media (max-width: 575px) { /* Small devices (phones) */
     .gallery-container {
         grid-template-columns: 1fr; /* Single column layout */
     }
@@ -964,5 +964,10 @@ footer a:hover {
         padding-top: 50px;
     }
 
+    .list-row {
+        padding: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
 
 }
