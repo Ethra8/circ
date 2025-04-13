@@ -24,7 +24,7 @@
                 <div class="row list-row">
                     {% for taller in tallers %}
                         <div class="col-12 col-md-6 col-lg-4 mb-4">
-                            <div class="card h-100">
+                            <div class="card h-100 mb-5">
                                 {% if taller.image %}
                                     <a href="{% url 'tallers:taller_details' taller.id %}">
                                         <div class="card-img-top-container">
@@ -44,7 +44,7 @@
                             
                         </div>
                     {% empty %}
-                        <p class="text-white">No tenemos ningún taller programado por ahora. Vuelve en un par de días, o <a href="{}">suscríbete a nuestra newsletter</a> para estar al día de cualquier novedad, y recibir alguna que otra oferta!</p>
+                        <p class="text-white">No tenemos ningún taller programado por ahora. Vuelve en un par de días, o <a href="{}">suscríbete a nuestra newsletter</a> para estar al día de cualquier novedad, o incluso recibir alguna que otra oferta!</p>
                     {% endfor %}
                 </div>
             </div>

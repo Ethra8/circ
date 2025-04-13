@@ -898,6 +898,14 @@ footer a:hover {
         margin-right: 0 !important;
     }
 
+    #show_list,
+    #taller_list,
+    #search_results {
+        padding-left: 0; 
+        padding-right: 0;   
+        margin-top: 0;
+    }
+
     #show_list h1,
     #taller_list h1,
     #search_results h1 {
