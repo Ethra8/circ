@@ -23,8 +23,8 @@
             <div>
                 <div class="row list-row">
                     {% for taller in tallers %}
-                        <div class="col-12 col-md-6 col-lg-4 mb-4">
-                            <div class="card h-100 my-5">
+                        <div class="col-12 col-md-6 col-lg-4 my-5">
+                            <div class="card h-100">
                                 {% if taller.image %}
                                     <a href="{% url 'tallers:taller_details' taller.id %}">
                                         <div class="card-img-top-container">

@@ -365,9 +365,9 @@ nav.container-fluid {
 #taller-details,
 #taller_list,
 #search_results {
-    padding-left: 3rem !important;
-    padding-right: 3rem !important;
-    margin-top: 120px !important;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-top: 120px;
 }
 
 #show_details .fas:hover,
