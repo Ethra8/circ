@@ -33,6 +33,7 @@ class ShowAdmin(admin.ModelAdmin):
         'circ_category',
     )
     readonly_fields = (
+        'duration_display',
         'booked_participants',
         'users_missed_requests',
     )

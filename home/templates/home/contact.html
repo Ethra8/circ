@@ -26,7 +26,7 @@
         <div class="col-12 col-lg-7 contact-form pt-4">
             <form method="POST">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {% crispy form form.helper %}
             </form>
         </div>
     </div>
