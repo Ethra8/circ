@@ -1,53 +1,49 @@
-<div class="col-3 col-xs-3 my-auto py-1 py-lg-0 text-left d-inline d-lg-none">
-    <a href="{% url 'home:home' %}" aria-label="go to the home page">
-        <img class="logo" src="{{ MEDIA_URL }}logo_englishgrows.png" alt="logo">
-    </a>
-</div>
+{% load static %}
 
-<div class="ml-1 ml-sm-auto mr-3 mr-lg-0">
-    <ul class="d-block d-lg-none pl-0">
+<a href="{% url 'home:home' %}" class="logo" aria-label="go to the home page">Arte de Seda</a>
 
-        <li class="list-inline-item dropdown">
-            <a class="text-white nav-link d-block d-lg-none" href="#" id="user-options1" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <div class="text-center">
-                    <div><i class="fas fa-user fa-lg"></i></div>
-                    {% if request.user.is_authenticated %}
-                    <p class="my-0 text-white">{{ user.username }}</p>
-                    {% else %}
-                    <p class="my-0 text-white">Cuenta</p>
-                    {% endif %}
-                </div>
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                    <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4 mt-2" aria-label="add new show">Crear Evento</a>
-                    <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
-                    {% endif %}
-                <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
-                <a href="{% url 'shows:show_list' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Mis Talleres</a>
-                <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
-                {% else %}
-                <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
-                <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
-                {% endif %}
-              </div>
-        </li>
-        <li class="list-inline-item">
-            <a class="{% if grand_total %}text-info{% else %}text-black{% endif %} nav-link"
-            href="{% url 'bag:bag' %}" aria-label="go to the bag page to see items in bag and subtotals">
+<ul>
+
+    <li class="list-inline-item dropdown">
+        <a class="text-white nav-link d-block d-lg-none" href="#" id="user-options1" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
-                <div><i class="fas fa-shopping-bag fa-lg icon-nav"></i></div>
-                <p class="my-0 text-white turquoise-hover">
-                {% if grand_total %}
-                ${{ grand_total|floatformat:2 }}
+                <div><i class="fas fa-user fa-lg"></i></div>
+                {% if request.user.is_authenticated %}
+                <p class="my-0 text-white">{{ user.username }}</p>
                 {% else %}
-                Cesta
+                <p class="my-0 text-white">Cuenta</p>
                 {% endif %}
-                </p>
             </div>
-            </a>
-        </li>
-    </ul>
-</div>
+        </a>
+        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4 mt-2" aria-label="add new show">Crear Evento</a>
+                <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
+                {% endif %}
+            <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
+            <a href="{% url 'shows:show_list' %}" class="dropdown-item" aria-label="buy tickets for upcoming shows">Mis Talleres</a>
+            <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
+            {% else %}
+            <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
+            <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
+            {% endif %}
+            </div>
+    </li>
+    <li class="list-inline-item">
+        <a class="{% if grand_total %}text-info{% else %}text-black{% endif %} nav-link"
+        href="{% url 'bag:bag' %}" aria-label="go to the bag page to see items in bag and subtotals">
+        <div class="text-center">
+            <div><i class="fas fa-shopping-bag fa-lg icon-nav"></i></div>
+            <p class="my-0 text-white turquoise-hover">
+            {% if grand_total %}
+            ${{ grand_total|floatformat:2 }}
+            {% else %}
+            Cesta
+            {% endif %}
+            </p>
+        </div>
+        </a>
+    </li>
+</ul>

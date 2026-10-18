@@ -14,8 +14,8 @@
     <meta name="msapplication-TileColor" content="#003366">
     <meta name="theme-color" content="aquamarine">
     <meta name="description"
-        content="Circ is a site that offers circus services to B2B and B2C customers, offering great quality shows">
-    <meta name="keywords" content="circ, circo, circus, show, espectaculo, malabares, clown, trapecio, trapecista, contorsionista, acrobacia, contorsionismo">
+        content="Arte de Seda is a site that offers aerial silk performances, course and workshops to B2B and B2C customers, offering great quality services">
+    <meta name="keywords" content="seda aerea, aerial silk, circ, circo, circus, show, espectaculo, evento, acrobacia, telas circenses">
     <meta name="author" content="Edna Torres Munill">
     {% endblock %}
 
@@ -40,6 +40,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
@@ -66,112 +67,94 @@
     
     <header class="container-fluid fixed-top w-100 p-0">
 
-        <div id="topnav" class="row d-none d-lg-flex m-0">
-          <div class="col-3 col-lg-1 my-auto py-1 py-lg-0 text-center text-lg-left">
-            <a href="{% url 'home:home' %}" class="logo" aria-label="go to the home page">
-              Arte de Seda
-            </a>
-          </div>
-          
-          <div class="col-9 col-lg-11 my-auto py-1 py-lg-0">
-            <ul class="list-inline list-unstyled text-right my-0">
-
-              <li id="searchbar" class="list-inline-item">
-                <div class="d-none d-lg-block col-lg-12 my-auto py-1">
-                  <form action="{% url 'home:search_results' %}" method="GET">
-                      <div class="input-group w-100">
-                          <input type="text" class="form-control rounded-searchbar" name="q"
-                              placeholder="Busca en la web" role="searchbox">
-                          <div class="input-group-append">
-                              <button class="form-control btn btn-light rounded-searchicon" type="submit" aria-label="search">
-                                  <span class="icon">
-                                      <i class="fas fa-search"></i>
-                                  </span>
-                              </button>
-                          </div>
-                      </div>
-                  </form>
-                </div>  
-              </li>
-
-              <!-- <li class="list-inline-item">
-                {% if user.is_authenticated and user.is_superuser %}
-                <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
-                    <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Evento</a>
-                </div>
-                {% endif %}
-              </li>
-
-              <li class="list-inline-item">
-                {% if user.is_authenticated and user.is_superuser %}
-                <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
-                    <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
-                </div>
-                {% endif %}
-              </li> -->
-
-              <li class="list-inline-item">
-                  <div class="nav-link text-center">
-                    <a href="{% url 'tallers:taller_list' %}" class="mt-0 pt-0">   
-                      <div><i class="fas fa-solid fa-wand-magic-sparkles fa-lg icon-nav mb-0"></i></div> 
-                      <p class="my-0 text-white">Talleres</p>
-                    </a>
+        <div id="topnav">
+          <a href="{% url 'home:home' %}" class="logo" aria-label="go to the home page">Arte de Seda</a>
+         
+          <ul class="list-inline list-unstyled text-right my-0">
+            <li id="searchbar" class="list-inline-item">
+              <form action="{% url 'home:search_results' %}" method="GET">
+                <div class="input-group w-100">
+                  <input type="text" class="form-control rounded-searchbar" name="q" placeholder="Busca en la web" role="searchbox">
+                  <div class="input-group-append">
+                    <button class="form-control btn btn-light rounded-searchicon" type="submit" aria-label="search">
+                      <span class="icon"><i class="fas fa-search"></i></span>
+                    </button>
                   </div>
-              </li>
-
-              <li class="list-inline-item">
-                <div class="nav-link text-center">
-                  <a href="{% url 'shows:show_list' %}" class="mt-0 pt-0">
-                    <div><i class="fas fa-ticket fa-lg icon-nav mb-0"></i></div> 
-                    <p class="my-0 text-white">Eventos</p>
-                  </a>
                 </div>
-              </li>
+              </form>
+            </li>
 
-              <li class="list-inline-item dropdown">
-                <a class="nav-link pt-0 pb-0" href="#" id="user-options" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <div class="text-center">
-                    <div><i class="fas fa-user fa-lg icon-nav"></i></div> 
-                    {% if request.user.is_authenticated %}
-                    <p class="my-0 text-white">{{ user.username }}</p>
-                    {% else %}
-                    <p class="my-0 text-white">Cuenta</p>
-                    {% endif %}
-                  </div>
-                </a>
-                <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                  {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                    <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4 mt-2" aria-label="add new show">Crear Evento</a>
-                    <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
-                    {% endif %}
-                  <a href="{}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
-                  <a href="{% url 'shows:show_list' %}" class="dropdown-item" aria-label="go to my profile page">Mis Reservas</a>
-                  <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
+            <!-- <li class="list-inline-item">
+              {% if user.is_authenticated and user.is_superuser %}
+              <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
+                  <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Evento</a>
+              </div>
+              {% endif %}
+            </li>
+
+            <li class="list-inline-item">
+              {% if user.is_authenticated and user.is_superuser %}
+              <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
+                  <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
+              </div>
+              {% endif %}
+            </li> -->
+
+            <li class="list-inline-item nav-link">
+              <a href="{% url 'tallers:taller_list' %}" class="mt-0 pt-0">Talleres</a>
+            </li>
+
+            <li class="list-inline-item nav-link">
+              <a href="{% url 'shows:show_list' %}" class="mt-0 pt-0">Eventos</a>
+            </li>
+
+            <li class="list-inline-item nav-link">
+              <a href="{% url 'home:about' %}" class="mt-0 pt-0">Quienes somos</a>
+            </li>
+
+            <li class="list-inline-item dropdown">
+              <a class="nav-link" href="#" id="user-options" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <div>
+                  <i class="fas fa-user fa-lg icon-nav"></i>
+                  <!-- {% if request.user.is_authenticated %}
+                  <p class="my-0">{{ user.username }}</p>
                   {% else %}
-                  <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
-                  <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
-                  {% endif %}
+                  <p class="my-0">Cuenta</p>
+                  {% endif %} -->
                 </div>
-              </li>
+              </a>
+              <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                {% if request.user.is_authenticated %}
+                  {% if request.user.is_superuser %}
+                  <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4 mt-2" aria-label="add new show">Crear Evento</a>
+                  <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
+                  {% endif %}
+                <a href="{}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
+                <a href="{% url 'shows:show_list' %}" class="dropdown-item" aria-label="go to my profile page">Mis Reservas</a>
+                <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
+                {% else %}
+                <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
+                <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
+                {% endif %}
+              </div>
+            </li>
 
-              <li class="list-inline-item pr-5">
-                <a href="{% url 'bag:bag' %}" aria-label="go to your bag page to update quantity, and see subtotals">
-                  <div class="text-center">
-                    <div><i class="fas fa-shopping-bag fa-lg icon-nav"></i></div>
-                    <p class="my-0 text-white turquoise-hover">
-                      {% if grand_total %}
-                      ${{ grand_total|floatformat:2 }}
-                      {% else %}
-                      Cesta   
-                      {% endif %}
-                    </p>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
+            <li class="list-inline-item pr-5">
+              <a href="{% url 'bag:bag' %}" aria-label="go to your bag page to update quantity, and see subtotals">
+                <div class="text-center">
+                  <div><i class="fas fa-shopping-bag fa-lg icon-nav"></i></div>
+                  <!-- <p class="my-0">
+                    {% if grand_total %}
+                    ${{ grand_total|floatformat:2 }}
+                    {% else %}
+                    Cesta   
+                    {% endif %}
+                  </p> -->
+                </div>
+              </a>
+            </li>
+          </ul>
         </div>
 
         <!-- <div id="search-bar-base" class="row">
@@ -194,8 +177,7 @@
   
       
         {% block nav %}
-        <div class="row bg-custom-dark">
-          <nav class="mobile-nav navbar navbar-dark navbar-expand-lg w-100 pb-0">
+          <nav class="mobile-nav navbar navbar-dark navbar-expand-lg w-100">
               {% include 'includes/mobile_top_header.html' %}
               {% include 'includes/main_nav.html' %}
               <button class="navbar-toggler d-block d-lg-none ml-1 ml-sm-3 mr-2 mr-sm-4" type="button" data-toggle="collapse" data-target="#main-nav"
@@ -203,7 +185,6 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
           </nav>
-        </div>
         {% endblock %}
     </header>
 
@@ -227,7 +208,7 @@
     
 
     <div class="main-bg">
-      <main class="d-flex flex-grow-1 mt-5">
+      <main class="d-flex flex-grow-1">
       {% block content %}
       {% endblock %}
       </main>
