@@ -1,9 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
 
 {% block content %}
     <div id="search-results" class="container mt-4">
         <h1 class="display-4 text-white charmonman-title mb-3">Resultados</h1>
-        <p class="text-white mb-5">Hemos encontrado los siguientes resultados relacionados con tu búsqueda - ' <strong>{{ request.GET.q }}</strong> ':</p>
+        <p class="mb-5">Hemos encontrado los siguientes resultados relacionados con tu búsqueda - ' <strong>{{ request.GET.q }}</strong> ':</p>
 
         <ul class="mt-3">
             {% for result in results %}
@@ -32,7 +38,7 @@
                                 {{ result.name }}
                             </a>
                         </h3>
-                        <p class="text-lightgrey"><i class="fa-solid fa-person fa-lg mr-3"></i>{% if result.audience == 'adultos' %}Adultos{% elif result.audience == 'niños' %}Niños{% elif result.audience == 'todo_publico' %}Todos los Públicos{% endif %}</p>
+                        <p><i class="fa-solid fa-person fa-lg mr-3"></i>{% if result.audience == 'adultos' %}Adultos{% elif result.audience == 'niños' %}Niños{% elif result.audience == 'todo_publico' %}Todos los Públicos{% endif %}</p>
                         <p class="pb-3 pt-2 text-justify">
                             <a href="{% if result.type == 'show' %}{% url 'shows:show_details' result.id %}{% elif result.type == 'taller' %}{% url 'tallers:taller_details' result.id %}{% endif %}">
                                 {{ result.description }}

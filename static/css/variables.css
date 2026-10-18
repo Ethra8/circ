@@ -21,4 +21,7 @@
 
     --black-transparency: rgba(9, 9, 9, 0.72);
     --white-slight-transparency: rgba(255, 255, 255, 0.13);
+
+
+    --transitions-all: color .25s ease-in-out,background-color .25s ease-in-out,border-color .25s ease-in-out,box-shadow .25s ease-in-out,opacity 0.25s ease, transform 0.25s ease;
 }
