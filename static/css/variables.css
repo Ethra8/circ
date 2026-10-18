@@ -1,0 +1,24 @@
+:root {
+    --color-red-dark: #610c0c;
+    --color-red-dark-rgb: 97, 12, 12;
+
+    --color-red: #b72828;
+    --color-red-rgb: 183, 40, 40;
+
+    --color-red-bright: #d33333;
+    --color-red-bright-rgb: 211, 51, 51;
+
+    --color-white: #f1f1ee;
+    --color-white-rgb: 241, 241, 238;
+
+    --color-lightgrey: #c5c5c2;
+    --color-muted: #929292;
+    --color-darkgrey: #777;
+
+    --color-black: #141414;
+    --color-black-rgb: 20, 20, 20;
+
+
+    --black-transparency: rgba(9, 9, 9, 0.72);
+    --white-slight-transparency: rgba(255, 255, 255, 0.13);
+}
