@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- SEO -->
     <meta name="msapplication-TileColor" content="#003366">
-    <meta name="theme-color" content="aquamarine">
+    <meta name="theme-color" content="rgb(251, 175, 85)">
     <meta name="description"
         content="Arte de Seda is a site that offers aerial silk performances, course and workshops to B2B and B2C customers, offering great quality services">
     <meta name="keywords" content="seda aerea, aerial silk, circ, circo, circus, show, espectaculo, evento, acrobacia, telas circenses">
@@ -101,7 +101,7 @@
             </li> -->
 
             <li class="list-inline-item nav-link">
-              <a href="{% url 'tallers:taller_list' %}" class="mt-0 pt-0">Talleres</a>
+              <a href="{% url 'tallers:taller_list' %}" class="mt-0 pt-0">Cursos & Talleres</a>
             </li>
 
             <li class="list-inline-item nav-link">
@@ -112,6 +112,10 @@
               <a href="{% url 'home:about' %}" class="mt-0 pt-0">Quienes somos</a>
             </li>
 
+            <li class="list-inline-item nav-link">
+              <a href="{% url 'home:contact' %}" class="mt-0 pt-0">Contacto</a>
+            </li>
+            
             <li class="list-inline-item dropdown">
               <a class="nav-link" href="#" id="user-options" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -229,8 +233,8 @@
           <a href="https://www.instagram.com" target= "_blank" aria-label="go to instagram site"><i class="fab fa-instagram-square ms-3 icons-social"></i></a>
           <a href="https://www.youtube.com" target= "_blank" aria-label="go to youtube site"><i class="fab fa-youtube-square ms-3 icons-social"></i></a>
       </p>
-      <p class="m-0 mt-3 text-center text-white">{% block copyright %}© Copyright 2025 Circ Tak Tik{% endblock copyright %}</p>
-      <p class="m-0 mt-4 mb-2 text-center text-lg-right text-gray small">{% block developer %}Software Development by Edna T. Munill{% endblock developer %}</p>
+      <p class="m-0 mt-3 text-center text-white">{% block copyright %}© Copyright 2025 Edna T.Munill{% endblock copyright %}</p>
+      <p class="m-0 mt-4 mb-2 text-center text-lg-right text-white">{% block developer %}Software Development by Edna T. Munill{% endblock developer %}</p>
       
   
     </footer>

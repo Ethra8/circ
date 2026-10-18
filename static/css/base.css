@@ -14,14 +14,7 @@ body {
     flex-direction: column;  
 }
 
-footer {
-    margin-top: 60px;
-}
-
-a {
-    text-decoration: none !important;
-}
-
+a,
 a:hover {
     text-decoration: none !important;
 }
@@ -96,7 +89,7 @@ a:hover {
 a.logo {
     font-family: "Comforter", cursive;
     text-decoration: none;
-    font-size: 1.9em;
+    font-size: 1.2em;
     padding-left: .5em;
     color: var(--color-white);
     display: flex;
@@ -105,46 +98,51 @@ a.logo {
     transform: translateY(6px);
 }
 
-#searchbar {
-    /* top: -18px; */
+/* #searchbar {
     position: relative;
-    padding: .15em;
-}
+    padding: .15em .25em;
+} */
 
 #topnav input[type="text"] {
     font-size: 1.15em;
     line-height: 1;
-    width: 180px;
+    width: 230px;
+    border-radius: 999px;
+    border-color: var(--color-black);
+    z-index: 1;
+    padding: 0 1.25rem;
 }
 
 #topnav input::placeholder,
 .mobile-nav input::placeholder {
     color: rgba(34, 34, 34, 0.9);
     font-family: inherit;
-    /* font-size: 1.4em; */
     opacity: 1;
 }
 
 #searchbar .rounded-searchicon {
-    background-color: rgba(253, 224, 143, 0.9);
+    background-color: rgb(251, 175, 85);
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    border-color: var(--color-black);
+    margin-left: -1.15em;
+    width: 42px;
+    z-index: 2;
 }
+
 #searchbar .rounded-searchbar,
 #searchbar .rounded-searchicon {
     height: 42px;
 }
 
-ul.list-inline {
+#topnav ul,
+.mobile-nav ul {
     display: flex;
     gap: 0;
     flex-wrap: wrap;
     align-items: center;
     justify-content: end;
 }
-
-/* .list-inline-item {
-    padding: 0;
-} */
-
 
 /* .btn-add-event,
 .btn-custom-teal {
@@ -153,31 +151,31 @@ ul.list-inline {
     color: white;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
-    border: outset 2px aquamarine;
+    border: outset 2px rgb(251, 175, 85);
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 } */
-
-.nav-link {
-    cursor: pointer;
-}
 
 .nav-link a,
 .mobile-menu.mobile-menu a {
     font-family: "Zen Loop", cursive;    
     text-decoration: none;
     font-size: 1.3em;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     color: var(--color-white);
     padding: 0.1em .5em;
     transition: all 0.4s ease;
-    border-color: rgb(253, 224, 143);
+    border-color: rgb(251, 175, 85);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .nav-link a:hover {
-    border-bottom: 2px solid rgb(253, 224, 143);
+    border-bottom: 2px solid rgb(251, 175, 85);
     /* border-top: 1px solid rgb(253, 224, 143); */
     /* color: rgb(251, 175, 85); */
     /* border-radius: 999px; */
-    /* background-color: rgba(20, 25, 25, 0.4); */
+    font-weight: 600;
     margin-bottom: 4px;
     padding: 0.3em .5em 0.1em;
     width: fit-content;
@@ -262,7 +260,7 @@ ul.list-inline {
 }
 
 .index-cta-button {
-    background-color: aquamarine;
+    background-color: rgb(251, 175, 85);
     color: #003366;
     min-width: 260px;
     font-weight: 600;
@@ -350,7 +348,7 @@ ul.list-inline {
 /* SHOWS_LIST */
 
 .show {
-    /* border: 1px solid aquamarine; */
+    /* border: 1px solid rgb(251, 175, 85); */
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -468,7 +466,7 @@ a.return-prev-page:hover {
 #show-details h2,
 #taller-details h2 {
     font-size: 2rem;
-    color: aquamarine;
+    color: rgb(251, 175, 85);
 }
 
 #show-details h3,
@@ -496,7 +494,7 @@ a.return-prev-page:hover {
 
 #show_list p a,
 #taller_list p a {
-    color: aquamarine;
+    color: rgb(251, 175, 85);
 }
 
 #show_list p a:hover,
@@ -585,7 +583,7 @@ a.return-prev-page:hover {
     color: #003366;
     font-size: 2.5rem;
     text-align: end;
-    background-color: aquamarine;
+    background-color: rgb(251, 175, 85);
     padding-right: 21px;
     border-radius: 5px;
     max-width: 1208px;
@@ -636,7 +634,7 @@ a.return-prev-page:hover {
 }
 
 #search-results h3 a {
-    color: aquamarine !important;
+    color: rgb(251, 175, 85) !important;
 }
 
 #search-results h3 a:hover {
@@ -649,7 +647,7 @@ a.return-prev-page:hover {
 }
 
 #search-results li hr {
-    border: 1px solid aquamarine;
+    border: 1px solid rgb(251, 175, 85);
     margin: 15px auto !important;
     padding: 15px auto !important;
     background-color: rgba(0, 51, 102,0) !important;
@@ -661,7 +659,7 @@ a.return-prev-page:hover {
 
 .footer {
     bottom: 0;
-    background-color: rgba(0, 51, 102,0.8);
+    background-color: rgba(10, 10, 10, .85);
     width: 100%;
     padding: 17px;
     position: relative;
@@ -671,28 +669,28 @@ a.return-prev-page:hover {
 }
 
 footer a {
-    color: #fff !important;
+    color: var(--color-white);
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 450;
+    font-size: 1.6rem;
+    font-weight: 500;
     margin: 14px 7px;
+    letter-spacing: 0.04em;
 }
 
 footer a:hover {
-    color: aquamarine !important;
+    color: rgb(251, 175, 85);
     text-decoration: none;
-    /* standard bootstrap btn transitions */
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    font-weight: 600;
+    transition: all .3s ease;
 }
 
 #subscribe-link a {
-    color: #fff !important;
-    /* standard bootstrap btn transitions */
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: var(--color-white);
+    transition: all .3s ease;
 } 
 
 #subscribe-link {
-    background-color: aquamarine;
+    background-color: rgba(var(--color-white-rgb), 0.9);
     color: #003366 !important;
     padding: 0.5rem;
     display: block;
@@ -704,8 +702,8 @@ footer a:hover {
 }
 
 #subscribe-link:hover{
-    background-color: #c1f7e3;
-    color: #003366 !important;
+    background-color: rgb(251, 175, 85);
+    color: var(--color-black);
     font-weight: 600;
 }
 
@@ -722,7 +720,7 @@ footer a:hover {
 }
 
 .icons-social:hover {
-    color: aquamarine; 
+    color: rgb(251, 175, 85); 
     transform: scale(1.2);
     transform: rotate(4deg);
 }
@@ -756,7 +754,7 @@ footer a:hover {
     color: white;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
-    border: outset 2px aquamarine;
+    border: outset 2px rgb(251, 175, 85);
     /* standard bootstrap btn transitions */
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -796,11 +794,11 @@ footer a:hover {
     width: 100%;
     /* max-width: 320px;  */
     font-size: 1.1rem;
-    background: aquamarine;
+    background: rgb(251, 175, 85);
     color: #003366 !important;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
-    border: outset 2px aquamarine;
+    border: outset 2px rgb(251, 175, 85);
     /* standard bootstrap btn transitions */
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
