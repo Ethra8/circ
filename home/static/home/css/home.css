@@ -1,6 +1,6 @@
 body {
     position: relative;
-    background-color: rgba(10, 10, 10, 0.75);
+    /* background-color: rgba(10, 10, 10, 0.75); */
 }
 
 body::before {
@@ -12,11 +12,11 @@ body::before {
     height: 100lvh;
     background: 
         linear-gradient(
-            rgba(0, 0, 0, 0.45),
-            rgba(0, 0, 0, 0.65)
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.35)
         ),
         url("../images/home/niebla_ambar.png") top center repeat;
-    /* background-size: cover; */
+    background-size: cover;
     z-index: -1;
 }
 
@@ -24,29 +24,35 @@ body::before {
 /* SEARCH RESULTS PAGE ************************************************** */
 #search-results {
     margin-top: 120px !important;
-    padding: 60px;
+    padding: 4%;
     background: 
         linear-gradient(
-            rgba(0, 0, 0, 0.45),
-            rgba(0, 0, 0, 0.65)
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.35)
         );
     border-radius: 5px;
     font-family: "Zen Loop", sans-serif;
 }
 
+#search-results h1 {
+    color: var(--color-white);
+}
+
 #search-results ul {
-    list-style: none; /* Removes bullet points */
-    padding: 0; /* Optional: Removes default padding */
-    margin: 0; /* Optional: Removes default margin */
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #search-results li {
-    background-color: rgba(0, 51, 102, 0.8);
+    background-color: rgba(var(--color-white-rgb), 0.9);
     padding: 48px;
+    font-size: 1.4em;
+    color: var(--color-black);
 }
 
 #search-results h2 {
-    color: antiquewhite !important;
+    color: var(--color-white-rgb) !important;
     font-family: "Zen Loop", sans-serif;
     font-size: 2rem;
     padding-bottom: 20px;
@@ -61,11 +67,11 @@ body::before {
 }
 
 #search-results h3 a {
-    color: rgb(251, 175, 85) !important;
+    color: var(--color-yellow) !important;
 }
 
 #search-results h3 a:hover {
-    color: rgba(251, 175, 85, 0.8);
+    color: rgba(var(--color-yellow-rgb), 0.8);
 }
 
 #search-results p {
@@ -75,11 +81,18 @@ body::before {
 }
 
 #search-results li hr {
-    border: 1px solid rgb(251, 175, 85);
+    border: 1px solid var(--color-yellow);
     margin: 15px auto !important;
     padding: 15px auto !important;
-    background-color: rgba(0, 51, 102,0) !important;
+    background-color: rgba(var(--color-yellow-rgb), 0.8) !important;
 
+}
+
+
+/* FOOTER **************************************************/
+.footer {
+    background-color: rgba(10, 10, 10, .25);
+    backdrop-filter: blur(4px);
 }
 
 

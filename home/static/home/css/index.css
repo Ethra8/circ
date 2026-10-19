@@ -21,7 +21,7 @@ body::before {
         url("../images/home/niebla_ambar.png") top center repeat; */
     background:
         url("../images/home/acrobata_entre_humo_y_terciopelo_rojizo_mirrored.png")
-        top -200px left / cover no-repeat;
+        bottom left / cover no-repeat;
     /* background-size: cover; */
     z-index: -1;
 }
@@ -37,7 +37,7 @@ body::before {
 }
 
 .nav-links a:hover {
-    border-bottom: 2px solid rgba(251, 175, 85);
+    border-bottom: 2px solid rgba(var(--color-yellow-rgb));
     border-radius: 99px;
     margin-bottom: 4px;
     padding-bottom: 0.1em;
@@ -156,7 +156,7 @@ body::before {
     padding: 1em 0 0 1em;    
     text-align: right;
     font-family: "Zen Loop", cursive;
-    font-size: clamp(2.3rem, 3vw, 3rem);
+    font-size: clamp(2.3rem, 3vw, 2.8rem);
     font-weight: 400;
     line-height: 0.95;
     letter-spacing: 0.05em;

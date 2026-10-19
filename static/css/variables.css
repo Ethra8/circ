@@ -18,6 +18,9 @@
     --color-black: #141414;
     --color-black-rgb: 20, 20, 20;
 
+    --color-yellow: #fbaf55;
+    --color-yellow-rgb: 251, 175, 85;
+
 
     --black-transparency: rgba(9, 9, 9, 0.72);
     --white-slight-transparency: rgba(255, 255, 255, 0.13);

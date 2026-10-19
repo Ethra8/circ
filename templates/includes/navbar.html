@@ -1,0 +1,70 @@
+<nav class="navbar navbar-dark">
+    <a href="{% url 'home:home' %}" class="navbar-brand logo" aria-label="Ir a la página de inicio">Arte de Seda</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+        aria-controls="main-nav" aria-expanded="false" aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ml-auto align-items-lg-center">
+            <li class="nav-item">
+                <a href="{% url 'tallers:taller_list' %}" class="nav-link">Cursos & Talleres</a>
+            </li>
+            <span class="text-white">·</span>
+            <li class="nav-item">
+                <a href="{% url 'shows:show_list' %}" class="nav-link">Eventos</a>
+            </li>
+            <span class="text-white">·</span>
+            <li class="nav-item">
+                <a href="{% url 'home:about' %}" class="nav-link">Quienes somos</a>
+            </li>
+            <span class="text-white">·</span>
+            <li class="nav-item">
+                <a href="{% url 'home:contact' %}" class="nav-link">Contacto</a>
+            </li>
+        </ul>
+
+        <form action="{% url 'home:search_results' %}" method="GET" class="navbar-search my-2 my-lg-0 ml-lg-3">
+            <div class="input-group">
+                <input type="search" class="form-control rounded-searchbar" name="q" placeholder="Busca en la web" aria-label="Buscar">
+                <div class="input-group-append">
+                    <button class="btn btn-light rounded-searchicon" type="submit" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <ul class="navbar-nav align-items-lg-center ml-lg-3">
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="user-options" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" aria-label="Cuenta">
+                    <i class="fas fa-user icon-nav"></i>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right border-0" aria-labelledby="user-options">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'shows:add_show' %}" class="dropdown-item">Crear Evento</a>
+                            <a href="{% url 'tallers:add_taller' %}" class="dropdown-item">Crear Taller</a>
+                            <div class="dropdown-divider"></div>
+                        {% endif %}
+                        <a href="#" class="dropdown-item">Mi Perfil</a>
+                        <a href="{% url 'shows:show_list' %}" class="dropdown-item">Mis Reservas</a>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item">Salir</a>
+                    {% else %}
+                        <a href="{% url 'account_signup' %}" class="dropdown-item">Registrarme</a>
+                        <a href="{% url 'account_login' %}" class="dropdown-item">Iniciar sesión</a>
+                    {% endif %}
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="{% url 'bag:bag' %}" class="nav-link" aria-label="Ver cesta">
+                    <i class="fas fa-shopping-bag icon-nav"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

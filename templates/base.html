@@ -6,7 +6,6 @@
 <!doctype html>
 <html lang="es">
   <head>
-    {% block meta %}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,14 +16,12 @@
         content="Arte de Seda is a site that offers aerial silk performances, course and workshops to B2B and B2C customers, offering great quality services">
     <meta name="keywords" content="seda aerea, aerial silk, circ, circo, circus, show, espectaculo, evento, acrobacia, telas circenses">
     <meta name="author" content="Edna Torres Munill">
-    {% endblock %}
 
     {% block extra_meta %}
     {% endblock %}
 
     <link rel="manifest" href="{}">
 
-    {% block corecss %}
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,20 +39,17 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{% static 'css/variables.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 
     {% block extra_css %}
     {% endblock %}
 
-    {% block corejs %}
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4K7D8g8xKVxAvxY2u1nA1VCRk=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/19349c9d8e.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
-    {% endblock %}
 
     {% block extra_js %}
     {% endblock %}
@@ -65,134 +59,12 @@
   
   <body>
     
-    <header class="container-fluid fixed-top w-100 p-0">
-
-        <div id="topnav">
-          <a href="{% url 'home:home' %}" class="logo" aria-label="go to the home page">Arte de Seda</a>
-         
-          <ul class="list-inline list-unstyled text-right my-0">
-            <li id="searchbar" class="list-inline-item">
-              <form action="{% url 'home:search_results' %}" method="GET">
-                <div class="input-group w-100">
-                  <input type="text" class="form-control rounded-searchbar" name="q" placeholder="Busca en la web" role="searchbox">
-                  <div class="input-group-append">
-                    <button class="form-control btn btn-light rounded-searchicon" type="submit" aria-label="search">
-                      <span class="icon"><i class="fas fa-search"></i></span>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </li>
-
-            <!-- <li class="list-inline-item">
-              {% if user.is_authenticated and user.is_superuser %}
-              <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
-                  <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Evento</a>
-              </div>
-              {% endif %}
-            </li>
-
-            <li class="list-inline-item">
-              {% if user.is_authenticated and user.is_superuser %}
-              <div class="my-auto py-1 py-lg-0 mb-4 mb-md-0 pl-md-0">
-                  <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
-              </div>
-              {% endif %}
-            </li> -->
-
-            <li class="list-inline-item nav-link">
-              <a href="{% url 'tallers:taller_list' %}" class="mt-0 pt-0">Cursos & Talleres</a>
-            </li>
-
-            <li class="list-inline-item nav-link">
-              <a href="{% url 'shows:show_list' %}" class="mt-0 pt-0">Eventos</a>
-            </li>
-
-            <li class="list-inline-item nav-link">
-              <a href="{% url 'home:about' %}" class="mt-0 pt-0">Quienes somos</a>
-            </li>
-
-            <li class="list-inline-item nav-link">
-              <a href="{% url 'home:contact' %}" class="mt-0 pt-0">Contacto</a>
-            </li>
-            
-            <li class="list-inline-item dropdown">
-              <a class="nav-link" href="#" id="user-options" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <div>
-                  <i class="fas fa-user fa-lg icon-nav"></i>
-                  <!-- {% if request.user.is_authenticated %}
-                  <p class="my-0">{{ user.username }}</p>
-                  {% else %}
-                  <p class="my-0">Cuenta</p>
-                  {% endif %} -->
-                </div>
-              </a>
-              <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                {% if request.user.is_authenticated %}
-                  {% if request.user.is_superuser %}
-                  <a href="{% url 'shows:add_show' %}" class="btn btn-add-event rounded-pill mb-4 mt-2" aria-label="add new show">Crear Evento</a>
-                  <a href="{% url 'tallers:add_taller' %}" class="btn btn-add-event rounded-pill mb-4" aria-label="add new show">Crear Taller</a>
-                  {% endif %}
-                <a href="{}" class="dropdown-item" aria-label="go to my profile page">Mi Perfil</a>
-                <a href="{% url 'shows:show_list' %}" class="dropdown-item" aria-label="go to my profile page">Mis Reservas</a>
-                <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="go to the log out page">Salir</a>
-                {% else %}
-                <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="go to the account registration page">Registrarme</a>
-                <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="go to the login page">Iniciar sesión</a>
-                {% endif %}
-              </div>
-            </li>
-
-            <li class="list-inline-item pr-5">
-              <a href="{% url 'bag:bag' %}" aria-label="go to your bag page to update quantity, and see subtotals">
-                <div class="text-center">
-                  <div><i class="fas fa-shopping-bag fa-lg icon-nav"></i></div>
-                  <!-- <p class="my-0">
-                    {% if grand_total %}
-                    ${{ grand_total|floatformat:2 }}
-                    {% else %}
-                    Cesta   
-                    {% endif %}
-                  </p> -->
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- <div id="search-bar-base" class="row">
-          <div class="d-none d-lg-block col-12 {% if user.is_authenticated and user.is_superuser %}col-lg-2{% else %}col-lg-4{% endif %} my-auto py-2 py-lg-0 mb-4 mb-md-0">
-            <form action="{% url 'home:search_results' %}" method="GET">
-                <div class="input-group w-100">
-                    <input type="text" class="form-control rounded-searchbar" name="q"
-                        placeholder="Busca en la web" role="searchbox">
-                    <div class="input-group-append">
-                        <button class="form-control btn btn-light rounded-searchicon" type="submit" aria-label="search">
-                            <span class="icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-          </div>  
-        </div> -->
-  
-      
+    <header class="fixed-top w-100">
         {% block nav %}
-          <nav class="mobile-nav navbar navbar-dark navbar-expand-lg w-100">
-              {% include 'includes/mobile_top_header.html' %}
-              {% include 'includes/main_nav.html' %}
-              <button class="navbar-toggler d-block d-lg-none ml-1 ml-sm-3 mr-2 mr-sm-4" type="button" data-toggle="collapse" data-target="#main-nav"
-                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-          </nav>
+            {% include 'includes/navbar.html' %}
         {% endblock %}
     </header>
 
-    <div class="overlay1"></div>
     {% if messages %}
     <div class="messages">
       {% for message in messages %}
@@ -235,24 +107,7 @@
       </p>
       <p class="m-0 mt-3 text-center text-white">{% block copyright %}© Copyright 2025 Edna T.Munill{% endblock copyright %}</p>
       <p class="m-0 mt-4 mb-2 text-center text-lg-right text-white">{% block developer %}Software Development by Edna T. Munill{% endblock developer %}</p>
-      
-  
     </footer>
-
-    <script>
-      // Ensure alert disappears fully once -close is clicked
-      document.addEventListener('DOMContentLoaded', function () {
-          document.querySelectorAll('.alert .close').forEach(function (closeButton) {
-              closeButton.addEventListener('click', function () {
-                  const alert = closeButton.closest('.alert');
-                  if (alert) {
-                      alert.classList.add('fade');
-                      setTimeout(() => alert.remove(), 300); // Remove from DOM after fade-out
-                  }
-              });
-          });
-      });
-    </script>
 
     {% block postloadjs %}
     {% endblock %}

@@ -253,3 +253,24 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT', '')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', '')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')  # Use app-specific password or environment variable
+
+
+SUMMERNOTE_CONFIG = {
+    'css': (
+        'https://fonts.googleapis.com/css2?family=Comforter&family=Allison&family=Explora&family=Zen+Loop:ital@0;1&display=swap',
+    ),
+    'summernote': {
+        'fontNames': [
+            'Arial',
+            'Comforter',
+            'Allison',
+            'Zen Loop',
+        ],
+        'fontNamesIgnoreCheck': [
+            'Comforter',
+            'Allison',
+            'Zen Loop',
+        ],
+        'defaultFontName': 'Zen Loop',
+    },
+}
