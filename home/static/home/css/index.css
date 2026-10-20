@@ -6,25 +6,25 @@ body {
     background-color: rgba(10, 10, 10, 0.75);
 }
 
-body::before {
+/* body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100lvh;
-    /* background: 
+    background: 
         linear-gradient(
             rgba(0, 0, 0, 0.45),
             rgba(0, 0, 0, 0.65)
         ),
-        url("../images/home/niebla_ambar.png") top center repeat; */
+        url("../images/home/niebla_ambar.png") top center repeat;
     background:
         url("../images/home/acrobata_entre_humo_y_terciopelo_rojizo_mirrored.png")
         bottom left / cover no-repeat;
-    /* background-size: cover; */
+    background-size: cover;
     z-index: -1;
-}
+} */
 
 /* .nav-links a,
 .mobile-menu.mobile-menu a {
@@ -76,10 +76,12 @@ body::before {
 .index-page h1 {
     font-family: "Comforter", cursive;
     font-size: clamp(4em, 14vw, 9em);
+    text-align: right;
     line-height: 0.6;
     font-weight: 500;
-    width: max-content;
+    width: 70%;
     margin: 0 0 0 auto;
+    max-width: fit-content;
 }
 
 .index-page h1,
@@ -99,8 +101,10 @@ body::before {
 }
 
 .index-page h1 span {
-    margin-left: 32%;
-    margin-right: 0;
+    margin-bottom: .3em;
+    display: block;
+    margin-left: -40%;
+    text-align: left;
 }
 
 /* .hero-lead span:nth-of-type(2) {
@@ -124,8 +128,8 @@ body::before {
     display: flex;
     align-items: center;
     background:
-        url("../images/home/acrobata_entre_humo_y_terciopelo_rojizo_mirrored.png")
-        top left / cover no-repeat;
+        url("../../images/actividad-artistas-niños-equilibrio-trapecio.webp")
+        top 60% left / cover no-repeat;
     overflow: hidden;
 }
 
@@ -135,10 +139,10 @@ body::before {
     background:
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, 0.12) 0%,
-            rgba(0, 0, 0, 0.22) 38%,
-            rgba(0, 0, 0, 0.42) 72%,
-            rgba(0, 0, 0, 0.72) 100%
+            rgba(0, 0, 0, 0.22) 0%,
+            rgba(196, 147, 41, 0.12) 38%,
+            rgba(196, 147, 41, 0.22) 72%,
+            rgba(0, 0, 0, 0.76) 100%
         );
 }
 
@@ -148,7 +152,7 @@ body::before {
     z-index: 1;
     width: min(100%, 1600px);
     margin: 0 auto;
-    padding: 55vh 10% 7vh;
+    padding: 55vh 9vw 7vh;
 }
 
 .hero-lead {
@@ -428,6 +432,10 @@ body::before {
    ========================================================= */
 
 @media (max-width: 1099.98px) {
+    .hero {
+        background-position: center left 10%;
+    }
+
     .nav-links {
         display: none;
     }
@@ -494,12 +502,6 @@ body::before {
    ========================================================= */
 
 @media (max-width: 760px) {
-
-    .hero {
-        background:
-            url("../images/home/acrobata_entre_humo_y_terciopelo_rojizo_portrait.png")
-            top center / cover no-repeat;
-    }
 
     .hero-overlay {
         background: 
@@ -605,4 +607,12 @@ body::before {
     .event-final-cta-content {
         padding: 55px 22px;
     }
+}
+
+
+@media (max-width: 476.98px) {
+    .hero {
+        background-position: top left 10%;
+    }
+
 }
