@@ -82,6 +82,8 @@ body {
     width: 70%;
     margin: 0 0 0 auto;
     max-width: fit-content;
+    color: var(--color-yellow);
+    text-shadow: 2px 2px 6px #71338d;
 }
 
 .index-page h1,
@@ -128,8 +130,7 @@ body {
     display: flex;
     align-items: center;
     background:
-        url("../../images/actividad-artistas-niños-equilibrio-trapecio.webp")
-        top 60% left / cover no-repeat;
+        url("../../images/actividad-artistas-niños-equilibrio-trapecio.webp")top 60% left / cover no-repeat;
     overflow: hidden;
 }
 
@@ -144,6 +145,14 @@ body {
             rgba(196, 147, 41, 0.22) 72%,
             rgba(0, 0, 0, 0.76) 100%
         );
+    z-index: -1;
+}
+
+.hero-overlay-cloud {
+    position: absolute;
+    inset: 0;
+    background: url("../images/home/cloud_transparency.png") top 28vh right -31vw / cover no-repeat;
+    z-index: 2;
 }
 
 .hero-content {
@@ -153,6 +162,7 @@ body {
     width: min(100%, 1600px);
     margin: 0 auto;
     padding: 55vh 9vw 7vh;
+    z-index: 3;
 }
 
 .hero-lead {
