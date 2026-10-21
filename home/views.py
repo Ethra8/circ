@@ -13,7 +13,7 @@ from shows.models import Show
 from tallers.models import Taller
 
 
-from .models import AboutSection, CompanyContact, Subscription, ContactRequest
+from .models import AboutSection, CompanyContact, Subscription, ContactRequest, GalleryImage
 from .forms import CompanyContactForm, SubscriptionForm, ContactForm
 
 
@@ -24,35 +24,8 @@ def index(request):
 
 
 def gallery(request):
-    """
-    Lists all images in the media/gallery folder and passes them to the template.
-    """
-    # Define the folder path
-    gallery_folder = os.path.join(settings.MEDIA_ROOT, 'gallery')
-
-    # Get the list of image file paths
-    image_extensions = ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp')
-    images = [
-        f'media/gallery/{file_name}'
-        for file_name in os.listdir(gallery_folder)
-        if file_name.lower().endswith(image_extensions)
-    ]
-
-    # Pass the image paths to the template
+    images = GalleryImage.objects.filter(is_active=True)
     return render(request, 'home/gallery.html', {'images': images})
-
-
-# def companies(request):
-#     """ A view to return the companies page with form"""
-
-#     form = CompanyContactForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, 'Your message has been sent successfully!')
-#         return redirect('companies')
-#     form = CompanyContactForm()
-
-#     return render(request, 'home/companies.html', {'form': form})
 
 
 def about(request):

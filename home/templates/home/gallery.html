@@ -2,15 +2,6 @@
 {% load static %}
 
 
-{% block page_header%}
-<div class="container header-container d-none">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
-
 {% block content %}
 <div></div>
 <div id="gallery" class="container h-100 w-100">
@@ -26,11 +17,12 @@
             <div class="my-5">
                 <div class="row">
                     <div class="gallery-container">
-                        {% for image in images %}
+                        {% for item in images %}
                             <div class="gallery-item">
-                                <a href="/{{ image }}" target="_blank">
-                                    <img src="/{{ image }}" alt="Gallery Image">
-                                </a>
+                                <img src="{{ item.image.url }}" alt="{{ item.alt_text|default:item.title }}">
+                                {% if item.caption %}
+                                    <p>{{ item.caption }}</p>
+                                {% endif %}
                             </div>
                         {% endfor %}
                     </div>
