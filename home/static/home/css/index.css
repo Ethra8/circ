@@ -75,7 +75,7 @@ body {
 
 .index-page h1 {
     font-family: "Comforter", cursive;
-    font-size: clamp(4em, 14vw, 9em);
+    font-size: clamp(4.3em, 10vw, 8em);
     text-align: right;
     line-height: 0.6;
     font-weight: 500;
@@ -83,7 +83,7 @@ body {
     margin: 0 0 0 auto;
     max-width: fit-content;
     color: var(--color-yellow);
-    text-shadow: 2px 2px 6px #71338d;
+    text-shadow: 2px 2px 6px #2f0242;
 }
 
 .index-page h1,
@@ -123,8 +123,7 @@ body {
 
 .hero {
     position: relative;
-    height: calc(100vh);
-    max-height: calc(100vh) !important;
+    min-height: 100vh;
     margin-top: 0;
     padding: 0 0 2em;
     display: flex;
@@ -166,12 +165,13 @@ body {
 }
 
 .hero-lead {
+    color: #2f0242;
     margin: 0;
     padding: 1em 0 0 1em;    
     text-align: right;
     font-family: "Zen Loop", cursive;
     font-size: clamp(2.3rem, 3vw, 2.8rem);
-    font-weight: 400;
+    font-weight: 600;
     line-height: 0.95;
     letter-spacing: 0.05em;
 }
@@ -398,9 +398,6 @@ body {
     min-height: 360px;
     display: flex;
     align-items: center;
-    /* background:
-        url("../images/gestion_eventos/publico-vintage-en-asientos-de-teatro.jpg")
-        center 58% / cover no-repeat; */
     overflow: hidden;
 }
 
@@ -511,7 +508,12 @@ body {
    MOBILE
    ========================================================= */
 
-@media (max-width: 760px) {
+@media (max-width: 767.98px) {
+    .hero {
+        background:
+            url("../../images/fins-aki_12_tablet.png") top 40% center / cover no-repeat;
+        overflow: hidden;
+    }
 
     .hero-overlay {
         background: 
@@ -621,8 +623,10 @@ body {
 
 
 @media (max-width: 476.98px) {
-    .hero {
-        background-position: top left 10%;
+    .hero-overlay-cloud {
+        position: absolute;
+        inset: 0;
+        background: url(../images/home/cloud_transparency.png) bottom -30vh center / cover no-repeat;
+        z-index: 2;
     }
-
 }
