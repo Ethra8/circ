@@ -19,12 +19,12 @@
     font-size: 1.2em;
     line-height: 1;
     color: var(--color-white);
-    transform: translateY(6px);
+    transform: translateY(3px);
     transition: var(--transitions-all);
 }
 
 .navbar-brand.logo:hover {
-    font-size: 1.3em;
+    color: var(--color-yellow);
 }
 
 .navbar .navbar-nav > .nav-item > .nav-link {

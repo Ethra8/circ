@@ -21,10 +21,7 @@ body::before {
     width: 100vw;
     height: 100lvh;
     background: 
-        linear-gradient(
-            rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.35)
-        ),
+        linear-gradient(rgb(245 202 58 / 25%), rgba(245, 202, 58, 0.35)),
         url("../images/niebla_ambar.png") top center repeat;
     background-size: cover;
     z-index: -1;
@@ -165,6 +162,17 @@ p {
 /* DETAILS PAGE GENERAL */
 .list-row {
     padding: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-row > div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.list-row .card-body {
+    padding-bottom: 0;
 }
 
 .details-frame {
@@ -252,7 +260,7 @@ p {
 
 .card-title {
     color: var(--color-black);
-    font-family: "Big Shoulders Display", sans-serif;
+    font-family: "Zen Loop", sans-serif;
     font-size: 2.5rem;
 }
 
@@ -429,7 +437,7 @@ a.return-prev-page:hover {
 }
 
 #bag-grand-total {
-    font-family: "Big Shoulders Display", sans-serif;
+    font-family: "Zen Loop", sans-serif;
     color: var(--color-black);
     font-size: 2.5rem;
     text-align: end;
@@ -556,7 +564,7 @@ footer a:hover {
 }
 
 .allauth-headings-custom {
-    font-family: "Big Shoulders Display", sans-serif;
+    font-family: "Zen Loop", sans-serif;
     font-weight: 500;
     color: var(--color-black);
     font-size: 3rem;

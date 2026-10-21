@@ -67,11 +67,11 @@ class Show(models.Model):
     ) 
     weekday_1 = models.CharField(max_length=9, choices=WEEKDAYS)  # Mandatory first weekday
     weekday_2 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Optional second weekday
-    weekday_3 = models.CharField(max_length=9, choices=WEEKDAYS)  # Mandatory first weekday
+    weekday_3 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Mandatory first weekday
     weekday_4 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Optional second weekday
-    weekday_5 = models.CharField(max_length=9, choices=WEEKDAYS)  # Mandatory first weekday
+    weekday_5 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Mandatory first weekday
     weekday_6 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Optional second weekday
-    weekday_7 = models.CharField(max_length=9, choices=WEEKDAYS)  # Mandatory first weekday
+    weekday_7 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True)  # Mandatory first weekday
 
     # Location fields
     location_name = models.CharField(
