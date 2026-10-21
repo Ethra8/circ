@@ -81,7 +81,7 @@
     display: flex;
     align-items: center;
     background:
-        url("../../images/actividad-artistas-niños-equilibrio-trapecio.webp")top 60% left / cover no-repeat;
+        url("../images/home/actividad-artistas-niños-equilibrio-trapecio.webp")top 60% left / cover no-repeat;
     overflow: hidden;
 }
 
