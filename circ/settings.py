@@ -56,7 +56,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.forms',
     'django_extensions',
+    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -287,3 +289,6 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# Tells django to look for widgets/translated_file_input.html in ROOT dir circ/
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
