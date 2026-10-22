@@ -49,3 +49,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+// controls widget to translate all form inputs like date/img upload
+document.addEventListener('change', (event) => {
+    const input = event.target;
+
+    if (!input.matches('.custom-file-field input[type="file"]')) return;
+
+    const container = input.closest('.custom-file-field');
+    const fileName = container.querySelector('.file-upload-name');
+
+    fileName.textContent = input.files.length
+        ? input.files[0].name
+        : fileName.dataset.empty;
+});

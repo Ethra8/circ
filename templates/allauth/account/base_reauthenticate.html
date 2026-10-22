@@ -1,0 +1,25 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Confirm Access" %}{% endblock %}
+
+{% block inner_content %}
+<h1 class="allauth-headings-custom">{% trans "Confirm Access" %}</h1>
+
+<p>{% blocktrans %}Please reauthenticate to safeguard your account.{% endblocktrans %}</p>
+
+{% block reauthenticate_content %}{% endblock %}
+
+{% if reauthentication_alternatives %}
+<hr>
+
+<h2 class="allauth-headings-custom">{% trans "Alternative options" %}</h2>
+
+<div class="reauthentication-alternatives">
+    {% for alt in reauthentication_alternatives %}
+        <a href="{{ alt.url }}" class="btn btn-custom rounded-pill mb-2">{{ alt.description }}</a>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

@@ -188,6 +188,7 @@ LANGUAGES = [
     ('fr', 'French'),
 ]
 
+# Custom translation
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
@@ -212,8 +213,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # This is the folder you're
 # Enable WhiteNoise for serving static files in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR / "media"
 
 # Required for Django Allauth
 SITE_ID = 1
@@ -228,17 +227,19 @@ LOGIN_REDIRECT_URL = '/'  # Redirect after login
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
 
 
-# Email settings
+# User Account settings
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Options: "none", "optional", "mandatory"
+ACCOUNT_CHANGE_EMAIL = True
+ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"  # Options: "username", "email", "username_email"
+# Extra Security layer
+ACCOUNT_REAUTHENTICATION_REQUIRED = True  # force user authentication before any account change
 ACCOUNT_USERNAME_REQUIRED = False  # Disable username field
 
 # Allauth templates customization (optional)
 ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/profile/'  # Redirect after signup (default)
 
-# Email backend for development (prints emails to the console)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Email settings (for production)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -248,7 +249,7 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', '')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')  # Use app-specific password or environment variable
 
-
+# Editor to edit About text in admin panel model
 SUMMERNOTE_CONFIG = {
     'css': (
         'https://fonts.googleapis.com/css2?family=Comforter&family=Allison&family=Explora&family=Zen+Loop:ital@0;1&display=swap',
@@ -269,7 +270,7 @@ SUMMERNOTE_CONFIG = {
     },
 }
 
-
+# AWS s3bucket storage
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')

@@ -1,4 +1,5 @@
 from django import forms
+from circ.widgets import TranslatedFileInput
 from .models import Taller
 
 class TallerForm(forms.ModelForm):
@@ -26,7 +27,8 @@ class TallerForm(forms.ModelForm):
             'location_city',
         ]
         widgets = {
-            'starting_date': forms.DateInput(attrs={'type': 'date'}),
+            'image': TranslatedFileInput(),
+            'starting_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),
             'starting_time': forms.TimeInput(attrs={'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'type': 'time'}),

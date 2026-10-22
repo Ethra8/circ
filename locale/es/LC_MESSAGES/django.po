@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-22 22:02+0200\n"
+"POT-Creation-Date: 2026-10-23 01:14+0200\n"
 "PO-Revision-Date: 2024-04-14 00:00+0000\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -152,7 +152,8 @@ msgstr "Tipo de audiencia"
 
 #: .\shows\models.py:87
 msgid "Specify whether the event is for children, adults, or all audiences."
-msgstr "Especifica si el evento es para peques, adultos, o para todo tipo de público"
+msgstr ""
+"Especifica si el evento es para peques, adultos, o para todo tipo de público"
 
 #: .\shows\models.py:90 .\tallers\models.py:109
 msgid "Adult ticket price"
@@ -224,7 +225,9 @@ msgstr "Código postal"
 
 #: .\shows\models.py:177 .\tallers\models.py:200
 msgid "Venue postcode (optional)"
-msgstr "Código postal del lugar, local o teatro donde se desarrolla el evento (opcional)"
+msgstr ""
+"Código postal del lugar, local o teatro donde se desarrolla el evento "
+"(opcional)"
 
 #: .\shows\models.py:180 .\tallers\models.py:204
 msgid "City"
@@ -284,11 +287,14 @@ msgstr "Número de plazas ya reservadas"
 
 #: .\tallers\models.py:97
 msgid "Number of users who requested a place after the workshop became full"
-msgstr "Número de usuarios que intentaron hacer una reserva antes de que el aforo del taller se completara"
+msgstr ""
+"Número de usuarios que intentaron hacer una reserva antes de que el aforo "
+"del taller se completara"
 
 #: .\tallers\models.py:105
 msgid "Specify whether the workshop is for children, adults, or all audiences."
-msgstr "Especifica si el taller es para peques, adultos o para todos los públicos"
+msgstr ""
+"Especifica si el taller es para peques, adultos o para todos los públicos"
 
 #: .\tallers\models.py:130
 msgid "Choose the circus category for the workshop"
@@ -325,6 +331,19 @@ msgstr "Cuenta inactiva"
 #: .\templates\allauth\account\account_inactive.html:9
 msgid "This account is inactive."
 msgstr "Esta cuenta está inactiva"
+
+#: .\templates\allauth\account\base_reauthenticate.html:5
+#: .\templates\allauth\account\base_reauthenticate.html:8
+msgid "Confirm Access"
+msgstr "Confirmar acceso"
+
+#: .\templates\allauth\account\base_reauthenticate.html:10
+msgid "Please reauthenticate to safeguard your account."
+msgstr "Vuelve a autenticarte para proteger tu cuenta."
+
+#: .\templates\allauth\account\base_reauthenticate.html:17
+msgid "Alternative options"
+msgstr "Opciones alternativas"
 
 #: .\templates\allauth\account\email.html:6
 msgid "E-mail Addresses"
@@ -367,7 +386,11 @@ msgstr "Advertencia"
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
 "an e-mail address so you can receive notifications, reset your password, etc."
-msgstr "Actualmente no hay ninguna dirección de correo electrónico asociada con esta cuenta. Es recomendable incluir una, para recibir el comprobante de una reserva, notificaciones, actualizar la contraseña, etc. - No enviamos correo comercial."
+msgstr ""
+"Actualmente no hay ninguna dirección de correo electrónico asociada con esta "
+"cuenta. Es recomendable incluir una, para recibir el comprobante de una "
+"reserva, notificaciones, actualizar la contraseña, etc. - No enviamos correo "
+"comercial."
 
 #: .\templates\allauth\account\email.html:49
 msgid "Add E-mail Address"
@@ -441,8 +464,8 @@ msgid ""
 "To confirm this is correct, go to %(activate_url)s"
 msgstr ""
 "Estás recibiendo este correo electrónico porque el usuario %(user_display)s "
-"ha utilizado tu dirección de correo electrónico para registrar una cuenta "
-"en %(site_domain)s.\n"
+"ha utilizado tu dirección de correo electrónico para registrar una cuenta en "
+"%(site_domain)s.\n"
 "\n"
 "Para confirmar que es correcto, accede a %(activate_url)s"
 
@@ -508,6 +531,7 @@ msgstr ""
 "correo electrónico perteneciente al usuario %(user_display)s."
 
 #: .\templates\allauth\account\email_confirm.html:20
+#: .\templates\allauth\account\reauthenticate.html:16
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -518,11 +542,11 @@ msgid ""
 "href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
 msgstr ""
 "Este enlace de confirmación de correo electrónico ha caducado o no es "
-"válido. <a href=\"%(email_url)s\">Solicita un nuevo correo de confirmación</a>."
+"válido. <a href=\"%(email_url)s\">Solicita un nuevo correo de confirmación</"
+"a>."
 
 #: .\templates\allauth\account\login.html:7
-#: .\templates\allauth\account\login.html:42
-#: .\templates\allauth\base.html:34
+#: .\templates\allauth\account\login.html:42 .\templates\allauth\base.html:34
 #: .\templates\allauth\socialaccount\login.html:4
 msgid "Sign In"
 msgstr "Iniciar sesión"
@@ -536,8 +560,8 @@ msgid ""
 "for a %(site_name)s account and sign in below:"
 msgstr ""
 "Inicia sesión con una\n"
-"de tus cuentas externas. También puedes <a href=\"%(signup_url)s\">"
-"registrarte</a>\n"
+"de tus cuentas externas. También puedes <a "
+"href=\"%(signup_url)s\">registrarte</a>\n"
 "para crear una cuenta en %(site_name)s e iniciar sesión a continuación:"
 
 #: .\templates\allauth\account\login.html:24
@@ -577,7 +601,8 @@ msgstr "No"
 #: .\templates\allauth\account\messages\cannot_delete_primary_email.txt:2
 #, python-format
 msgid "You cannot remove your primary e-mail address (%(email)s)."
-msgstr "No puedes eliminar tu dirección de correo electrónico principal (%(email)s)."
+msgstr ""
+"No puedes eliminar tu dirección de correo electrónico principal (%(email)s)."
 
 #: .\templates\allauth\account\messages\email_confirmation_sent.txt:2
 #, python-format
@@ -645,7 +670,9 @@ msgstr "Restablecer mi contraseña"
 
 #: .\templates\allauth\account\password_reset.html:23
 msgid "Please contact us if you have any trouble resetting your password."
-msgstr "Contacta con nosotros si tienes algún problema para restablecer tu contraseña."
+msgstr ""
+"Contacta con nosotros si tienes algún problema para restablecer tu "
+"contraseña."
 
 #: .\templates\allauth\account\password_reset_done.html:14
 msgid ""
@@ -691,8 +718,7 @@ msgid ""
 msgstr ""
 "¿Ya tienes una cuenta? Entonces <a href=\"%(login_url)s\">inicia sesión</a>."
 
-#: .\templates\allauth\account\signup.html:18
-#: .\templates\allauth\base.html:35
+#: .\templates\allauth\account\signup.html:18 .\templates\allauth\base.html:35
 #: .\templates\allauth\socialaccount\signup.html:8
 #: .\templates\allauth\socialaccount\signup.html:19
 msgid "Sign Up"
@@ -856,8 +882,8 @@ msgid ""
 "accounts. If this was a mistake, please proceed to <a "
 "href=\"%(login_url)s\">sign in</a>."
 msgstr ""
-"Has decidido cancelar el inicio de sesión en nuestro sitio utilizando una "
-"de tus cuentas existentes. Si ha sido un error, puedes <a "
+"Has decidido cancelar el inicio de sesión en nuestro sitio utilizando una de "
+"tus cuentas existentes. Si ha sido un error, puedes <a "
 "href=\"%(login_url)s\">iniciar sesión</a>."
 
 #: .\templates\allauth\socialaccount\messages\account_connected.txt:2
@@ -881,3 +907,12 @@ msgstr ""
 "Estás a punto de utilizar tu cuenta de %(provider_name)s para iniciar sesión "
 "en\n"
 "%(site_name)s. Como último paso, completa el siguiente formulario:"
+
+#: .\templates\widgets\translated_file_input.html:5
+msgid "Choose file"
+msgstr "Elije archivo"
+
+#: .\templates\widgets\translated_file_input.html:9
+#: .\templates\widgets\translated_file_input.html:10
+msgid "No file selected"
+msgstr "No se ha seleccionado ningún archivo"

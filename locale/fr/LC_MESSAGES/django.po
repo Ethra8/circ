@@ -1,0 +1,869 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-23 01:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\home\forms.py:21 .\shows\models.py:35 .\tallers\models.py:37
+msgid "Name"
+msgstr ""
+
+#: .\home\forms.py:22
+msgid "Email"
+msgstr "E-mail"
+
+#: .\home\forms.py:23
+msgid "Message"
+msgstr "Message"
+
+#: .\home\forms.py:34
+msgid "Send"
+msgstr "Envoyer"
+
+#: .\shows\models.py:8 .\tallers\models.py:10
+msgid "Monday"
+msgstr "Lundi"
+
+#: .\shows\models.py:9 .\tallers\models.py:11
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: .\shows\models.py:10 .\tallers\models.py:12
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: .\shows\models.py:11 .\tallers\models.py:13
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: .\shows\models.py:12 .\tallers\models.py:14
+msgid "Friday"
+msgstr "Vendredi"
+
+#: .\shows\models.py:13 .\tallers\models.py:15
+msgid "Saturday"
+msgstr "Samedi"
+
+#: .\shows\models.py:14 .\tallers\models.py:16
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: .\shows\models.py:18 .\tallers\models.py:20
+msgid "Children"
+msgstr "Enfants"
+
+#: .\shows\models.py:19 .\tallers\models.py:21
+msgid "Adults"
+msgstr "Adultes"
+
+#: .\shows\models.py:20 .\tallers\models.py:22
+msgid "All audiences"
+msgstr "Tous publics"
+
+#: .\shows\models.py:24 .\tallers\models.py:26
+msgid "Juggling"
+msgstr "Jonglage"
+
+#: .\shows\models.py:25 .\tallers\models.py:27
+msgid "Trapeze"
+msgstr "Trapèze"
+
+#: .\shows\models.py:26 .\tallers\models.py:28
+msgid "Clown"
+msgstr "Clown"
+
+#: .\shows\models.py:27 .\tallers\models.py:29
+msgid "Circus"
+msgstr "Cirque"
+
+#: .\shows\models.py:28 .\tallers\models.py:30
+msgid "Mixed disciplines"
+msgstr "Disciplines mixtes"
+
+#: .\shows\models.py:37
+msgid "Event name"
+msgstr "Nom de l’événement"
+
+#: .\shows\models.py:40 .\tallers\models.py:43
+msgid "Image"
+msgstr "Image"
+
+#: .\shows\models.py:42
+msgid "Promotional image for the event"
+msgstr "Image promotionnelle de l’événement"
+
+#: .\shows\models.py:47 .\tallers\models.py:51
+msgid "Description"
+msgstr "Description"
+
+#: .\shows\models.py:52 .\tallers\models.py:56
+msgid "Starting date"
+msgstr "Date de début"
+
+#: .\shows\models.py:54
+msgid "Event starting date"
+msgstr "Date de début de l’événement"
+
+#: .\shows\models.py:57 .\tallers\models.py:62
+msgid "End date"
+msgstr "Date de fin"
+
+#: .\shows\models.py:60
+msgid "Event end date"
+msgstr "Date de fin de l’événement"
+
+#: .\shows\models.py:63 .\tallers\models.py:69
+msgid "Starting time"
+msgstr "Heure de début"
+
+#: .\shows\models.py:64
+msgid "Event starting time"
+msgstr "Heure de début de l’événement"
+
+#: .\shows\models.py:67 .\tallers\models.py:79
+msgid "Duration"
+msgstr "Durée"
+
+#: .\shows\models.py:68
+msgid "Duration in HH:MM format (hours:minutes)"
+msgstr "Durée au format HH:MM (heures:minutes)"
+
+#: .\shows\models.py:71 .\tallers\models.py:84
+msgid "Maximum participants"
+msgstr "Nombre maximum de participants"
+
+#: .\shows\models.py:75 .\tallers\models.py:89
+msgid "Booked participants"
+msgstr "Participants inscrits"
+
+#: .\shows\models.py:79 .\tallers\models.py:95
+msgid "Missed booking requests"
+msgstr "Demandes de réservation non satisfaites"
+
+#: .\shows\models.py:83 .\tallers\models.py:101
+msgid "Audience"
+msgstr "Public"
+
+#: .\shows\models.py:87
+msgid "Specify whether the event is for children, adults, or all audiences."
+msgstr "Indiquez si l’événement s’adresse aux enfants, aux adultes ou à tous les publics."
+
+#: .\shows\models.py:90 .\tallers\models.py:109
+msgid "Adult ticket price"
+msgstr "Tarif adulte"
+
+#: .\shows\models.py:93 .\tallers\models.py:112
+msgid "Price per adult ticket"
+msgstr "Prix par billet adulte"
+
+#: .\shows\models.py:96 .\tallers\models.py:116
+msgid "Reduced ticket price"
+msgstr "Tarif réduit"
+
+#: .\shows\models.py:101 .\tallers\models.py:121
+msgid "Reduced ticket price, where applicable"
+msgstr "Tarif réduit, le cas échéant"
+
+#: .\shows\models.py:104 .\tallers\models.py:125
+msgid "Circus category"
+msgstr "Catégorie de cirque"
+
+#: .\shows\models.py:112 .\tallers\models.py:134
+msgid "First weekday"
+msgstr "Premier jour de la semaine"
+
+#: .\shows\models.py:117 .\tallers\models.py:139
+msgid "Second weekday"
+msgstr "Deuxième jour de la semaine"
+
+#: .\shows\models.py:124 .\tallers\models.py:146
+msgid "Third weekday"
+msgstr "Troisième jour de la semaine"
+
+#: .\shows\models.py:131 .\tallers\models.py:153
+msgid "Fourth weekday"
+msgstr "Quatrième jour de la semaine"
+
+#: .\shows\models.py:138 .\tallers\models.py:160
+msgid "Fifth weekday"
+msgstr "Cinquième jour de la semaine"
+
+#: .\shows\models.py:145 .\tallers\models.py:167
+msgid "Sixth weekday"
+msgstr "Sixième jour de la semaine"
+
+#: .\shows\models.py:152 .\tallers\models.py:174
+msgid "Seventh weekday"
+msgstr "Septième jour de la semaine"
+
+#: .\shows\models.py:161 .\tallers\models.py:183
+msgid "Venue name"
+msgstr "Nom du lieu"
+
+#: .\shows\models.py:164
+msgid "Name of the venue, theatre or location"
+msgstr "Nom du lieu, de la salle ou du théâtre"
+
+#: .\shows\models.py:167 .\tallers\models.py:190
+msgid "Address"
+msgstr "Adresse"
+
+#: .\shows\models.py:170 .\tallers\models.py:193
+msgid "Street address of the venue, theatre or location"
+msgstr "Adresse du lieu, de la salle ou du théâtre"
+
+#: .\shows\models.py:174 .\tallers\models.py:197
+msgid "Postcode"
+msgstr "Code postal"
+
+#: .\shows\models.py:177 .\tallers\models.py:200
+msgid "Venue postcode (optional)"
+msgstr "Code postal du lieu, de la salle ou du théâtre (facultatif)"
+
+#: .\shows\models.py:180 .\tallers\models.py:204
+msgid "City"
+msgstr "Ville"
+
+#: .\shows\models.py:183
+msgid "City where the venue is located"
+msgstr "Ville où se trouve le lieu"
+
+#: .\shows\models.py:200
+msgid "This event is fully booked!"
+msgstr "Cet événement est complet !"
+
+#: .\tallers\models.py:39
+msgid "Workshop name"
+msgstr "Nom de l’atelier"
+
+#: .\tallers\models.py:45
+msgid "Promotional image for the workshop"
+msgstr "Image promotionnelle de l’atelier"
+
+#: .\tallers\models.py:52
+msgid "Detailed description of the workshop"
+msgstr "Description détaillée de l’atelier"
+
+#: .\tallers\models.py:58
+msgid "Workshop starting date"
+msgstr "Date de début de l’atelier"
+
+#: .\tallers\models.py:65
+msgid "Workshop end date"
+msgstr "Date de fin de l’atelier"
+
+#: .\tallers\models.py:70
+msgid "Workshop starting time"
+msgstr "Heure de début de l’atelier"
+
+#: .\tallers\models.py:74
+msgid "End time"
+msgstr "Heure de fin"
+
+#: .\tallers\models.py:75
+msgid "Workshop end time"
+msgstr "Heure de fin de l’atelier"
+
+#: .\tallers\models.py:80
+msgid "Duration in weeks"
+msgstr "Durée en semaines"
+
+#: .\tallers\models.py:85
+msgid "Maximum number of available places"
+msgstr "Nombre maximal de places disponibles"
+
+#: .\tallers\models.py:91
+msgid "Number of places already booked"
+msgstr "Nombre de places déjà réservées"
+
+#: .\tallers\models.py:97
+msgid "Number of users who requested a place after the workshop became full"
+msgstr "Nombre d’utilisateurs ayant demandé une place après que l’atelier soit complet"
+
+#: .\tallers\models.py:105
+msgid "Specify whether the workshop is for children, adults, or all audiences."
+msgstr "Indiquez si l’atelier s’adresse aux enfants, aux adultes ou à tous les publics."
+
+#: .\tallers\models.py:130
+msgid "Choose the circus category for the workshop"
+msgstr "Choisissez la catégorie de cirque de l’atelier"
+
+#: .\tallers\models.py:186
+msgid "Name of the venue, theatre or location where the workshop takes place"
+msgstr "Nom du lieu, de la salle ou du théâtre où se déroule l’atelier"
+
+#: .\tallers\models.py:207
+msgid "City where the workshop takes place"
+msgstr "Ville où se déroule l’atelier"
+
+#: .\tallers\models.py:216
+msgid "End time must be after the starting time."
+msgstr "L’heure de fin doit être postérieure à l’heure de début."
+
+#: .\tallers\models.py:221
+msgid "First weekday and second weekday cannot be the same."
+msgstr "Le premier et le deuxième jour de la semaine ne peuvent pas être identiques."
+
+#: .\tallers\models.py:226
+msgid "Reduced ticket price must not be set for an adults-only workshop."
+msgstr "Le tarif réduit ne doit pas être défini pour un atelier réservé aux adultes."
+
+#: .\tallers\models.py:249
+msgid "This workshop is fully booked!"
+msgstr "Cet atelier est complet !"
+
+#: .\templates\allauth\account\account_inactive.html:5
+msgid "Account Inactive"
+msgstr "Compte inactif"
+
+#: .\templates\allauth\account\account_inactive.html:9
+msgid "This account is inactive."
+msgstr "Ce compte est inactif."
+
+#: .\templates\allauth\account\base_reauthenticate.html:5
+#: .\templates\allauth\account\base_reauthenticate.html:8
+msgid "Confirm Access"
+msgstr "Confirmer l’accès"
+
+#: .\templates\allauth\account\base_reauthenticate.html:10
+msgid "Please reauthenticate to safeguard your account."
+msgstr "Veuillez vous réauthentifier afin de protéger votre compte."
+
+#: .\templates\allauth\account\base_reauthenticate.html:17
+msgid "Alternative options"
+msgstr "Options alternatives"
+
+#: .\templates\allauth\account\email.html:6
+msgid "E-mail Addresses"
+msgstr "Adresses e-mail"
+
+#: .\templates\allauth\account\email.html:11
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "Les adresses e-mail suivantes sont associées à votre compte :"
+
+#: .\templates\allauth\account\email.html:25
+msgid "Verified"
+msgstr "Vérifiée"
+
+#: .\templates\allauth\account\email.html:27
+msgid "Unverified"
+msgstr "Non vérifiée"
+
+#: .\templates\allauth\account\email.html:29
+msgid "Primary"
+msgstr "Principale"
+
+#: .\templates\allauth\account\email.html:35
+msgid "Make Primary"
+msgstr "Définir comme principale"
+
+#: .\templates\allauth\account\email.html:36
+msgid "Re-send Verification"
+msgstr "Renvoyer la vérification"
+
+#: .\templates\allauth\account\email.html:37
+#: .\templates\allauth\socialaccount\connections.html:35
+msgid "Remove"
+msgstr "Supprimer"
+
+#: .\templates\allauth\account\email.html:44
+msgid "Warning:"
+msgstr "Attention :"
+
+#: .\templates\allauth\account\email.html:44
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr "Vous n’avez actuellement aucune adresse e-mail configurée. Il est fortement recommandé d’en ajouter une afin de recevoir les notifications, de réinitialiser votre mot de passe, etc."
+
+#: .\templates\allauth\account\email.html:49
+msgid "Add E-mail Address"
+msgstr "Ajouter une adresse e-mail"
+
+#: .\templates\allauth\account\email.html:54
+msgid "Add E-mail"
+msgstr "Ajouter un e-mail"
+
+#: .\templates\allauth\account\email.html:64
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "Voulez-vous vraiment supprimer l’adresse e-mail sélectionnée ?"
+
+#: .\templates\allauth\account\email\account_already_exists_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this e-mail because you or someone else tried to signup "
+"for an\n"
+"account using e-mail address:\n"
+"\n"
+"%(email)s\n"
+"\n"
+"However, an account using that e-mail address already exists.  In case you "
+"have\n"
+"forgotten about this, please use the password forgotten procedure to "
+"recover\n"
+"your account:\n"
+"\n"
+"%(password_reset_url)s"
+msgstr ""
+"Vous recevez cet e-mail parce que vous ou une autre personne avez tenté de créer un\n"
+"compte avec l’adresse e-mail suivante :\n"
+"\n"
+"%(email)s\n"
+"\n"
+"Cependant, un compte utilisant cette adresse e-mail existe déjà. Si vous\n"
+"l’aviez oublié, veuillez utiliser la procédure de récupération du mot de passe pour\n"
+"récupérer votre compte :\n"
+"\n"
+"%(password_reset_url)s"
+
+#: .\templates\allauth\account\email\account_already_exists_subject.txt:3
+msgid "Account Already Exists"
+msgstr "Le compte existe déjà"
+
+#: .\templates\allauth\account\email\base_message.txt:1
+#, python-format
+msgid "Hello from %(site_name)s!"
+msgstr "Bonjour de la part de %(site_name)s !"
+
+#: .\templates\allauth\account\email\base_message.txt:5
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"Merci d’utiliser %(site_name)s !\n"
+"%(site_domain)s"
+
+#: .\templates\allauth\account\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"You're receiving this e-mail because user %(user_display)s has given your e-"
+"mail address to register an account on %(site_domain)s.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s"
+msgstr ""
+"Vous recevez cet e-mail parce que l’utilisateur %(user_display)s a utilisé votre adresse e-mail pour créer un compte sur %(site_domain)s.\n"
+"\n"
+"Pour confirmer que cette adresse est correcte, rendez-vous sur %(activate_url)s"
+
+#: .\templates\allauth\account\email\email_confirmation_subject.txt:3
+msgid "Please Confirm Your E-mail Address"
+msgstr "Veuillez confirmer votre adresse e-mail"
+
+#: .\templates\allauth\account\email\password_reset_key_message.txt:4
+msgid ""
+"You're receiving this e-mail because you or someone else has requested a "
+"password for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password."
+msgstr ""
+"Vous recevez cet e-mail parce que vous ou une autre personne avez demandé la réinitialisation du mot de passe de votre compte.\n"
+"Vous pouvez ignorer ce message si vous n’avez pas demandé de réinitialisation. Cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe."
+
+#: .\templates\allauth\account\email\password_reset_key_message.txt:9
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr "Au cas où vous l’auriez oublié, votre nom d’utilisateur est %(username)s."
+
+#: .\templates\allauth\account\email\password_reset_key_subject.txt:3
+#: .\templates\allauth\account\email\unknown_account_subject.txt:3
+msgid "Password Reset E-mail"
+msgstr "E-mail de réinitialisation du mot de passe"
+
+#: .\templates\allauth\account\email\unknown_account_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this e-mail because you or someone else has requested a\n"
+"password for your user account. However, we do not have any record of a "
+"user\n"
+"with email %(email)s in our database.\n"
+"\n"
+"This mail can be safely ignored if you did not request a password reset.\n"
+"\n"
+"If it was you, you can sign up for an account using the link below."
+msgstr ""
+"Vous recevez cet e-mail parce que vous ou une autre personne avez demandé la\n"
+"réinitialisation du mot de passe d’un compte. Cependant, nous ne trouvons aucun utilisateur\n"
+"avec l’adresse %(email)s dans notre base de données.\n"
+"\n"
+"Vous pouvez ignorer ce message si vous n’avez pas demandé de réinitialisation du mot de passe.\n"
+"\n"
+"Si cette demande vient bien de vous, vous pouvez créer un compte à l’aide du lien ci-dessous."
+
+#: .\templates\allauth\account\email_confirm.html:7
+msgid "Confirm E-mail Address"
+msgstr "Confirmer l’adresse e-mail"
+
+#: .\templates\allauth\account\email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr "Veuillez confirmer que <a href=\"mailto:%(email)s\">%(email)s</a> est une adresse e-mail appartenant à l’utilisateur %(user_display)s."
+
+#: .\templates\allauth\account\email_confirm.html:20
+#: .\templates\allauth\account\reauthenticate.html:16
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: .\templates\allauth\account\email_confirm.html:27
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr "Ce lien de confirmation d’adresse e-mail a expiré ou n’est pas valide. Veuillez <a href=\"%(email_url)s\">demander un nouvel e-mail de confirmation</a>."
+
+#: .\templates\allauth\account\login.html:7
+#: .\templates\allauth\account\login.html:42 .\templates\allauth\base.html:34
+#: .\templates\allauth\socialaccount\login.html:4
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: .\templates\allauth\account\login.html:14
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign "
+"up</a>\n"
+"for a %(site_name)s account and sign in below:"
+msgstr ""
+"Veuillez vous connecter avec l’un\n"
+"de vos comptes tiers existants. Ou <a href=\"%(signup_url)s\">créez un compte</a>\n"
+"%(site_name)s puis connectez-vous ci-dessous :"
+
+#: .\templates\allauth\account\login.html:24
+msgid "or"
+msgstr "ou"
+
+#: .\templates\allauth\account\login.html:31
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"<a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+"Si vous n’avez pas encore créé de compte,\n"
+"<a href=\"%(signup_url)s\">inscrivez-vous</a> d’abord."
+
+#: .\templates\allauth\account\login.html:44
+#: .\templates\allauth\account\password_change.html:14
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié ?"
+
+#: .\templates\allauth\account\logout.html:7
+msgid "Cerrar Serrión"
+msgstr "Se déconnecter"
+
+#: .\templates\allauth\account\logout.html:11
+msgid "Seguro que quieres cerrar sesión?"
+msgstr "Voulez-vous vraiment vous déconnecter ?"
+
+#: .\templates\allauth\account\logout.html:19
+msgid "Si"
+msgstr "Oui"
+
+#: .\templates\allauth\account\logout.html:21
+msgid "No"
+msgstr "Non"
+
+#: .\templates\allauth\account\messages\cannot_delete_primary_email.txt:2
+#, python-format
+msgid "You cannot remove your primary e-mail address (%(email)s)."
+msgstr "Vous ne pouvez pas supprimer votre adresse e-mail principale (%(email)s)."
+
+#: .\templates\allauth\account\messages\email_confirmation_sent.txt:2
+#, python-format
+msgid "Confirmation e-mail sent to %(email)s."
+msgstr "Un e-mail de confirmation a été envoyé à %(email)s."
+
+#: .\templates\allauth\account\messages\email_confirmed.txt:2
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr "Vous avez confirmé l’adresse %(email)s."
+
+#: .\templates\allauth\account\messages\email_deleted.txt:2
+#, python-format
+msgid "Removed e-mail address %(email)s."
+msgstr "L’adresse e-mail %(email)s a été supprimée."
+
+#: .\templates\allauth\account\messages\logged_in.txt:4
+#, python-format
+msgid "Successfully signed in as %(name)s."
+msgstr "Vous êtes connecté(e) en tant que %(name)s."
+
+#: .\templates\allauth\account\messages\logged_out.txt:2
+msgid "You have signed out."
+msgstr "Vous vous êtes déconnecté(e)."
+
+#: .\templates\allauth\account\messages\password_changed.txt:2
+msgid "Password successfully changed."
+msgstr "Le mot de passe a été modifié avec succès."
+
+#: .\templates\allauth\account\messages\password_set.txt:2
+msgid "Password successfully set."
+msgstr "Le mot de passe a été défini avec succès."
+
+#: .\templates\allauth\account\messages\primary_email_set.txt:2
+msgid "Primary e-mail address set."
+msgstr "L’adresse e-mail principale a été définie."
+
+#: .\templates\allauth\account\messages\unverified_primary_email.txt:2
+msgid "Your primary e-mail address must be verified."
+msgstr "Votre adresse e-mail principale doit être vérifiée."
+
+#: .\templates\allauth\account\password_change.html:6
+#: .\templates\allauth\account\password_change.html:13
+#: .\templates\allauth\account\password_reset_from_key.html:5
+#: .\templates\allauth\account\password_reset_from_key_done.html:4
+msgid "Change Password"
+msgstr "Modifier le mot de passe"
+
+#: .\templates\allauth\account\password_reset.html:7
+#: .\templates\allauth\account\password_reset_done.html:6
+msgid "Password Reset"
+msgstr "Réinitialisation du mot de passe"
+
+#: .\templates\allauth\account\password_reset.html:15
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr "Mot de passe oublié ? Saisissez votre adresse e-mail ci-dessous et nous vous enverrons un message vous permettant de le réinitialiser."
+
+#: .\templates\allauth\account\password_reset.html:20
+msgid "Reset My Password"
+msgstr "Réinitialiser mon mot de passe"
+
+#: .\templates\allauth\account\password_reset.html:23
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr "Veuillez nous contacter si vous rencontrez des difficultés pour réinitialiser votre mot de passe."
+
+#: .\templates\allauth\account\password_reset_done.html:14
+msgid ""
+"We have sent you an e-mail. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+msgstr "Nous vous avons envoyé un e-mail. Si vous ne l’avez pas reçu, vérifiez votre dossier de courrier indésirable. Sinon, contactez-nous si vous ne le recevez pas dans quelques minutes."
+
+#: .\templates\allauth\account\password_reset_from_key.html:11
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr "Le lien de réinitialisation du mot de passe n’est pas valide, peut-être parce qu’il a déjà été utilisé. Veuillez demander une <a href=\"%(passwd_reset_url)s\">nouvelle réinitialisation du mot de passe</a>."
+
+#: .\templates\allauth\account\password_reset_from_key.html:16
+msgid "change password"
+msgstr "modifier le mot de passe"
+
+#: .\templates\allauth\account\password_reset_from_key_done.html:8
+msgid "Your password is now changed."
+msgstr "Votre mot de passe a été modifié."
+
+#: .\templates\allauth\account\password_set.html:6
+#: .\templates\allauth\account\password_set.html:13
+msgid "Set Password"
+msgstr "Définir le mot de passe"
+
+#: .\templates\allauth\account\signup.html:6
+#: .\templates\allauth\socialaccount\signup.html:5
+msgid "Signup"
+msgstr "Inscription"
+
+#: .\templates\allauth\account\signup.html:10
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr "Vous avez déjà un compte ? Alors <a href=\"%(login_url)s\">connectez-vous</a>."
+
+#: .\templates\allauth\account\signup.html:18 .\templates\allauth\base.html:35
+#: .\templates\allauth\socialaccount\signup.html:8
+#: .\templates\allauth\socialaccount\signup.html:19
+msgid "Sign Up"
+msgstr "S’inscrire"
+
+#: .\templates\allauth\account\signup_closed.html:5
+msgid "Sign Up Closed"
+msgstr "Inscriptions fermées"
+
+#: .\templates\allauth\account\signup_closed.html:9
+msgid "We are sorry, but the sign up is currently closed."
+msgstr "Nous sommes désolés, mais les inscriptions sont actuellement fermées."
+
+#: .\templates\allauth\account\snippets\already_logged_in.html:5
+msgid "Note"
+msgstr "Remarque"
+
+#: .\templates\allauth\account\snippets\already_logged_in.html:5
+#, python-format
+msgid "you are already logged in as %(user_display)s."
+msgstr "vous êtes déjà connecté(e) en tant que %(user_display)s."
+
+#: .\templates\allauth\account\verification_sent.html:5
+#: .\templates\allauth\account\verified_email_required.html:5
+msgid "Verify Your E-mail Address"
+msgstr "Vérifiez votre adresse e-mail"
+
+#: .\templates\allauth\account\verification_sent.html:9
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. If you do not see the verification e-mail in "
+"your main inbox, check your spam folder. Please contact us if you do not "
+"receive the verification e-mail within a few minutes."
+msgstr "Nous vous avons envoyé un e-mail de vérification. Suivez le lien fourni pour terminer le processus d’inscription. Si vous ne voyez pas l’e-mail de vérification dans votre boîte de réception principale, vérifiez votre dossier de courrier indésirable. Veuillez nous contacter si vous ne le recevez pas dans quelques minutes."
+
+#: .\templates\allauth\account\verified_email_required.html:11
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+"Cette partie du site nécessite que nous vérifiions que\n"
+"vous êtes bien la personne que vous prétendez être. Pour cela, nous vous demandons de\n"
+"confirmer que vous êtes propriétaire de votre adresse e-mail. "
+
+#: .\templates\allauth\account\verified_email_required.html:15
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside that e-mail. If you do not see "
+"the verification e-mail in your main inbox, check your spam folder. "
+"Otherwise\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+"Nous vous avons envoyé un e-mail de\n"
+"vérification. Veuillez cliquer sur le lien contenu dans cet e-mail. Si vous ne voyez pas l’e-mail de vérification dans votre boîte de réception principale, vérifiez votre dossier de courrier indésirable. Sinon,\n"
+"contactez-nous si vous ne le recevez pas dans quelques minutes."
+
+#: .\templates\allauth\account\verified_email_required.html:19
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr "<strong>Remarque :</strong> vous pouvez toujours <a href=\"%(email_url)s\">modifier votre adresse e-mail</a>."
+
+#: .\templates\allauth\base.html:18
+msgid "Messages:"
+msgstr "Messages :"
+
+#: .\templates\allauth\base.html:28
+msgid "Menu:"
+msgstr "Menu :"
+
+#: .\templates\allauth\base.html:31
+msgid "Change E-mail"
+msgstr "Modifier l’adresse e-mail"
+
+#: .\templates\allauth\base.html:32
+msgid "Sign Out"
+msgstr "Se déconnecter"
+
+#: .\templates\allauth\openid\login.html:9
+msgid "OpenID Sign In"
+msgstr "Se connecter avec OpenID"
+
+#: .\templates\allauth\socialaccount\authentication_error.html:5
+#: .\templates\allauth\socialaccount\authentication_error.html:8
+msgid "Social Network Login Failure"
+msgstr "Échec de connexion via un réseau social"
+
+#: .\templates\allauth\socialaccount\authentication_error.html:10
+msgid ""
+"An error occurred while attempting to login via your social network account."
+msgstr "Une erreur s’est produite lors de la tentative de connexion via votre compte de réseau social."
+
+#: .\templates\allauth\socialaccount\connections.html:5
+#: .\templates\allauth\socialaccount\connections.html:8
+msgid "Account Connections"
+msgstr "Comptes associés"
+
+#: .\templates\allauth\socialaccount\connections.html:11
+msgid ""
+"You can sign in to your account using any of the following third party "
+"accounts:"
+msgstr "Vous pouvez vous connecter à votre compte en utilisant l’un des comptes tiers suivants :"
+
+#: .\templates\allauth\socialaccount\connections.html:43
+msgid ""
+"You currently have no social network accounts connected to this account."
+msgstr "Aucun compte de réseau social n’est actuellement associé à ce compte."
+
+#: .\templates\allauth\socialaccount\connections.html:46
+msgid "Add a 3rd Party Account"
+msgstr "Ajouter un compte tiers"
+
+#: .\templates\allauth\socialaccount\login.html:8
+#, python-format
+msgid "Connect %(provider)s"
+msgstr "Connecter %(provider)s"
+
+#: .\templates\allauth\socialaccount\login.html:10
+#, python-format
+msgid "You are about to connect a new third party account from %(provider)s."
+msgstr "Vous êtes sur le point d’associer un nouveau compte tiers provenant de %(provider)s."
+
+#: .\templates\allauth\socialaccount\login.html:12
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr "Se connecter via %(provider)s"
+
+#: .\templates\allauth\socialaccount\login.html:14
+#, python-format
+msgid "You are about to sign in using a third party account from %(provider)s."
+msgstr "Vous êtes sur le point de vous connecter à l’aide d’un compte tiers provenant de %(provider)s."
+
+#: .\templates\allauth\socialaccount\login.html:19
+msgid "Continue"
+msgstr "Continuer"
+
+#: .\templates\allauth\socialaccount\login_cancelled.html:5
+#: .\templates\allauth\socialaccount\login_cancelled.html:9
+msgid "Login Cancelled"
+msgstr "Connexion annulée"
+
+#: .\templates\allauth\socialaccount\login_cancelled.html:13
+#, python-format
+msgid ""
+"You decided to cancel logging in to our site using one of your existing "
+"accounts. If this was a mistake, please proceed to <a "
+"href=\"%(login_url)s\">sign in</a>."
+msgstr "Vous avez choisi d’annuler la connexion à notre site à l’aide de l’un de vos comptes existants. S’il s’agit d’une erreur, veuillez <a href=\"%(login_url)s\">vous connecter</a>."
+
+#: .\templates\allauth\socialaccount\messages\account_connected.txt:2
+msgid "The social account has been connected."
+msgstr "Le compte social a été associé."
+
+#: .\templates\allauth\socialaccount\messages\account_connected_other.txt:2
+msgid "The social account is already connected to a different account."
+msgstr "Le compte social est déjà associé à un autre compte."
+
+#: .\templates\allauth\socialaccount\messages\account_disconnected.txt:2
+msgid "The social account has been disconnected."
+msgstr "Le compte social a été dissocié."
+
+#: .\templates\allauth\socialaccount\signup.html:10
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+"Vous êtes sur le point d’utiliser votre compte %(provider_name)s pour vous connecter à\n"
+"%(site_name)s. Pour terminer, veuillez remplir le formulaire suivant :"
+
+#: .\templates\widgets\translated_file_input.html:5
+msgid "Choose file"
+msgstr "Choisir un fichier"
+
+#: .\templates\widgets\translated_file_input.html:9
+#: .\templates\widgets\translated_file_input.html:10
+msgid "No file selected"
+msgstr "Aucun fichier sélectionné"

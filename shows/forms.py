@@ -1,4 +1,5 @@
 from django import forms
+from circ.widgets import TranslatedFileInput
 from datetime import timedelta
 from .models import Show
 
@@ -28,6 +29,7 @@ class ShowForm(forms.ModelForm):
             'location_city',
         ]
         widgets = {
+            'image': TranslatedFileInput(),
             'starting_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'starting_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),

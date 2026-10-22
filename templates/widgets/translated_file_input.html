@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class="custom-file-field">
+    <label for="{{ widget.attrs.id }}" class="file-upload-btn">
+        {% trans "Choose file" %}
+    </label>
+
+    <span class="file-upload-name"
+          data-empty="{% trans 'No file selected' %}">
+        {% trans "No file selected" %}
+    </span>
+
+    <input type="{{ widget.type }}"
+           name="{{ widget.name }}"
+           {% include "django/forms/widgets/attrs.html" %}>
+</div>

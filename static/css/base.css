@@ -36,6 +36,50 @@ p {
     font-size: 1.4em;
 }
 
+/* WIDGET - Translate form input (image) *******************************/
+.custom-file-field {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.custom-file-field input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.file-upload-btn {
+    display: inline-block;
+    margin: 0;
+    padding: .4rem .7rem;
+    color: var(--color-dark-purple);
+    background: rgba(var(--color-white-rgb), .75);
+    border: 1px solid var(--color-dark-purple);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: var(--transitions-all);
+}
+
+.file-upload-btn:hover {
+    background: var(--color-dark-purple);
+    color: var(--color-white);
+}
+
+.file-upload-name {
+    color: var(--color-dark-purple);
+}
+
+/* ************************************************************ */
+/* OVERLAYS *****************************************************/
+
 .overlay-shadow {
 	height: 100%;
 	width: 100%;
@@ -68,15 +112,14 @@ p {
 }
 
 
-
+/* BUTTONS ***************************************************/
 .btn-add-event:hover {
     background: var(--color-dark-purple);
     color: white;
 }
 
 
-
-/* DETAILS PAGE GENERAL */
+/* DETAILS PAGE GENERAL **************************************/
 .list-row {
     padding: 3%;
     display: flex;
