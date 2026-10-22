@@ -20,7 +20,7 @@
             {% if about_content %}
                 <p>{{ about_content.content|safe }}</p>
             {% else %}
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated and user.is_superuser %}
                 <p>Todavía no hay nada escrito en esta sección. Actualízala desde el panel de administración: En 'Home', crea un nuevo 'About Section'</p>
                 {% else %}
                     <p>Estamos actualizando nuestra info, pero no dejes de echarle un vistazo a nuestros espectáculos!</p>
