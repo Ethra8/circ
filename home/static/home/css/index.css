@@ -5,15 +5,6 @@
     overflow: hidden;
     padding: 0;
     color: var(--color-white);
-    background:
-        /* linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.94) 0%,
-            rgba(0, 0, 0, 0.88) 40%,
-            rgba(0, 0, 0, 0.55) 68%,
-            rgba(0, 0, 0, 0.28) 100%
-        ), */
-    url('static/images/niebla-eterea.png');
 }
 
 .index-page img {
@@ -164,7 +155,6 @@
 
 @media (max-width: 768.98px) {
     .index-page {
-        background: url(static/images/niebla-eterea.png);
         min-height: 0;
         flex: none;
     }
