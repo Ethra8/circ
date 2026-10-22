@@ -8,8 +8,13 @@
     border-radius: 4px;
 }
 
+#add-show .header p {
+    font-weight: 600;
+    font-size: 1.6em;
+}
+
 #add-show form {
-    margin: 3em auto;
+    margin: 1.5em auto;
     background-color: rgba(var(--color-white-rgb), 0.85);
     padding: 2em 1.75em;
     font-size: 1.5em;
@@ -21,3 +26,4 @@
 #add-show form label {
     font-weight: 600;
 }
+

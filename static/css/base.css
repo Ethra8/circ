@@ -6,7 +6,7 @@
 
 body {
     background-size: cover;
-    color: #555;
+    color: #312f2f;
     font-family: "Zen Loop", sans-serif;
     padding: 0 !important;
     display: flex;
@@ -32,8 +32,21 @@ a:hover {
     text-decoration: none !important;
 }
 
+h1, h2, h3 {
+    font-weight: 600;
+}
+
 p {
     font-size: 1.4em;
+}
+
+form .form-text.text-muted {
+    color: #252424 !important;
+    font-size: 1em;
+}
+
+.form-control {
+    font-size: 1em;
 }
 
 /* WIDGET - Translate form input (image) *******************************/
@@ -90,6 +103,7 @@ p {
 	z-index: -1;
 }
 
+/* MAIN DJANGO BLOCK in BASE.html*/
 .main-bg {
     margin: 0 0 auto;
     flex-grow: 1 !important; /* forces content area to grow and fill remaining space between nav and footer */
@@ -99,6 +113,7 @@ p {
     min-width: 100%;
 }
 
+/* TEXT COLORS *********************************************** */
 .text-muted {
     color: #6f7a8a;
 }

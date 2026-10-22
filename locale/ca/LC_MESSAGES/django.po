@@ -914,4 +914,4 @@ msgstr "Selecciona un fitxer"
 #: .\templates\widgets\translated_file_input.html:9
 #: .\templates\widgets\translated_file_input.html:10
 msgid "No file selected"
-msgstr "No s'ha selleccionat cap fitxer"
+msgstr "Cap fitxer seleccionat"

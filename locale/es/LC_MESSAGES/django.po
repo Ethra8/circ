@@ -910,9 +910,9 @@ msgstr ""
 
 #: .\templates\widgets\translated_file_input.html:5
 msgid "Choose file"
-msgstr "Elije archivo"
+msgstr "Selecciona archivo"
 
 #: .\templates\widgets\translated_file_input.html:9
 #: .\templates\widgets\translated_file_input.html:10
 msgid "No file selected"
-msgstr "No se ha seleccionado ningún archivo"
+msgstr "Ningún archivo seleccionado"
