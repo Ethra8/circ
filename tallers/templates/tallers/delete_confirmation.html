@@ -13,8 +13,8 @@
 {% block content %}
 <div class="overlay"></div>
 <div id="bag" class="container mt-5">
-    <h2 class="my-4 text-white eg-font text-uppercase">Eliminar Taller</h2>
-    <p class="text-white">Seguro que quieres eliminar permanentemente el taller <strong>{{ taller.name }}</strong>?</p>
+    <h2 class="my-4  eg-font text-uppercase">Eliminar Taller</h2>
+    <p class="">Seguro que quieres eliminar permanentemente el taller <strong>{{ taller.name }}</strong>?</p>
     
     <form method="POST" action="{% url 'tallers:delete_taller' taller.id %}">
         {% csrf_token %}

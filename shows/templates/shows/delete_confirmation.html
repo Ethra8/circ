@@ -13,8 +13,8 @@
 {% block content %}
 <div class="overlay"></div>
 <div id="bag" class="container mt-5">
-    <h2 class="my-4 text-white eg-font text-uppercase">Eliminar Evento</h2>
-    <p class="text-white">Seguro que quieres eliminar permanentemente el evento <strong>{{ show.name }}</strong>?</p>
+    <h2 class="my-4  eg-font text-uppercase">Eliminar Evento</h2>
+    <p class="">Seguro que quieres eliminar permanentemente el evento <strong>{{ show.name }}</strong>?</p>
     
     <form method="POST" action="{% url 'shows:delete_show' show.id %}">
         {% csrf_token %}
