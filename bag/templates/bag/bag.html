@@ -140,7 +140,7 @@
                         </a>
 
                         <!-- Secure Checkout Button -->
-                        <a href="{% if user.is_authenticated %}{% url 'home:home' %}{% else %}#unauthenticated{% endif %}" class="btn btn-custom-teal btn-secure-checkout rounded-pill btn-lg mx-auto mr-sm-0 mt-5 order-first order-md-2" aria-label="Go to secure checkout page" id="secure-checkout-btn" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}">
+                        <a href="{% if user.is_authenticated %}{% url 'home:home' %}{% else %}#unauthenticated{% endif %}" class="btn btn-custom btn-secure-checkout rounded-pill btn-lg mx-auto mr-sm-0 mt-5 order-first order-md-2" aria-label="Go to secure checkout page" id="secure-checkout-btn" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}">
                             <span class="text-uppercase">Pago Seguro</span>
                             <span class="icon">
                                 <i class="fas fa-lock"></i>

@@ -27,27 +27,16 @@
     z-index: 2;
 }
 
-.index-page h1,
-.index-page h2,
-.index-page h3 {
-    margin-top: 0;
-}
-
-.index-page h2 {
-    text-transform: uppercase;
-}
-
-.index-page h1 span,
-.index-page h2 span,
-.hero-lead span {
-    display: inline-block;
-}
-
 .index-page h1 span {
     margin-bottom: .3em;
     display: block;
     margin-left: -40%;
     text-align: left;
+}
+
+.index-page h1 span,
+.hero-lead span {
+    display: inline-block;
 }
 
 /* =========================================================
@@ -134,7 +123,7 @@
         width: 100%;
         height: stretch;
         margin: 0 0 0 auto;
-        padding: 68vh 20vw 7vh;
+        padding: 76vh 20vw 7vh;
         position: relative;
         width: fit-content;
         z-index: 2;

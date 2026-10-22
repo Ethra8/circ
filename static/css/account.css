@@ -1,15 +1,16 @@
 /* ALLAUTH */
 .allauth-form-inner-content {
     margin-top: 120px;
-    background-color: rgb(255, 255, 255);
-    padding: 3rem;
+    background-color: rgba(var(--color-white-rgb), 0.76);
+    padding: 3rem 3rem 1.5rem;
     margin-bottom: 3rem;
+    border-radius: 8px;
 }
 
 .allauth-headings-custom {
     font-family: "Zen Loop", sans-serif;
     font-weight: 500;
-    color: var(--color-black);
+    color: var(--color-dark-purple);
     font-size: 3rem;
 }
 
@@ -20,7 +21,7 @@
     width: 100%;
     /* max-width: 320px;  */
     font-size: 1.1rem;
-    background: var(--color-black);
+    background: var(--color-dark-purple);
     color: white;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
@@ -56,7 +57,7 @@
 .form-group input:not([class='qty-input']),
 .form-group textarea,
 .allauth-form-inner-content input:not([type='checkbox']) {
-    border-color: var(--color-black);
+    border-color: var(--color-dark-purple);
     border-radius: 5px;
 }
 
@@ -65,7 +66,7 @@
     /* max-width: 320px;  */
     font-size: 1.1rem;
     background: var(--color-yellow);
-    color: var(--color-black) !important;
+    color: var(--color-dark-purple) !important;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
     border: outset 2px var(--color-yellow);
@@ -75,7 +76,7 @@
 
 .btn-succcess:hover {
     background: #c1f7e3;
-    color: var(--color-black);
+    color: var(--color-dark-purple);
     font-weight: 600;
 }
 
@@ -104,7 +105,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: var(--color-black);
+    background-color: var(--color-dark-purple);
     border: 2px solid rgba(var(--color-white-rgb), .9);
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -123,7 +124,7 @@
 }
 
 .allauth-form-inner-content a {
-	color: var(--color-black); /* text-info */
+	color: var(--color-dark-purple); /* text-info */
     font-weight: 500;
 }
 

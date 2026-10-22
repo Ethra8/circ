@@ -4,11 +4,10 @@
 {% load crispy_forms_tags %}
 
 
-<div class="container header-container d-flex">
   {% block head_title %}{% trans "Cerrar Serrión" %}{% endblock %}
 
   {% block inner_content %}
-
+<div class="container header-container d-flex"></div>
   <p>{% trans 'Seguro que quieres cerrar sesión?' %}</p>
 
   <form method="post" action="{% url 'account_logout' %}">

@@ -1,129 +1,243 @@
 from django.db import models
 from django.utils.timezone import now
+from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-from decimal import Decimal
+
 
 class Taller(models.Model):
 
     WEEKDAYS = [
-        ('lun.', 'Lunes'),
-        ('mar.', 'Martes'),
-        ('miérc.', 'Miércoles'),
-        ('juev.', 'Jueves'),
-        ('vier.', 'Viernes'),
-        ('sáb.', 'Sábado'),
-        ('dom.', 'Domingo'),
+        ('mon', _('Monday')),
+        ('tue', _('Tuesday')),
+        ('wed', _('Wednesday')),
+        ('thu', _('Thursday')),
+        ('fri', _('Friday')),
+        ('sat', _('Saturday')),
+        ('sun', _('Sunday')),
     ]
 
     AUDIENCE_TYPES = [
-        ('niños', 'Niños'),
-        ('adultos', 'Adultos'),
-        ('todo_publico', 'Todo Público'),
+        ('niños', _('Children')),
+        ('adultos', _('Adults')),
+        ('todo_publico', _('All audiences')),
     ]
 
     CIRC_CATEGORIES = [
-        ('malabares', 'Malabares'),
-        ('trapecio', 'Trapecio'),
-        ('clown', 'Clown (Payaso)'),
-        ('cuerda_floja', 'Cuerda Floja'),
+        ('malabares', _('Juggling')),
+        ('trapecio', _('Trapeze')),
+        ('clown', _('Clown')),
+        ('circo', _('Circus')),
+        ('disciplinas_mixtas', _('Mixed disciplines')),
     ]
 
     id = models.AutoField(primary_key=True)
     item_type = models.CharField(default='taller', max_length=10, editable=False)
-    name = models.CharField(max_length=255)  # Name of the taller
-    image = models.ImageField(
-        upload_to='tallers/images/', 
-        help_text="Image de promoción del taller", 
-        blank=True, 
-        null=True
+
+    name = models.CharField(
+        _('Name'),
+        max_length=255,
+        help_text=_('Workshop name'),
     )
-    description = models.TextField()  # Detailed description of the taller
-    starting_date = models.DateField(default=now, help_text="Fecha de inicio del taller")  # Starting date of the taller
-    end_date = models.DateField(blank=True, null=True, help_text="Fecha de finalización del taller")
-    starting_time = models.TimeField(help_text="Hora de inicio del taller")  # Starting time of the taller
-    end_time = models.TimeField(help_text="Hora de fin del taller")  # End time of the taller
-    duration = models.PositiveIntegerField(help_text="Duración en semanas")  # Duration in weeks
-    max_participants = models.PositiveIntegerField(help_text="Máximas plazas")  # Maximum participants allowed
-    booked_participants = models.PositiveIntegerField(default=0, help_text="Plazas ocupadas (reservada)")  # Booked participants, starts at 0
-    users_missed_requests = models.PositiveIntegerField(default=0, help_text="Usuarios que han pedido tener plaza, una vez agotadas - ¿Interesa repetir evento?")  # Track users who couldn't enroll
+
+    image = models.ImageField(
+        _('Image'),
+        upload_to='tallers/images/',
+        help_text=_('Promotional image for the workshop'),
+        blank=True,
+        null=True,
+    )
+
+    description = models.TextField(
+        _('Description'),
+        help_text=_('Detailed description of the workshop'),
+    )
+
+    starting_date = models.DateField(
+        _('Starting date'),
+        default=now,
+        help_text=_('Workshop starting date'),
+    )
+
+    end_date = models.DateField(
+        _('End date'),
+        blank=True,
+        null=True,
+        help_text=_('Workshop end date'),
+    )
+
+    starting_time = models.TimeField(
+        _('Starting time'),
+        help_text=_('Workshop starting time'),
+    )
+
+    end_time = models.TimeField(
+        _('End time'),
+        help_text=_('Workshop end time'),
+    )
+
+    duration = models.PositiveIntegerField(
+        _('Duration'),
+        help_text=_('Duration in weeks'),
+    )
+
+    max_participants = models.PositiveIntegerField(
+        _('Maximum participants'),
+        help_text=_('Maximum number of available places'),
+    )
+
+    booked_participants = models.PositiveIntegerField(
+        _('Booked participants'),
+        default=0,
+        help_text=_('Number of places already booked'),
+    )
+
+    users_missed_requests = models.PositiveIntegerField(
+        _('Missed booking requests'),
+        default=0,
+        help_text=_('Number of users who requested a place after the workshop became full'),
+    )
+
     audience = models.CharField(
+        _('Audience'),
         max_length=15,
         choices=AUDIENCE_TYPES,
         default='todo_publico',
-        help_text="Especifique si el taller es para niños, adultos, o todo público."
+        help_text=_('Specify whether the workshop is for children, adults, or all audiences.'),
     )
+
     price_per_seat_adult = models.DecimalField(
-        max_digits=6, 
+        _('Adult ticket price'),
+        max_digits=6,
         decimal_places=2,
-        help_text="Precio por ticket adulto",
+        help_text=_('Price per adult ticket'),
     )
+
     price_per_seat_reduction = models.DecimalField(
-        max_digits=6, 
+        _('Reduced ticket price'),
+        max_digits=6,
         decimal_places=2,
         blank=True,
         null=True,
-        help_text="Precio por ticket reducido (solo para niños)"
+        help_text=_('Reduced ticket price, where applicable'),
     )
+
     circ_category = models.CharField(
+        _('Circus category'),
         max_length=100,
         choices=CIRC_CATEGORIES,
         default='',
         null=True,
-        help_text="Categoría de circo del taller"
-    ) 
-    weekday_1 = models.CharField(max_length=9, choices=WEEKDAYS, help_text="Día de la semana en el que desarrola el taller (1º es obligatorio)")  # Mandatory first weekday
-    weekday_2 = models.CharField(max_length=9, choices=WEEKDAYS, blank=True, null=True, help_text="Día de la semana en el que desarrola el taller (2º es opcional)") 
-    # Location fields
-    location_name = models.CharField(
-        max_length=255,
-        default='por determinar',
-        help_text="Nombre del lugar/local/teatro donde se desarrolla el taller"
+        help_text=_('Choose the circus category for the workshop'),
     )
-    location_street = models.CharField(
-        max_length=255,
-        default='por determinar',
-        help_text="Dirección del local/teatro/lugar"
+
+    weekday_1 = models.CharField(
+        _('First weekday'),
+        max_length=9,
+        choices=WEEKDAYS,
     )
-    location_cp = models.IntegerField(
+    weekday_2 = models.CharField(
+        _('Second weekday'),
+        max_length=9,
+        choices=WEEKDAYS,
         blank=True,
         null=True,
-        help_text="Código postal del local/teatro/lugar (opcional)"
     )
-    location_city = models.CharField(
+    weekday_3 = models.CharField(
+        _('Third weekday'),
+        max_length=9,
+        choices=WEEKDAYS,
+        blank=True,
+        null=True,
+    )
+    weekday_4 = models.CharField(
+        _('Fourth weekday'),
+        max_length=9,
+        choices=WEEKDAYS,
+        blank=True,
+        null=True,
+    )
+    weekday_5 = models.CharField(
+        _('Fifth weekday'),
+        max_length=9,
+        choices=WEEKDAYS,
+        blank=True,
+        null=True,
+    )
+    weekday_6 = models.CharField(
+        _('Sixth weekday'),
+        max_length=9,
+        choices=WEEKDAYS,
+        blank=True,
+        null=True,
+    )
+    weekday_7 = models.CharField(
+        _('Seventh weekday'),
+        max_length=9,
+        choices=WEEKDAYS,
+        blank=True,
+        null=True,
+    )
+
+    # Location
+    location_name = models.CharField(
+        _('Venue name'),
         max_length=255,
         default='por determinar',
-        help_text="Ciudad donde se desarrolla el taller"
+        help_text=_('Name of the venue, theatre or location where the workshop takes place'),
+    )
+
+    location_street = models.CharField(
+        _('Address'),
+        max_length=255,
+        default='por determinar',
+        help_text=_('Street address of the venue, theatre or location'),
+    )
+
+    location_cp = models.IntegerField(
+        _('Postcode'),
+        blank=True,
+        null=True,
+        help_text=_('Venue postcode (optional)'),
+    )
+
+    location_city = models.CharField(
+        _('City'),
+        max_length=255,
+        default='por determinar',
+        help_text=_('City where the workshop takes place'),
     )
 
     def clean(self):
         """
-        Validation:
-        - End time must be after the starting time.
-        - Weekday 1 and Weekday 2 must be different if both are provided.
-        - Automatically set price_per_seat_reduction to 0 if the audience is 'adults'.
+        Validate workshop times, weekdays and audience-specific pricing.
         """
-        if self.end_time <= self.starting_time:
-            raise ValidationError("End time must be after the starting time.")
-        
+        if self.end_time and self.starting_time and self.end_time <= self.starting_time:
+            raise ValidationError(
+                _('End time must be after the starting time.')
+            )
+
         if self.weekday_2 and self.weekday_1 == self.weekday_2:
-            raise ValidationError("Weekday 1 and Weekday 2 cannot be the same.")
+            raise ValidationError(
+                _('First weekday and second weekday cannot be the same.')
+            )
 
         if self.audience == 'adultos' and self.price_per_seat_reduction:
-            raise ValidationError("price_per_seat_reduction must not be set for audience='adultos'.")
+            raise ValidationError(
+                _('Reduced ticket price must not be set for an adults-only workshop.')
+            )
 
     def save(self, *args, **kwargs):
         """
-        Save the Taller instance while respecting audience-specific logic.
+        Save the workshop while respecting audience-specific pricing logic.
         """
         if self.audience == 'adultos':
-            self.price_per_seat_reduction = None  # Ignore this field for adultos
-        super().save(*args, **kwargs)
+            self.price_per_seat_reduction = None
 
+        super().save(*args, **kwargs)
 
     def book_participant(self):
         """
-        Increments the booked_participants count if there's space available.
-        If the taller is fully booked, increments users_missed_requests.
+        Book a participant when space is available.
         """
         if self.booked_participants < self.max_participants:
             self.booked_participants += 1
@@ -131,11 +245,12 @@ class Taller(models.Model):
         else:
             self.users_missed_requests += 1
             self.save()
-            raise ValueError("Este taller está completo!")
+            raise ValueError(
+                _('This workshop is fully booked!')
+            )
 
     def remaining_seats(self):
-        remaining_seats = self.max_participants - self.booked_participants
-        return remaining_seats
+        return self.max_participants - self.booked_participants
 
     def __str__(self):
         return self.name

@@ -43,6 +43,7 @@
 #search-results {
     margin-top: 120px !important;
     padding: 4%;
+    background-color: var(--color-dark-purple);
     background: 
         linear-gradient(
             rgba(0, 0, 0, 0.25),
@@ -66,12 +67,11 @@
     background-color: rgba(var(--color-white-rgb), 0.9);
     padding: 48px;
     font-size: 1.4em;
-    color: var(--color-black);
+    color: var(--color-dark-purple);
 }
 
 #search-results h2 {
-    color: var(--color-white-rgb) !important;
-    font-family: "Zen Loop", sans-serif;
+    color: var(--color-dark-purple);    font-family: "Zen Loop", sans-serif;
     font-size: 2rem;
     padding-bottom: 20px;
 }
@@ -93,7 +93,7 @@
 }
 
 #search-results p {
-    color: var(--color-white);
+    color: var(--color-dark-purple);
     font-size: 1.4em;
     letter-spacing: 0.03em;
 }
@@ -105,6 +105,27 @@
     background-color: rgba(var(--color-yellow-rgb), 0.8) !important;
 
 }
+
+
+/* ABOUT & CONTACT Pages ************************************** */
+#about,
+#contact {
+    padding: 76px 7% 76px;
+    margin-top: 10vh; 
+    background: linear-gradient(
+        90deg,
+        rgba(20, 11, 3, .82) 0%,
+        rgba(32, 16, 5, .66) 60%,
+        rgba(32, 16, 5, .25) 85%,
+        transparent 100%
+    );
+    color: rgba(var(--color-white-rgb), .9);
+}
+
+#contact {
+    width: (100%, 980px);
+}
+
 
 
 /* FOOTER **************************************************/
@@ -133,7 +154,7 @@
         grid-template-columns: 1fr; /* Single column layout */
     }
 
-    #search_results {
+    #search-results {
         padding-left: 5%; 
         padding-right: 5%;   
         margin-top: 0;

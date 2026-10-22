@@ -2,18 +2,8 @@
 {% load static %}
 {% load time_filters %}
 
-
-{% block page_header%}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
 <div id="show-details" class="container">
-    <div class="overlay-night-sky"></div>
     <div class="row details-frame">
         <div class="col-12">
             <a href="javascript:history.back()" class="return-prev-page col-12 col-sm-5" aria-label="Return to previous page">
@@ -226,7 +216,7 @@
                         {% endif %}
                         <!-- Submit Button -->
                         <div class="col d-flex flex-wrap justify-content-between">
-                            <button type="submit" class="col-12 btn btn-custom-teal rounded-pill text-uppercase mt-5 order-1 order-sm-2">
+                            <button type="submit" class="col-12 btn btn-custom rounded-pill text-uppercase mt-5 order-1 order-sm-2">
                                 Añadir a Cesta
                                 <span class="icon"><i class="fas fa-chevron-right"></i></span>
                             </button>

@@ -36,16 +36,6 @@ p {
     font-size: 1.4em;
 }
 
-.overlay {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: rgba(20, 25, 25, 0.9);
-	z-index: -1;
-}
-
 .overlay-shadow {
 	height: 100%;
 	width: 100%;
@@ -53,18 +43,6 @@ p {
 	left: 0;
 	position: fixed;
 	background: rgba(20, 25, 25, 0.3);
-	z-index: -1;
-}
-
-
-.overlay-night-sky {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: url('/media/night_sky.jpg') no-repeat top left;
-    background-size: cover;
 	z-index: -1;
 }
 
@@ -82,7 +60,7 @@ p {
 }
 
 .text-dark {
-    color: var(--color-black);
+    color: var(--color-dark-purple);
 }
 
 .text-lightgrey {
@@ -91,9 +69,8 @@ p {
 
 
 
-.btn-add-event:hover,
-.btn-custom-teal:hover {
-    background: var(--color-black);
+.btn-add-event:hover {
+    background: var(--color-dark-purple);
     color: white;
 }
 
@@ -123,7 +100,7 @@ p {
 }
 
 .details-div-icons-info {
-    background-color: var(--color-black);
+    background-color: var(--color-dark-purple);
     color: var(--color-white-rgb);
 }
 
@@ -134,7 +111,7 @@ p {
 
 .decrement-qty,
 .increment-qty {
-    background-color: var(--color-black);
+    background-color: var(--color-dark-purple);
     color: var(--color-white-rgb);
 }
 
@@ -199,7 +176,7 @@ p {
 
 
 .card-title {
-    color: var(--color-black);
+    color: var(--color-dark-purple);
     font-family: "Zen Loop", sans-serif;
     font-size: 2.5rem;
 }
@@ -221,7 +198,7 @@ p {
 #show_list,
 #taller-details,
 #taller_list,
-#search_results {
+#search-results {
     /* padding-left: 3rem;
     padding-right: 3rem; */
     margin-top: 120px;
@@ -229,24 +206,24 @@ p {
 
 #show_list h1,
 #taller_list h1,
-#search_results h1 {
+#search-results h1 {
     font-size: 2.9rem;
     text-align: left;
     padding-top: 50px;
 }
 
 #show_list h1 {
-    color: var(--color-black);
+    color: var(--color-dark-purple);
 }
 
 
 #show_details .fas:hover,
 #tallers_details .fas:hover {
-    color: var(--color-black) !important;
+    color: var(--color-dark-purple) !important;
 }
 
 a.return-prev-page {
-    color: var(--color-black) !important;
+    color: var(--color-dark-purple) !important;
     font-weight: 600 !important;
 }
 
@@ -258,7 +235,7 @@ a.return-prev-page:hover {
 #show-details h1,
 #taller-details h1 {
     font-size: 2.5rem;
-    color: var(--color-black);
+    color: var(--color-dark-purple);
 }
 
 #show-details h2,
@@ -271,14 +248,14 @@ a.return-prev-page:hover {
 #show-details h4,
 #taller-details h3,
 #taller-details h4 {
-    color: var(--color-black) !important;
+    color: var(--color-dark-purple) !important;
     font-size: 1.5rem;
     text-transform: uppercase;
 }
 
 #show-details h5,
 #taller-details h5 {
-    color: var(--color-black) !important;
+    color: var(--color-dark-purple) !important;
     text-transform: uppercase;
 }
 
@@ -301,27 +278,12 @@ a.return-prev-page:hover {
 }
 
 
-/* SEARCH RESULTS */
-
-#search_results {
-    background-color: var(--color-black);
-}
-
-#search_results h2 {
-    font-size: 2rem;
-    color: var(--color-white-rgb);
-}
-
-#search_results p {
-    color: var(--color-white-rgb);
-}
-
 /* BAG */
 
 #bag {
     padding: 2rem;
     margin-top: 80px; 
-    background-color: rgba(66, 37, 0, 0.4);
+    background-color: rgba(var(--color-yellow-rgb), 0.4);
     color: rgba(var(--color-white-rgb), .9);
 }
 
@@ -378,7 +340,7 @@ a.return-prev-page:hover {
 
 #bag-grand-total {
     font-family: "Zen Loop", sans-serif;
-    color: var(--color-black);
+    color: var(--color-dark-purple);
     font-size: 2.5rem;
     text-align: end;
     background-color: var(--color-yellow);
@@ -396,27 +358,6 @@ a.return-prev-page:hover {
 #bag-grand-total {
     margin-right: 2rem !important;
 } */
-
-
-/* ABOUT ************************************** */
-#about,
-#contact {
-    padding: 76px 7% 76px;
-    margin-top: 10vh; 
-    background: linear-gradient(
-        90deg,
-        rgba(20, 11, 3, .82) 0%,
-        rgba(32, 16, 5, .66) 60%,
-        rgba(32, 16, 5, .25) 85%,
-        transparent 100%
-    );
-    color: rgba(var(--color-white-rgb), .9);
-}
-
-#contact {
-    width: (100%, 980px);
-}
-
 
 
 /* FOOTER */
@@ -510,7 +451,7 @@ footer a:hover {
 }
 
 .alert {
-    background-color: var(--color-black);
+    background-color: var(--color-dark-purple);
     color: white;
     border-radius: 10px;
     padding: 15px;
@@ -557,11 +498,7 @@ footer a:hover {
         width: 100% !important;
     }
 
-    .btn-custom,
-    .btn-custom-teal, 
-    .allauth-form-inner-content button,
-    .allauth-form-inner-content input.btn,
-    .allauth-form-inner-content form input.btn {
+    .btn-custom {
         width: 100% !important; 
         max-width: 100% !important; 
     }
@@ -592,7 +529,7 @@ footer a:hover {
     #show-details h1,
     #taller-details h1 {
         font-size: 2rem;
-        color: var(--color-black);
+        color: var(--color-dark-purple);
     }    
 
 }
