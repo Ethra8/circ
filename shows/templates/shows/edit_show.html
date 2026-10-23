@@ -1,44 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'shows/css/shows.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div id="bag" class="container">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <hr>
-                <h2 class="eg-title mb-4">Event Management</h2>
-                <h5 class="text-muted">Edita el Evento</h5>
-                <hr>
-            </div>
+    <div class="add-edit container">
+        <div class="header">
+            <h2 class="mb-2 text-uppercase">Event Management</h2>
+            <hr>
+            <p class="mt-0">Edita el Evento</p>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!-- form includes enctype to allow include show IMAGE -->
-                <form method="POST" action="{% url 'shows:edit_show' show.id %}" class="form mb-2" enctype="multipart/form-data"> 
-                    {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
-                    {% endfor %}
-        
-                    <div class="text-right">
-                        <a class="btn btn-danger rounded-pill mr-4" href="{% url 'shows:show_list' %}" aria-label="cancel the update and return to list of shows">Cancelar</a>
-                        <button class="btn btn-success rounded-pill" type="submit">Actualizar</button>
-                    </div>
-                </form>
-            </div>
+        <div>
+            <!-- form includes enctype to allow include show IMAGE -->
+            <form method="POST" action="{% url 'shows:edit_show' show.id %}" class="form mb-2" enctype="multipart/form-data"> 
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.name != 'image' %}
+                        {{ field | as_crispy_field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
+    
+                <div class="text-right">
+                    <a class="btn btn-danger rounded-pill mr-4" href="{% url 'shows:show_list' %}" aria-label="cancel the update and return to list of shows">Cancelar</a>
+                    <button class="btn btn-success rounded-pill" type="submit">Actualizar</button>
+                </div>
+            </form>
         </div>
       
     </div>

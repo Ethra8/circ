@@ -1,15 +1,19 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 {% load time_filters %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tallers/css/tallers.css' %}">
+{% endblock %}
 
 
 {% block content %}
-<div id="taller_list" class="container h-100 w-100">
+<div id="taller-list" class="container h-100 w-100">
 
     <div class="h-100">
         <div class="my-auto ml-md-0 mr-md-0 px-0 shows">
             <div class="my-auto pt-3 pl-4 pb-0">
-                <h1 class="display-4">Nuestros talleres</h1>    
+                <h1 class="display-4">{% trans 'Nuestros talleres' %}</h1>    
             </div>
             <div>
                 <div class="list-row">
@@ -24,7 +28,7 @@
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title text-uppercase">{{ taller.name }}</h5>
-                            <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i>Para {{ taller.get_audience_display }}</p>  
+                            <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i>P{% trans 'Para' %} {{ taller.get_audience_display }}</p>  
                             <p class="mb-3 mt-2"><i class="fa-solid fa-location-dot fa-lg mr-3"></i></i>{{ taller.location_name }}<br>( {{ taller.location_city }} )</p>
                             <p class="mb-3"><i class="fa-regular fa-clock fa-lg mr-3"></i>{{ taller.starting_time|date:"TIME_FORMAT" }} - {{ taller.end_time|date:"TIME_FORMAT" }}</p>   
                             <p class="mb-3"><i class="fa-solid fa-arrow-rotate-right fa-lg mr-3"></i>{{ taller.duration }} semanas</p>

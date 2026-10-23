@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 01:14+0200\n"
+"POT-Creation-Date: 2026-10-23 02:50+0200\n"
 "PO-Revision-Date: 2024-04-14 00:00+0000\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -25,6 +25,10 @@ msgstr "Missatge"
 #: .\home\forms.py:34
 msgid "Send"
 msgstr "Enviar"
+
+#: .\home\templates\home\gallery.html:15
+msgid "Gallery"
+msgstr "Galeria"
 
 #: .\shows\models.py:8 .\tallers\models.py:10
 msgid "Monday"
@@ -242,6 +246,15 @@ msgstr "Ciutat del lloc, local o teatre on es desenvolupa l’esdeveniment"
 msgid "This event is fully booked!"
 msgstr "Aquest esdeveniment està complet - SOLD OUT!"
 
+#: .\shows\templates\shows\show_list.html:16
+msgid "Upcoming events"
+msgstr "Pròxims esdeveniments"
+
+#: .\shows\templates\shows\show_list.html:30
+#: .\tallers\templates\tallers\taller_details.html:42
+msgid "For"
+msgstr "Per a"
+
 #: .\tallers\models.py:39
 msgid "Workshop name"
 msgstr "Nom del taller"
@@ -326,6 +339,69 @@ msgstr ""
 msgid "This workshop is fully booked!"
 msgstr "Aquest taller està complet - SOLD OUT!"
 
+#: .\tallers\templates\tallers\add_taller.html:11
+msgid "Crear Nuevo Taller"
+msgstr "Crear un taller nou"
+
+#: .\tallers\templates\tallers\add_taller.html:13
+msgid "Incluye un nuevo taller a la lista"
+msgstr "Afegeix un taller nou a la llista"
+
+#: .\tallers\templates\tallers\add_taller.html:26
+msgid "Crear Taller"
+msgstr "Crear taller"
+
+#: .\tallers\templates\tallers\edit_taller.html:13
+msgid "Edita este taller"
+msgstr "Edita aquest taller"
+
+#: .\tallers\templates\tallers\edit_taller.html:30
+msgid "Guardar"
+msgstr "Desar"
+
+#: .\tallers\templates\tallers\taller_details.html:17
+msgid "Volver"
+msgstr "Tornar"
+
+#: .\tallers\templates\tallers\taller_details.html:52
+msgid "week"
+msgstr "setmana"
+
+#: .\tallers\templates\tallers\taller_details.html:54
+msgid "weeks"
+msgstr "setmanes"
+
+#: .\tallers\templates\tallers\taller_details.html:76
+#: .\tallers\templates\tallers\taller_details.html:79
+msgid "Tarifa"
+msgstr "Tarifa"
+
+#: .\tallers\templates\tallers\taller_details.html:82
+msgid "Tarifas"
+msgstr "Tarifes"
+
+#: .\tallers\templates\tallers\taller_details.html:103
+#: .\tallers\templates\tallers\taller_details.html:165
+msgid "Adult tickets"
+msgstr "Entrades d’adult"
+
+#: .\tallers\templates\tallers\taller_details.html:134
+#: .\tallers\templates\tallers\taller_details.html:196
+msgid "Children tickets"
+msgstr "Entrades infantils"
+
+#: .\tallers\templates\tallers\taller_details.html:228
+msgid "Add to bag"
+msgstr "Afegir a la cistella"
+
+#: .\tallers\templates\tallers\taller_list.html:16
+msgid "Nuestros talleres"
+msgstr "Els nostres tallers"
+
+#: .\tallers\templates\tallers\taller_list.html:31
+msgid "Para"
+msgstr "Per a"
+
 #: .\templates\allauth\account\account_inactive.html:5
 msgid "Account Inactive"
 msgstr "Compte inactiu"
@@ -399,8 +475,6 @@ msgid "Add E-mail Address"
 msgstr "Afegir una adreça de correu electrònic"
 
 #: .\templates\allauth\account\email.html:54
-#, fuzzy
-#| msgid "Email"
 msgid "Add E-mail"
 msgstr "Afegir correu electrònic"
 

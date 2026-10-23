@@ -1,17 +1,13 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tallers/css/tallers.css' %}">
 {% endblock %}
 
-
 {% block content %}
-<div id="bag" class="container mt-5">
+<div class="add-edit container mt-5">
     <h2 class="my-4  eg-font text-uppercase">Eliminar Taller</h2>
     <p class="">Seguro que quieres eliminar permanentemente el taller <strong>{{ taller.name }}</strong>?</p>
     

@@ -1,18 +1,18 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
+
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 {% endblock %}
 
 {% block content %}
-<div></div>
 <div id="gallery" class="container h-100 w-100">
 
     <div class="my-auto ml-md-0 mr-md-0 px-0">
         <div class="my-auto">
             <h1 class="display-4">
-                Galeria</span>
+                {% trans 'Gallery' %}</span>
             </h1>    
         </div>
         <div class="my-5">

@@ -1,0 +1,23 @@
+msgid "Crear Nuevo Taller"
+msgstr "Create New Workshop"
+
+msgid "Edita este taller"
+msgstr "Edit this workshop"
+
+msgid "Guardar"
+msgstr "Save"
+
+msgid "Volver"
+msgstr "Back"
+
+msgid "Tarifa"
+msgstr "Price"
+
+msgid "Tarifas"
+msgstr "Prices"
+
+msgid "Nuestros talleres"
+msgstr "Our workshops"
+
+msgid "Cerrar Serrión"
+msgstr "Sign Out"

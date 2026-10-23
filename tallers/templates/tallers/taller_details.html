@@ -1,14 +1,10 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 {% load time_filters %}
 
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tallers/css/tallers.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -18,7 +14,7 @@
         <div class="col-12">
             <a href="javascript:history.back()" class="return-prev-page col-12 col-sm-5" aria-label="Return to previous page">
                 <span><i class="fas fa-chevron-left text-dark"></i></span>
-                <span class="text-uppercase text-dark">Volver</span>
+                <span class="text-uppercase text-dark">{% trans 'Volver' %}</span>
             </a>
         </div>
 
@@ -43,14 +39,21 @@
 
                 <div class="row details-div-icons-info p-2 ml-1 mr-md-3 mr-lg-5 mt-4">
                     <div class="col-12 col-lg-6">
-                        <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i>Para {{ taller.get_audience_display }}</p>        
-                        <p class="mb-3"><i class="fa-regular fa-calendar fa-lg mr-3"></i>{{ taller.starting_date|date:"d M" }} - {{ taller.end_date|date:"DATE_FORMAT" }}</p>
+                        <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i>{% trans 'For' %} {{ taller.get_audience_display }}</p>        
+                        <p class="mb-3"><i class="fa-regular fa-calendar fa-lg mr-3"></i>{{ taller.starting_date|date:"d M" }} - {{ taller.end_date|date:"j M" }}</p>
                         <p class="mb-3"><i class="fa-solid fa-calendar-day fa-lg mr-3"></i>{{ taller.weekday_1 }} {% if taller.weekday_2 %}& {{ taller.weekday_2 }}{% endif %}</p>
                     </div>
                     <div class="col-12 col-lg-6">
                         <p class="mb-3 mt-2"><i class="fa-solid fa-building-columns fa-lg mr-3"></i>{{ taller.location_name }} ( {{ taller.location_city }} )</p>    
                         <p class="mb-3"><i class="fa-regular fa-clock fa-lg mr-3"></i>{{ taller.starting_time|date:"TIME_FORMAT" }} - {{ taller.end_time|date:"TIME_FORMAT" }}</p>                
-                        <p class="mb-3"><i class="fa-solid fa-arrow-rotate-right fa-lg mr-3"></i>{{ taller.duration }} semanas</p>
+                        <p class="mb-3"><i class="fa-solid fa-arrow-rotate-right fa-lg mr-3"></i>
+                            {{ taller.duration }} 
+                            {% if taller.duration >= 1 %}
+                                {% trans 'week' %}
+                            {% else %}
+                                {% trans 'weeks' %}
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
 
@@ -70,13 +73,13 @@
                 <!-- Pricing Display -->
                 <p class="lead mb-0 mt-4 ml-2 text-left font-weight-bold text-uppercase">
                     {% if taller.audience == 'adultos' %}
-                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>{% trans 'Tarifa' %}</h3>
                     <h4>{{ taller.price_per_seat_adult|floatformat:2 }} €</h4>
                     {% elif taller.audience == 'niños' %}
-                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>{% trans 'Tarifa' %}</h3>
                     <h4>{{ taller.price_per_seat_reduction|floatformat:2 }} €</h4>
                     {% else %}
-                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precios</h3>
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>{% trans 'Tarifas' %}</h3>
                     <h5><small>Adultos:</small> {{ taller.price_per_seat_adult|floatformat:2 }} €</h5>
                     <h5><small>Niños:</small> {{ taller.price_per_seat_reduction|floatformat:2 }} €</h5>
                     {% endif %}
@@ -97,7 +100,7 @@
                         {% if taller.audience == 'todo_publico' %}
                             <!-- Adult Quantity Selector -->
                             <div class="col-12">
-                                <p class="mt-3"><strong>Plazas Adulto:</strong></p>
+                                <p class="mt-3"><strong>{% trans 'Adult tickets' %}:</strong></p>
                                 <div class="form-group ticket-qty">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -128,7 +131,7 @@
                 
                             <!-- Child Quantity Selector -->
                             <div class="col-12">
-                                <p class="mt-3"><strong>Plazas Niño:</strong></p>
+                                <p class="mt-3"><strong>{% trans 'Children tickets' %}:</strong></p>
                                 <div class="form-group ticket-qty">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -159,7 +162,7 @@
                         {% elif taller.audience == 'adultos' %}
                             <!-- Adult-Only Quantity Selector -->
                             <div class="col-12">
-                                <p class="mt-3"><strong>Plazas Adulto:</strong></p>
+                                <p class="mt-3"><strong>{% trans 'Adult tickets' %}:</strong></p>
                                 <div class="form-group ticket-qty">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -190,7 +193,7 @@
                         {% elif taller.audience == 'niños' %}
                             <!-- Child-Only Quantity Selector -->
                             <div class="col-12">
-                                <p class="mt-3"><strong>Plazas Niño:</strong></p>
+                                <p class="mt-3"><strong>{% trans 'Children tickets' %}:</strong></p>
                                 <div class="form-group ticket-qty">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -222,7 +225,7 @@
                         <!-- Submit Button -->
                         <div class="col d-flex flex-wrap justify-content-between">
                             <button type="submit" class="col-12 btn btn-custom rounded-pill text-uppercase mt-5 order-1 order-sm-2">
-                                Añadir a Cesta
+                                {% trans 'Add to bag' %}
                                 <span class="icon"><i class="fas fa-chevron-right"></i></span>
                             </button>
                         </div>

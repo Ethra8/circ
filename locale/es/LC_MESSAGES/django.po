@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 01:14+0200\n"
+"POT-Creation-Date: 2026-10-23 02:50+0200\n"
 "PO-Revision-Date: 2024-04-14 00:00+0000\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -25,6 +25,10 @@ msgstr "Mensaje"
 #: .\home\forms.py:34
 msgid "Send"
 msgstr "Enviar"
+
+#: .\home\templates\home\gallery.html:15
+msgid "Gallery"
+msgstr "Galería"
 
 #: .\shows\models.py:8 .\tallers\models.py:10
 msgid "Monday"
@@ -92,11 +96,11 @@ msgstr "Nombre del evento"
 
 #: .\shows\models.py:40 .\tallers\models.py:43
 msgid "Image"
-msgstr "imagen"
+msgstr "Imagen"
 
 #: .\shows\models.py:42
 msgid "Promotional image for the event"
-msgstr "imagen promocional para el evento"
+msgstr "Imagen promocional para el evento"
 
 #: .\shows\models.py:47 .\tallers\models.py:51
 msgid "Description"
@@ -144,7 +148,7 @@ msgstr "Número de reservas activas (participantes que ya han reservado)"
 
 #: .\shows\models.py:79 .\tallers\models.py:95
 msgid "Missed booking requests"
-msgstr ""
+msgstr "Solicitudes de reserva no atendidas"
 
 #: .\shows\models.py:83 .\tallers\models.py:101
 msgid "Audience"
@@ -177,31 +181,31 @@ msgstr "Categoría circense"
 
 #: .\shows\models.py:112 .\tallers\models.py:134
 msgid "First weekday"
-msgstr "Dia de semana 1"
+msgstr "Día de la semana 1"
 
 #: .\shows\models.py:117 .\tallers\models.py:139
 msgid "Second weekday"
-msgstr "Dia de semana 2"
+msgstr "Día de la semana 2"
 
 #: .\shows\models.py:124 .\tallers\models.py:146
 msgid "Third weekday"
-msgstr "Dia de semana 3"
+msgstr "Día de la semana 3"
 
 #: .\shows\models.py:131 .\tallers\models.py:153
 msgid "Fourth weekday"
-msgstr "Dia de semana 4"
+msgstr "Día de la semana 4"
 
 #: .\shows\models.py:138 .\tallers\models.py:160
 msgid "Fifth weekday"
-msgstr "Dia de semana 5"
+msgstr "Día de la semana 5"
 
 #: .\shows\models.py:145 .\tallers\models.py:167
 msgid "Sixth weekday"
-msgstr "Dia de semana 6"
+msgstr "Día de la semana 6"
 
 #: .\shows\models.py:152 .\tallers\models.py:174
 msgid "Seventh weekday"
-msgstr "Dia de semana 7"
+msgstr "Día de la semana 7"
 
 #: .\shows\models.py:161 .\tallers\models.py:183
 msgid "Venue name"
@@ -241,13 +245,22 @@ msgstr "Ciudad del lugar, local o teatro donde se desarrolla el evento"
 msgid "This event is fully booked!"
 msgstr "Este evento está completo - SOLD OUT!"
 
+#: .\shows\templates\shows\show_list.html:16
+msgid "Upcoming events"
+msgstr "Próximos eventos"
+
+#: .\shows\templates\shows\show_list.html:30
+#: .\tallers\templates\tallers\taller_details.html:42
+msgid "For"
+msgstr "Para"
+
 #: .\tallers\models.py:39
 msgid "Workshop name"
 msgstr "Nombre del taller"
 
 #: .\tallers\models.py:45
 msgid "Promotional image for the workshop"
-msgstr "imagen promocional del taller"
+msgstr "Imagen promocional del taller"
 
 #: .\tallers\models.py:52
 msgid "Detailed description of the workshop"
@@ -298,7 +311,7 @@ msgstr ""
 
 #: .\tallers\models.py:130
 msgid "Choose the circus category for the workshop"
-msgstr "Elije la catagoría de circo del taller"
+msgstr "Elige la categoría de circo del taller"
 
 #: .\tallers\models.py:186
 msgid "Name of the venue, theatre or location where the workshop takes place"
@@ -314,7 +327,7 @@ msgstr "La hora de finalización debe ser posterior a la hora de inicio"
 
 #: .\tallers\models.py:221
 msgid "First weekday and second weekday cannot be the same."
-msgstr "Dia de semana 1 y día de semana 2 no puden ser iguales"
+msgstr "El día de la semana 1 y el día de la semana 2 no pueden ser iguales"
 
 #: .\tallers\models.py:226
 msgid "Reduced ticket price must not be set for an adults-only workshop."
@@ -323,6 +336,69 @@ msgstr "Precio reducido no debe incluirse para talleres solamente para adultos"
 #: .\tallers\models.py:249
 msgid "This workshop is fully booked!"
 msgstr "Este taller está completo - SOLD OUT!"
+
+#: .\tallers\templates\tallers\add_taller.html:11
+msgid "Crear Nuevo Taller"
+msgstr "Crear Nuevo Taller"
+
+#: .\tallers\templates\tallers\add_taller.html:13
+msgid "Incluye un nuevo taller a la lista"
+msgstr "Incluye un nuevo taller a la lista"
+
+#: .\tallers\templates\tallers\add_taller.html:26
+msgid "Crear Taller"
+msgstr "Crear Taller"
+
+#: .\tallers\templates\tallers\edit_taller.html:13
+msgid "Edita este taller"
+msgstr "Edita este taller"
+
+#: .\tallers\templates\tallers\edit_taller.html:30
+msgid "Guardar"
+msgstr "Guardar"
+
+#: .\tallers\templates\tallers\taller_details.html:17
+msgid "Volver"
+msgstr "Volver"
+
+#: .\tallers\templates\tallers\taller_details.html:52
+msgid "week"
+msgstr "semana"
+
+#: .\tallers\templates\tallers\taller_details.html:54
+msgid "weeks"
+msgstr "semanas"
+
+#: .\tallers\templates\tallers\taller_details.html:76
+#: .\tallers\templates\tallers\taller_details.html:79
+msgid "Tarifa"
+msgstr "Tarifa"
+
+#: .\tallers\templates\tallers\taller_details.html:82
+msgid "Tarifas"
+msgstr "Tarifas"
+
+#: .\tallers\templates\tallers\taller_details.html:103
+#: .\tallers\templates\tallers\taller_details.html:165
+msgid "Adult tickets"
+msgstr "Entradas de adulto"
+
+#: .\tallers\templates\tallers\taller_details.html:134
+#: .\tallers\templates\tallers\taller_details.html:196
+msgid "Children tickets"
+msgstr "Entradas infantiles"
+
+#: .\tallers\templates\tallers\taller_details.html:228
+msgid "Add to bag"
+msgstr "Añadir a la cesta"
+
+#: .\tallers\templates\tallers\taller_list.html:16
+msgid "Nuestros talleres"
+msgstr "Nuestros talleres"
+
+#: .\tallers\templates\tallers\taller_list.html:31
+msgid "Para"
+msgstr "Para"
 
 #: .\templates\allauth\account\account_inactive.html:5
 msgid "Account Inactive"
@@ -363,7 +439,7 @@ msgstr "Sin verificar"
 
 #: .\templates\allauth\account\email.html:29
 msgid "Primary"
-msgstr "Pricipal"
+msgstr "Principal"
 
 #: .\templates\allauth\account\email.html:35
 msgid "Make Primary"
@@ -397,10 +473,8 @@ msgid "Add E-mail Address"
 msgstr "Añadir dirección de correo electrónico"
 
 #: .\templates\allauth\account\email.html:54
-#, fuzzy
-#| msgid "Email"
 msgid "Add E-mail"
-msgstr "Añadir Correo electrónico"
+msgstr "Añadir correo electrónico"
 
 #: .\templates\allauth\account\email.html:64
 msgid "Do you really want to remove the selected e-mail address?"
@@ -910,7 +984,7 @@ msgstr ""
 
 #: .\templates\widgets\translated_file_input.html:5
 msgid "Choose file"
-msgstr "Selecciona archivo"
+msgstr "Seleccionar archivo"
 
 #: .\templates\widgets\translated_file_input.html:9
 #: .\templates\widgets\translated_file_input.html:10

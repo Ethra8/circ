@@ -2,6 +2,10 @@
 {% load static %}
 {% load time_filters %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'shows/css/shows.css' %}">
+{% endblock %}
+
 {% block content %}
 <div id="show-details" class="container">
     <div class="row details-frame">
@@ -34,8 +38,8 @@
                 <div class="row details-div-icons-info p-2 m-0 ml-md-1 mr-md-3 mr-lg-5 mt-4">
                     <div class="col-12 col-lg-6">
                         <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i> Para {{ show.get_audience_display }}</p>        
-                        <p class="mb-3"><i class="fa-regular fa-calendar fa-lg mr-3"></i>{% if show.starting_date == show.end_date %}{{ show.starting_date|date:"DATE_FORMAT" }}{% else %}{{ show.starting_date|date:"d M" }}
-                            - {{ show.end_date|date:"DATE_FORMAT" }}{% endif %}</p>
+                        <p class="mb-3"><i class="fa-regular fa-calendar fa-lg mr-3"></i>{% if show.starting_date == show.end_date %}{{ show.starting_date|date:"d M" }}{% else %}{{ show.starting_date|date:"d M" }}
+                            - {{ show.end_date|date:"d M" }}{% endif %}</p>
                         <p class="mb-3"><i class="fa-solid fa-calendar-day fa-lg mr-3"></i>{{ show.weekday_1 }} {% if show.weekday_2 %}& {{ show.weekday_2 }}{% endif %}</p>
                     </div>
                     <div class="col-12 col-lg-6">

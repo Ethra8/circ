@@ -1,44 +1,35 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'tallers/css/tallers.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div id="bag" class="container">
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <hr>
-                <h2 class="eg-title mb-4">Taller Management</h2>
-                <h5 class="text-muted">Edita un Taller</h5>
-                <hr>
-            </div>
+    <div class="add-edit container">
+        <div class="header">
+            <h2 class="mb-4">{{ taller.name }}</h2>
+            <hr>
+            <p>{% trans 'Edita este taller' %}</p>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!-- form includes enctype to allow include taller IMAGE -->
-                <form method="POST" action="{% url 'tallers:edit_taller' taller.id %}" class="form mb-2" enctype="multipart/form-data"> 
-                    {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
-                    {% endfor %}
-        
-                    <div class="text-right">
-                        <a class="btn btn-danger rounded-pill mr-4" href="{% url 'tallers:taller_list' %}" aria-label="cancel the update and return to list of tallers">Cancelar</a>
-                        <button class="btn btn-success rounded-pill" type="submit">Actualizar</button>
-                    </div>
-                </form>
-            </div>
+        <div>
+            <!-- form includes enctype to allow include taller IMAGE -->
+            <form method="POST" action="{% url 'tallers:edit_taller' taller.id %}" class="form mb-2" enctype="multipart/form-data"> 
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.name != 'image' %}
+                        {{ field | as_crispy_field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
+    
+                <div class="text-right">
+                    <a class="btn btn-danger rounded-pill mr-4" href="{% url 'tallers:taller_list' %}" aria-label="cancel the update and return to list of tallers">Cancelar</a>
+                    <button class="btn btn-success rounded-pill" type="submit">{% trans 'Guardar' %}</button>
+                </div>
+            </form>
         </div>
       
     </div>

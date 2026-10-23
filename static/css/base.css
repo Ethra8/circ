@@ -55,6 +55,7 @@ form .form-text.text-muted {
     align-items: center;
     gap: .5rem;
     flex-wrap: wrap;
+    margin-bottom: 1em;
 }
 
 .custom-file-field input[type="file"] {
@@ -70,9 +71,10 @@ form .form-text.text-muted {
 }
 
 .file-upload-btn {
-    display: inline-block;
-    margin: 0;
-    padding: .4rem .7rem;
+    display: flex;
+    align-items: center;
+    margin: 0;    
+    padding: 0 .7rem;
     color: var(--color-dark-purple);
     background: rgba(var(--color-white-rgb), .75);
     border: 1px solid var(--color-dark-purple);
@@ -158,8 +160,9 @@ form .form-text.text-muted {
 }
 
 .details-div-icons-info {
-    background-color: var(--color-dark-purple);
+    background-color: rgba(var(--color-dark-purple-rgb), 0.25);
     color: var(--color-white-rgb);
+    border-radius: 4px;
 }
 
 .admin-div-ticket-info {
@@ -246,31 +249,31 @@ form .form-text.text-muted {
 }
 
 /* SHOW DETAILS & TALLER DETAILS */
-#show_list,
-#taller_list {
+#show-list,
+#taller-list {
     background-color: rgba(66, 37, 0, 0.4);
     padding: 20px;
 }
 
 #show-details,
-#show_list,
+#show-list,
 #taller-details,
-#taller_list,
+#taller-list,
 #search-results {
     /* padding-left: 3rem;
     padding-right: 3rem; */
     margin-top: 120px;
 }
 
-#show_list h1,
-#taller_list h1,
+#show-list h1,
+#taller-list h1,
 #search-results h1 {
     font-size: 2.9rem;
     text-align: left;
     padding-top: 50px;
 }
 
-#show_list h1 {
+#show-list h1 {
     color: var(--color-dark-purple);
 }
 
@@ -325,13 +328,13 @@ a.return-prev-page:hover {
     font-size: 1rem !important;
 }
 
-#show_list p a,
-#taller_list p a {
+#show-list p a,
+#taller-list p a {
     color: var(--color-yellow);
 }
 
-#show_list p a:hover,
-#taller_list p a:hover {
+#show-list p a:hover,
+#taller-list p a:hover {
     color: aqua;
 }
 
@@ -570,16 +573,16 @@ footer a:hover {
         margin-right: 0 !important;
     }
 
-    #show_list,
-    #taller_list {
+    #show-list,
+    #taller-list {
         padding-left: 5%; 
         padding-right: 5%;   
         margin-top: 0;
         background: transparent;
     }
 
-    #show_list h1,
-    #taller_list h1 {
+    #show-list h1,
+    #taller-list h1 {
         padding-left: 2rem;
         padding-right: 2rem;
     }
