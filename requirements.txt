@@ -14,6 +14,7 @@ django-allauth==0.57.2
 django-cors-headers==4.6.0
 django-crispy-forms==2.3
 django-extensions==3.2.3
+django-modeltranslation==0.20.6
 django-storages==1.14.6
 django-summernote==0.8.20.0
 gunicorn==23.0.0
