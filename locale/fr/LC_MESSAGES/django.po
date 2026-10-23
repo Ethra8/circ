@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 02:50+0200\n"
+"POT-Creation-Date: 2026-10-23 03:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -151,7 +151,7 @@ msgstr "Nombre maximum de participants"
 
 #: .\shows\models.py:75 .\tallers\models.py:89
 msgid "Booked participants"
-msgstr "Participants inscrits"
+msgstr "Participants ayant réservé"
 
 #: .\shows\models.py:79 .\tallers\models.py:95
 msgid "Missed booking requests"
@@ -169,7 +169,7 @@ msgstr ""
 
 #: .\shows\models.py:90 .\tallers\models.py:109
 msgid "Adult ticket price"
-msgstr "Tarif adulte"
+msgstr "Prix du billet adulte"
 
 #: .\shows\models.py:93 .\tallers\models.py:112
 msgid "Price per adult ticket"
@@ -250,6 +250,20 @@ msgstr "Ville où se trouve le lieu"
 #: .\shows\models.py:200
 msgid "This event is fully booked!"
 msgstr "Cet événement est complet !"
+
+#: .\shows\templates\shows\show_details.html:15
+#: .\tallers\templates\tallers\taller_details.html:17
+msgid "Back"
+msgstr "Retour"
+
+#: .\shows\templates\shows\show_details.html:67
+#: .\shows\templates\shows\show_details.html:70
+msgid "Price"
+msgstr "Tarif"
+
+#: .\shows\templates\shows\show_details.html:73
+msgid "Prices"
+msgstr "Tarifs"
 
 #: .\shows\templates\shows\show_list.html:16
 msgid "Upcoming events"
@@ -347,28 +361,24 @@ msgid "This workshop is fully booked!"
 msgstr "Cet atelier est complet !"
 
 #: .\tallers\templates\tallers\add_taller.html:11
-msgid "Crear Nuevo Taller"
+msgid "Create New Workshop"
 msgstr "Créer un nouvel atelier"
 
 #: .\tallers\templates\tallers\add_taller.html:13
-msgid "Incluye un nuevo taller a la lista"
-msgstr "Ajoutez un nouvel atelier à la liste"
+msgid "Add a new workshop to the list"
+msgstr "Ajouter un nouvel atelier à la liste"
 
 #: .\tallers\templates\tallers\add_taller.html:26
-msgid "Crear Taller"
+msgid "Create Workshop"
 msgstr "Créer l’atelier"
 
 #: .\tallers\templates\tallers\edit_taller.html:13
-msgid "Edita este taller"
+msgid "Edit this workshop"
 msgstr "Modifier cet atelier"
 
 #: .\tallers\templates\tallers\edit_taller.html:30
-msgid "Guardar"
+msgid "Save"
 msgstr "Enregistrer"
-
-#: .\tallers\templates\tallers\taller_details.html:17
-msgid "Volver"
-msgstr "Retour"
 
 #: .\tallers\templates\tallers\taller_details.html:52
 msgid "week"
@@ -390,7 +400,7 @@ msgstr "Tarifs"
 #: .\tallers\templates\tallers\taller_details.html:103
 #: .\tallers\templates\tallers\taller_details.html:165
 msgid "Adult tickets"
-msgstr "Billets adultes"
+msgstr "Billets pour adultes"
 
 #: .\tallers\templates\tallers\taller_details.html:134
 #: .\tallers\templates\tallers\taller_details.html:196
@@ -1008,3 +1018,4 @@ msgstr "Choisir un fichier"
 #: .\templates\widgets\translated_file_input.html:10
 msgid "No file selected"
 msgstr "Aucun fichier sélectionné"
+

@@ -49,6 +49,9 @@ CORS_ALLOWED_ORIGINS = [
 
 INSTALLED_APPS = [
     'django.contrib',
+    # creates new col in model db for each language cat/es/fr
+    # Custom translation for show.description/taller.description
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

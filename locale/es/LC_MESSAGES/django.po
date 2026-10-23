@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 02:50+0200\n"
+"POT-Creation-Date: 2026-10-23 03:19+0200\n"
 "PO-Revision-Date: 2024-04-14 00:00+0000\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -140,11 +140,11 @@ msgstr "Duración en formato HH:MM (horas:minutos)"
 
 #: .\shows\models.py:71 .\tallers\models.py:84
 msgid "Maximum participants"
-msgstr "Máximo de participantes (Aforo máximo)"
+msgstr "Número máximo de participantes"
 
 #: .\shows\models.py:75 .\tallers\models.py:89
 msgid "Booked participants"
-msgstr "Número de reservas activas (participantes que ya han reservado)"
+msgstr "Participantes con reserva"
 
 #: .\shows\models.py:79 .\tallers\models.py:95
 msgid "Missed booking requests"
@@ -161,11 +161,11 @@ msgstr ""
 
 #: .\shows\models.py:90 .\tallers\models.py:109
 msgid "Adult ticket price"
-msgstr "Precio Adultos"
+msgstr "Precio de la entrada de adulto"
 
 #: .\shows\models.py:93 .\tallers\models.py:112
 msgid "Price per adult ticket"
-msgstr "Precio de ticket por adulto"
+msgstr "Precio por entrada de adulto"
 
 #: .\shows\models.py:96 .\tallers\models.py:116
 msgid "Reduced ticket price"
@@ -173,7 +173,7 @@ msgstr "Precio reducido"
 
 #: .\shows\models.py:101 .\tallers\models.py:121
 msgid "Reduced ticket price, where applicable"
-msgstr "Precio reducido, si aplica a las características del evento"
+msgstr "Precio reducido, si procede"
 
 #: .\shows\models.py:104 .\tallers\models.py:125
 msgid "Circus category"
@@ -229,9 +229,7 @@ msgstr "Código postal"
 
 #: .\shows\models.py:177 .\tallers\models.py:200
 msgid "Venue postcode (optional)"
-msgstr ""
-"Código postal del lugar, local o teatro donde se desarrolla el evento "
-"(opcional)"
+msgstr "Código postal del lugar, local o teatro (opcional)"
 
 #: .\shows\models.py:180 .\tallers\models.py:204
 msgid "City"
@@ -244,6 +242,20 @@ msgstr "Ciudad del lugar, local o teatro donde se desarrolla el evento"
 #: .\shows\models.py:200
 msgid "This event is fully booked!"
 msgstr "Este evento está completo - SOLD OUT!"
+
+#: .\shows\templates\shows\show_details.html:15
+#: .\tallers\templates\tallers\taller_details.html:17
+msgid "Back"
+msgstr "Volver"
+
+#: .\shows\templates\shows\show_details.html:67
+#: .\shows\templates\shows\show_details.html:70
+msgid "Price"
+msgstr "Tarifa"
+
+#: .\shows\templates\shows\show_details.html:73
+msgid "Prices"
+msgstr "Tarifas"
 
 #: .\shows\templates\shows\show_list.html:16
 msgid "Upcoming events"
@@ -338,28 +350,24 @@ msgid "This workshop is fully booked!"
 msgstr "Este taller está completo - SOLD OUT!"
 
 #: .\tallers\templates\tallers\add_taller.html:11
-msgid "Crear Nuevo Taller"
-msgstr "Crear Nuevo Taller"
+msgid "Create New Workshop"
+msgstr "Crear nuevo taller"
 
 #: .\tallers\templates\tallers\add_taller.html:13
-msgid "Incluye un nuevo taller a la lista"
-msgstr "Incluye un nuevo taller a la lista"
+msgid "Add a new workshop to the list"
+msgstr "Añade un nuevo taller a la lista"
 
 #: .\tallers\templates\tallers\add_taller.html:26
-msgid "Crear Taller"
-msgstr "Crear Taller"
+msgid "Create Workshop"
+msgstr "Crear taller"
 
 #: .\tallers\templates\tallers\edit_taller.html:13
-msgid "Edita este taller"
+msgid "Edit this workshop"
 msgstr "Edita este taller"
 
 #: .\tallers\templates\tallers\edit_taller.html:30
-msgid "Guardar"
+msgid "Save"
 msgstr "Guardar"
-
-#: .\tallers\templates\tallers\taller_details.html:17
-msgid "Volver"
-msgstr "Volver"
 
 #: .\tallers\templates\tallers\taller_details.html:52
 msgid "week"
@@ -381,7 +389,7 @@ msgstr "Tarifas"
 #: .\tallers\templates\tallers\taller_details.html:103
 #: .\tallers\templates\tallers\taller_details.html:165
 msgid "Adult tickets"
-msgstr "Entradas de adulto"
+msgstr "Entradas para adultos"
 
 #: .\tallers\templates\tallers\taller_details.html:134
 #: .\tallers\templates\tallers\taller_details.html:196
@@ -990,3 +998,4 @@ msgstr "Seleccionar archivo"
 #: .\templates\widgets\translated_file_input.html:10
 msgid "No file selected"
 msgstr "Ningún archivo seleccionado"
+

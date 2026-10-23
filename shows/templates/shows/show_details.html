@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 {% load time_filters %}
 
 {% block extra_css %}
@@ -12,7 +12,7 @@
         <div class="col-12">
             <a href="javascript:history.back()" class="return-prev-page col-12 col-sm-5" aria-label="Return to previous page">
                 <span><i class="fas fa-chevron-left text-dark"></i></span>
-                <span class="text-uppercase text-dark">Volver</span>
+                <span class="text-uppercase text-dark">{% trans "Back" %}</span>
             </a>
         </div>
 
@@ -64,13 +64,13 @@
                 <!-- Pricing Display -->
                 <p class="lead mb-0 mt-4 ml-2 text-left font-weight-bold text-uppercase">
                     {% if show.audience == 'adultos' %}
-                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>{% trans "Price" %}</h3>
                     <h4>{{ show.price_per_seat_adult|floatformat:2 }} €</h4>
                     {% elif show.audience == 'niños' %}
-                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precio</h3>
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>{% trans "Price" %}</h3>
                     <h4>{{ show.price_per_seat_reduction|floatformat:2 }} €</h4>
                     {% else %}
-                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>Precios</h3>
+                    <h3><i class="fa-solid fa-ticket fa-lg mr-3"></i>{% trans "Prices" %}</h3>
                     <h5><small>Adultos:</small> {{ show.price_per_seat_adult|floatformat:2 }} €</h5>
                     <h5><small>Niños:</small> {{ show.price_per_seat_reduction|floatformat:2 }} €</h5>
                     {% endif %}

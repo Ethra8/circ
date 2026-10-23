@@ -8,9 +8,9 @@
 {% block content %}
     <div class="add-edit container">
         <div class="header">
-            <h2 class="mb-4">{% trans 'Crear Nuevo Taller' %}</h2>
+            <h2 class="mb-4">{% trans "Create New Workshop" %}</h2>
             <hr>
-            <p class="text-muted">{% trans 'Incluye un nuevo taller a la lista' %}</p>
+            <p class="text-muted">{% trans "Add a new workshop to the list" %}</p>
         </div>
 
         <div>
@@ -23,7 +23,7 @@
     
                 <div class="text-right">
                     <a class="btn btn-danger rounded-pill mr-4" href="{% url 'tallers:taller_list' %}" aria-label="cancel adding a new taller and return to list of tallers">Cancelar</a>
-                    <button class="btn btn-custom rounded-pill btn-success" type="submit">{% trans 'Crear Taller' %}</button>
+                    <button class="btn btn-custom rounded-pill btn-success" type="submit">{% trans "Create Workshop" %}</button>
                 </div>
             </form>
         </div>
