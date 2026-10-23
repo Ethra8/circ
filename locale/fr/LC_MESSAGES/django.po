@@ -1019,3 +1019,18 @@ msgstr "Choisir un fichier"
 msgid "No file selected"
 msgstr "Aucun fichier sélectionné"
 
+msgid "Our Workshops & Courses"
+msgstr "Nos ateliers et cours"
+
+msgid ""
+"We don't have any workshops scheduled at the moment. Check back in a couple "
+"of days, or <a href=\"{}\">subscribe to our newsletter</a> to stay up to date "
+"with the latest news and even receive the occasional special offer!"
+msgstr ""
+"Nous n’avons aucun atelier ni de cours programmés pour le moment. Revenez dans quelques "
+"jours ou <a href=\"{}\">abonnez-vous à notre newsletter</a> pour rester au "
+"courant de toutes les nouveautés et même recevoir de temps en temps une offre "
+"spéciale !"
+
+msgid "See details"
+msgstr "Voir les détails"

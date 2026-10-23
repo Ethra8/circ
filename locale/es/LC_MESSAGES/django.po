@@ -999,3 +999,17 @@ msgstr "Seleccionar archivo"
 msgid "No file selected"
 msgstr "Ningún archivo seleccionado"
 
+msgid "Our Workshops & Courses"
+msgstr "Nuestros talleres y cursos"
+
+msgid ""
+"We don't have any workshops scheduled at the moment. Check back in a couple "
+"of days, or <a href=\"{}\">subscribe to our newsletter</a> to stay up to date "
+"with the latest news and even receive the occasional special offer!"
+msgstr ""
+"No tenemos ningún taller ni curso programado por ahora. Vuelve en un par de días, o "
+"<a href=\"{}\">suscríbete a nuestra newsletter</a> para estar al día de "
+"cualquier novedad, o incluso recibir alguna que otra oferta!"
+
+msgid "See details"
+msgstr "Ver detalles"

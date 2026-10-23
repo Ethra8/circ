@@ -998,3 +998,17 @@ msgstr "Selecciona un fitxer"
 msgid "No file selected"
 msgstr "Cap fitxer seleccionat"
 
+msgid "Our Workshops & Courses"
+msgstr "Els nostres tallers i cursos"
+
+msgid ""
+"We don't have any workshops scheduled at the moment. Check back in a couple "
+"of days, or <a href=\"{}\">subscribe to our newsletter</a> to stay up to date "
+"with the latest news and even receive the occasional special offer!"
+msgstr ""
+"Ara mateix no tenim cap taller ni curs programat. Torna d’aquí a un parell de dies, "
+"o <a href=\"{}\">subscriu-te a la nostra newsletter</a> per estar al dia de "
+"totes les novetats i fins i tot rebre alguna oferta especial de tant en tant!"
+
+msgid "See details"
+msgstr "Veure detalls"

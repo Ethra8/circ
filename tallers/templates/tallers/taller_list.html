@@ -13,7 +13,7 @@
     <div class="h-100">
         <div class="my-auto ml-md-0 mr-md-0 px-0 shows">
             <div class="my-auto pt-3 pl-4 pb-0">
-                <h1 class="display-4">{% trans 'Nuestros talleres' %}</h1>    
+                <h1 class="display-4">{% trans 'Our Workshops & Courses' %}</h1>    
             </div>
             <div>
                 <div class="list-row">
@@ -28,16 +28,27 @@
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title text-uppercase">{{ taller.name }}</h5>
-                            <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i>P{% trans 'Para' %} {{ taller.get_audience_display }}</p>  
+                            <p class="mb-3 mt-2"><i class="fa-solid fa-person fa-lg mr-3"></i></i>{% trans 'For' %} {{ taller.get_audience_display }}</p>  
                             <p class="mb-3 mt-2"><i class="fa-solid fa-location-dot fa-lg mr-3"></i></i>{{ taller.location_name }}<br>( {{ taller.location_city }} )</p>
                             <p class="mb-3"><i class="fa-regular fa-clock fa-lg mr-3"></i>{{ taller.starting_time|date:"TIME_FORMAT" }} - {{ taller.end_time|date:"TIME_FORMAT" }}</p>   
-                            <p class="mb-3"><i class="fa-solid fa-arrow-rotate-right fa-lg mr-3"></i>{{ taller.duration }} semanas</p>
+                            <p class="mb-3"><i class="fa-solid fa-arrow-rotate-right fa-lg mr-3"></i>
+                                {{ taller.duration }} 
+                                {% if taller.duration >= 1 %}
+                                    {% trans 'week' %}
+                                {% else %}
+                                    {% trans 'weeks' %}
+                                {% endif %}
+                            </p>
                         </div>
                     </div>    
-                    <a href="{% url 'tallers:taller_details' taller.id %}" class="btn-show-card text-uppercase text-center">ver detalles</a>
+                    <a href="{% url 'tallers:taller_details' taller.id %}" class="btn-show-card text-uppercase text-center">{% trans 'See details' %}</a>
                             
                     {% empty %}
-                        <p class="">No tenemos ningún taller programado por ahora. Vuelve en un par de días, o <a href="{}">suscríbete a nuestra newsletter</a> para estar al día de cualquier novedad, o incluso recibir alguna que otra oferta!</p>
+                        <p>
+                            {% blocktrans %}
+                            We don't have any workshops scheduled at the moment. Check back in a couple of days, or <a href="{}">subscribe to our newsletter</a> to stay up to date with the latest news and even receive the occasional special offer!
+                            {% endblocktrans %}
+                        </p>                    
                     {% endfor %}
                 </div>
             </div>
