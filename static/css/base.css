@@ -136,16 +136,19 @@ form .form-text.text-muted {
 }
 
 
-/* DETAILS PAGE GENERAL **************************************/
+/* TALLERS & SHOWS LIST Pages **************************************/
 .list-row {
     padding: 3%;
     display: flex;
     flex-direction: column;
+    background-color: rgb(228 136 19 / 40%);
+    margin-bottom: 1em;
 }
 
 .list-row > div {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding-bottom: .55em;
 }
 
 .list-row .card-body {
@@ -177,7 +180,7 @@ form .form-text.text-muted {
 }
 
 
-/* SHOWS_LIST */
+/* SHOWS_LIST **********************************************************/
 .shows {
     /* border: 1px solid var(--color-yellow); */
     padding: 15px;
@@ -235,7 +238,6 @@ form .form-text.text-muted {
     object-fit: cover; 
 }
 
-
 .card-title {
     color: var(--color-dark-purple);
     font-family: "Zen Loop", sans-serif;
@@ -248,10 +250,10 @@ form .form-text.text-muted {
     border: 2px solid rgba(var(--color-yellow-rgb), 0.5);
 }
 
-/* SHOW DETAILS & TALLER DETAILS */
+/* SHOW & TALLER DETAILS Pages ************************************/
 #show-list,
 #taller-list {
-    background-color: rgba(66, 37, 0, 0.4);
+    background-color: rgba(218, 133, 23, 0.4);
     padding: 20px;
 }
 
@@ -260,23 +262,18 @@ form .form-text.text-muted {
 #taller-details,
 #taller-list,
 #search-results {
-    /* padding-left: 3rem;
-    padding-right: 3rem; */
     margin-top: 120px;
 }
 
 #show-list h1,
 #taller-list h1,
 #search-results h1 {
-    font-size: 2.9rem;
+    font-size: 2.7em;
     text-align: left;
-    padding-top: 50px;
-}
-
-#show-list h1 {
     color: var(--color-dark-purple);
+    text-transform: uppercase;
+    margin-bottom: .6em;
 }
-
 
 #show_details .fas:hover,
 #tallers_details .fas:hover {
@@ -339,8 +336,7 @@ a.return-prev-page:hover {
 }
 
 
-/* BAG */
-
+/* BAG **************************************************/
 #bag {
     padding: 2rem;
     margin-top: 80px; 
@@ -421,7 +417,7 @@ a.return-prev-page:hover {
 } */
 
 
-/* FOOTER */
+/* FOOTER *********************************************/
 
 .footer {
     background-color: rgb(255 143 0 / 50%);
@@ -577,14 +573,6 @@ footer a:hover {
     #taller-list {
         padding-left: 5%; 
         padding-right: 5%;   
-        margin-top: 0;
-        background: transparent;
-    }
-
-    #show-list h1,
-    #taller-list h1 {
-        padding-left: 2rem;
-        padding-right: 2rem;
     }
 
     #show-details h1,
@@ -592,6 +580,12 @@ footer a:hover {
         font-size: 2rem;
         color: var(--color-dark-purple);
     }    
+
+    .list-row > div {
+        display: flex;
+        /* grid-template-columns: column; */
+        padding-bottom: 0;
+    }
 
 }
 

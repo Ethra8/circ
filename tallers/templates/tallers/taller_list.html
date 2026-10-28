@@ -20,11 +20,13 @@
                     {% for taller in tallers %}
                     <div>
                         {% if taller.image %}
+                        <div>
                         <a href="{% url 'tallers:taller_details' taller.id %}">
                             <div class="card-img-top-container">
                                 <img src="{{ taller.image.url }}" class="card-img-top" alt="{{ taller.name }}">
                             </div>
                         </a>
+                        </div>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title text-uppercase">{{ taller.name }}</h5>
